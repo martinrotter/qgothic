@@ -1,0 +1,83 @@
+#------------------------------------------------------
+# qgothic
+# this is project file
+# author: Martin Rotter <rotter.martinos(at)gmail.com>
+#------------------------------------------------------
+
+TARGET	    = qgothic
+TEMPLATE    = app
+QT	    += core webkit
+CONFIG	    += console
+CONFIG	    -= app_bundle
+DEFINES	    *= QT_USE_QSTRINGBUILDER
+
+
+DESTDIR	    = build
+OBJECTS_DIR = build
+MOC_DIR	    = build
+UI_DIR	    = build
+INCLUDEPATH = src
+SUBDIRS	    += extensions
+CODECFORTR  = UTF-8
+LANGUAGE    = C++
+
+
+SOURCES += src/main.cpp \
+    src/location.cpp \
+    src/player.cpp \
+    src/figure.cpp \
+    src/board.cpp \
+    src/move.cpp \
+    src/referee.cpp \
+    src/algorithms.cpp \
+    src/strategy.cpp \
+    src/intelligence.cpp \
+    src/game.cpp \
+    src/generator.cpp \
+    src/gboard.cpp \
+    src/gmainwindow.cpp \
+    src/gsettingsdialog.cpp \
+    src/greferencedocdialog.cpp \
+    src/ginterface.cpp \
+    src/history.cpp \
+    src/historyitem.cpp \
+    src/historymodel.cpp \
+    src/gtreeview.cpp \
+    src/gsettings.cpp
+
+HEADERS += \
+    src/location.h \
+    src/player.h \
+    src/figure.h \
+    src/board.h \
+    src/move.h \
+    src/referee.h \
+    src/algorithms.h \
+    src/strategy.h \
+    src/intelligence.h \
+    src/game.h \
+    src/generator.h \
+    src/gboard.h \
+    src/definitions.h \
+    src/gmainwindow.h \
+    src/gsettingsdialog.h \
+    src/greferencedocdialog.h \
+    src/ginterface.h \
+    src/history.h \
+    src/historyitem.h \
+    src/historymodel.h \
+    src/gtreeview.h \
+    src/gsettings.h
+
+FORMS += \
+    ui/gmainwindow.ui \
+    ui/gsettingsdialog.ui \
+    ui/greferencedocdialog.ui
+
+RESOURCES += \
+    resources/qgothic.qrc \
+
+# OS dependent settings
+win32 {
+    win32:RC_FILE = resources/windows/qgothic.rc
+}

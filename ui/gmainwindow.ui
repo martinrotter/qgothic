@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>GMainWindow</class>
+ <widget class="QMainWindow" name="GMainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>754</width>
+    <height>539</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>8100</width>
+    <height>5370</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>QGothic</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">p</string>
+  </property>
+  <property name="unifiedTitleAndToolBarOnMac">
+   <bool>true</bool>
+  </property>
+  <widget class="QWidget" name="m_centralWidget">
+   <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <item>
+     <widget class="QWidget" name="widget" native="true">
+      <layout class="QGridLayout" name="gridLayout">
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="m_groupWhite">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="title">
+          <string>White player</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <widget class="QLabel" name="m_labelWhiteType">
+            <property name="text">
+             <string notr="true"/>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::RichText</enum>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::NoTextInteraction</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="m_labelWhiteNumber">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::NoTextInteraction</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="m_labelWhiteTurns">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="text">
+             <string notr="true"/>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::RichText</enum>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::NoTextInteraction</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QGroupBox" name="m_groupBlack">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="title">
+          <string>Black player</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <widget class="QLabel" name="m_labelBlackType">
+            <property name="text">
+             <string notr="true"/>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::RichText</enum>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::NoTextInteraction</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="m_labelBlackNumber">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::NoTextInteraction</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="m_labelBlackTurns">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="text">
+             <string notr="true"/>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::RichText</enum>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::NoTextInteraction</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="2">
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>250</width>
+           <height>59</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="3" column="0" colspan="2">
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QToolButton" name="m_buttonUndo">
+           <property name="minimumSize">
+            <size>
+             <width>40</width>
+             <height>40</height>
+            </size>
+           </property>
+           <property name="toolTip">
+            <string>Play previous move.</string>
+           </property>
+           <property name="text">
+            <string>Zpět</string>
+           </property>
+           <property name="icon">
+            <iconset resource="../resources/qgothic.qrc">
+             <normaloff>:/graphics/go-previous.png</normaloff>:/graphics/go-previous.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>22</width>
+             <height>22</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="m_buttonPlayPause">
+           <property name="minimumSize">
+            <size>
+             <width>60</width>
+             <height>60</height>
+            </size>
+           </property>
+           <property name="toolTip">
+            <string>Continue or pause game.</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="../resources/qgothic.qrc">
+             <normaloff>:/graphics/go-play.png</normaloff>
+             <normalon>:/graphics/go-pause.png</normalon>:/graphics/go-play.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>40</width>
+             <height>40</height>
+            </size>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+           <property name="checked">
+            <bool>false</bool>
+           </property>
+           <property name="popupMode">
+            <enum>QToolButton::DelayedPopup</enum>
+           </property>
+           <property name="toolButtonStyle">
+            <enum>Qt::ToolButtonIconOnly</enum>
+           </property>
+           <property name="arrowType">
+            <enum>Qt::NoArrow</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="m_buttonRedo">
+           <property name="minimumSize">
+            <size>
+             <width>40</width>
+             <height>40</height>
+            </size>
+           </property>
+           <property name="toolTip">
+            <string>Play next move.</string>
+           </property>
+           <property name="text">
+            <string>Vpřed</string>
+           </property>
+           <property name="icon">
+            <iconset resource="../resources/qgothic.qrc">
+             <normaloff>:/graphics/go-next.png</normaloff>:/graphics/go-next.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>22</width>
+             <height>22</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item row="4" column="0" colspan="2">
+        <widget class="GTreeView" name="m_historyView">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>255</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QTreeView::branch:has-children:!has-siblings:closed,
+QTreeView::branch:closed:has-children:has-siblings {
+	border-image: none;
+	image: url(branch-closed.png);
+}</string>
+         </property>
+         <property name="alternatingRowColors">
+          <bool>true</bool>
+         </property>
+         <property name="indentation">
+          <number>0</number>
+         </property>
+         <property name="uniformRowHeights">
+          <bool>true</bool>
+         </property>
+         <property name="itemsExpandable">
+          <bool>false</bool>
+         </property>
+         <property name="animated">
+          <bool>true</bool>
+         </property>
+         <property name="allColumnsShowFocus">
+          <bool>true</bool>
+         </property>
+         <property name="expandsOnDoubleClick">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="QLabel" name="m_labelStatus">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="GBoard" name="m_gboard" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>480</width>
+        <height>480</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>480</width>
+        <height>480</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="m_menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>754</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="m_menuGame">
+    <property name="title">
+     <string>Game</string>
+    </property>
+    <addaction name="m_actionNew"/>
+    <addaction name="separator"/>
+    <addaction name="m_actionLoad"/>
+    <addaction name="m_actionSave"/>
+    <addaction name="separator"/>
+    <addaction name="m_actionQuit"/>
+   </widget>
+   <widget class="QMenu" name="m_menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="m_actionBrowseHelp"/>
+    <addaction name="m_actionReferenceDocs"/>
+    <addaction name="m_actionDisplayLog"/>
+    <addaction name="separator"/>
+    <addaction name="m_actionAboutQGothic"/>
+   </widget>
+   <widget class="QMenu" name="m_menuTools">
+    <property name="title">
+     <string>Tools</string>
+    </property>
+    <addaction name="m_actionSettings"/>
+    <addaction name="separator"/>
+    <addaction name="m_actionBestMove"/>
+   </widget>
+   <addaction name="m_menuGame"/>
+   <addaction name="m_menuTools"/>
+   <addaction name="m_menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="m_statusBar">
+   <property name="sizeGripEnabled">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <action name="m_actionQuit">
+   <property name="icon">
+    <iconset resource="../resources/qgothic.qrc">
+     <normaloff>:/graphics/application-exit.png</normaloff>:/graphics/application-exit.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Quit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+   <property name="priority">
+    <enum>QAction::LowPriority</enum>
+   </property>
+  </action>
+  <action name="m_actionAboutQGothic">
+   <property name="icon">
+    <iconset resource="../resources/qgothic.qrc">
+     <normaloff>:/graphics/qgothic.png</normaloff>:/graphics/qgothic.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;About QGothic</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A</string>
+   </property>
+   <property name="priority">
+    <enum>QAction::LowPriority</enum>
+   </property>
+  </action>
+  <action name="m_actionBrowseHelp">
+   <property name="text">
+    <string>&amp;Help</string>
+   </property>
+   <property name="shortcut">
+    <string>F1</string>
+   </property>
+   <property name="priority">
+    <enum>QAction::LowPriority</enum>
+   </property>
+  </action>
+  <action name="m_actionNew">
+   <property name="icon">
+    <iconset resource="../resources/qgothic.qrc">
+     <normaloff>:/graphics/application-new.png</normaloff>:/graphics/application-new.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;New</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+   <property name="priority">
+    <enum>QAction::LowPriority</enum>
+   </property>
+  </action>
+  <action name="m_actionLoad">
+   <property name="icon">
+    <iconset resource="../resources/qgothic.qrc">
+     <normaloff>:/graphics/application-load.png</normaloff>:/graphics/application-load.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Load</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+L</string>
+   </property>
+   <property name="priority">
+    <enum>QAction::LowPriority</enum>
+   </property>
+  </action>
+  <action name="m_actionSave">
+   <property name="icon">
+    <iconset resource="../resources/qgothic.qrc">
+     <normaloff>:/graphics/application-save.png</normaloff>:/graphics/application-save.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Save</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+   <property name="priority">
+    <enum>QAction::LowPriority</enum>
+   </property>
+  </action>
+  <action name="m_actionBestMove">
+   <property name="text">
+    <string>&amp;Find Best Move</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+B</string>
+   </property>
+   <property name="priority">
+    <enum>QAction::HighPriority</enum>
+   </property>
+  </action>
+  <action name="m_actionSettings">
+   <property name="icon">
+    <iconset resource="../resources/qgothic.qrc">
+     <normaloff>:/graphics/application-settings.png</normaloff>:/graphics/application-settings.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Configuration</string>
+   </property>
+   <property name="toolTip">
+    <string>Configuration</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+   <property name="priority">
+    <enum>QAction::LowPriority</enum>
+   </property>
+  </action>
+  <action name="m_actionDisplayLog">
+   <property name="text">
+    <string>Display &amp;Log</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+G</string>
+   </property>
+   <property name="priority">
+    <enum>QAction::LowPriority</enum>
+   </property>
+  </action>
+  <action name="m_actionReferenceDocs">
+   <property name="text">
+    <string>&amp;Programmer's Docs</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
+   <property name="priority">
+    <enum>QAction::LowPriority</enum>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>GBoard</class>
+   <extends>QWidget</extends>
+   <header>gboard.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>GTreeView</class>
+   <extends>QTreeView</extends>
+   <header>gtreeview.h</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>m_buttonPlayPause</tabstop>
+  <tabstop>m_buttonUndo</tabstop>
+  <tabstop>m_buttonRedo</tabstop>
+  <tabstop>m_historyView</tabstop>
+ </tabstops>
+ <resources>
+  <include location="../resources/qgothic.qrc"/>
+ </resources>
+ <connections/>
+</ui>
