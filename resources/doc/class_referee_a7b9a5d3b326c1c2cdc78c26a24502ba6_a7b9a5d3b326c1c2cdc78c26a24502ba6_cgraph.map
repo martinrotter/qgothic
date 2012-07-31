@@ -1,0 +1,12 @@
+<map id="Referee::getMoves" name="Referee::getMoves">
+<area shape="rect" id="node3" href="$class_referee_a644d9dc57e2f919dcafe0fd6418c5334.html#a644d9dc57e2f919dcafe0fd6418c5334" title="Finds jumps/moves for any figure on the specified location." alt="" coords="193,81,341,108"/>
+<area shape="rect" id="node23" href="$class_referee_af6fba82f820cf71c37aedd9844e530fb.html#af6fba82f820cf71c37aedd9844e530fb" title="Best moves selector." alt="" coords="187,132,347,159"/>
+<area shape="rect" id="node5" href="$class_referee_a3804eb20b0ef173ecb5dc2abeb1b09a2.html#a3804eb20b0ef173ecb5dc2abeb1b09a2" title="Finds both jumps/moves for pawn." alt="" coords="397,56,579,83"/>
+<area shape="rect" id="node14" href="$class_referee_ae2620f23d897796ec6b14350146ea4f9.html#ae2620f23d897796ec6b14350146ea4f9" title="Finds both jumps/moves for queen." alt="" coords="395,107,581,133"/>
+<area shape="rect" id="node7" href="$class_referee_aa34ec5da7bdf189428480fadd6dfdb24.html#aa34ec5da7bdf189428480fadd6dfdb24" title="Finds all posibble jumps for pawn." alt="" coords="631,5,798,32"/>
+<area shape="rect" id="node11" href="$class_referee_a3112eff2c936b13911657e84a8223009.html#a3112eff2c936b13911657e84a8223009" title="Finds all posibble simple moves (without jumps) for pawn." alt="" coords="631,56,798,83"/>
+<area shape="rect" id="node9" href="$class_referee_a761072555690d427e2e733bb38d78731.html#a761072555690d427e2e733bb38d78731" title="Directions for pawn move." alt="" coords="851,44,1037,71"/>
+<area shape="rect" id="node16" href="$class_referee_a4022a6fa7510756c702cfb91b8800630.html#a4022a6fa7510756c702cfb91b8800630" title="Finds all posibble jumps for queen." alt="" coords="629,107,800,133"/>
+<area shape="rect" id="node20" href="$class_referee_af707e04b844f3faa25f279b9aea65b91.html#af707e04b844f3faa25f279b9aea65b91" title="Finds all posibble simple moves (without jumps) for queen." alt="" coords="629,157,800,184"/>
+<area shape="rect" id="node18" href="$class_referee_ac55aa3a4318bc581e2f6d17c4327fd40.html#ac55aa3a4318bc581e2f6d17c4327fd40" title="Directions for queen move." alt="" coords="849,120,1039,147"/>
+</map>

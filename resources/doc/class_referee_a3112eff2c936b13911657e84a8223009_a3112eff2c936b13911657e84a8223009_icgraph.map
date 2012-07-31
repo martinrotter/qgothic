@@ -1,0 +1,5 @@
+<map id="Referee::getPawnMoves" name="Referee::getPawnMoves">
+<area shape="rect" id="node3" href="$class_referee_a3804eb20b0ef173ecb5dc2abeb1b09a2.html#a3804eb20b0ef173ecb5dc2abeb1b09a2" title="Finds both jumps/moves for pawn." alt="" coords="221,5,403,32"/>
+<area shape="rect" id="node5" href="$class_referee_a644d9dc57e2f919dcafe0fd6418c5334.html#a644d9dc57e2f919dcafe0fd6418c5334" title="Finds jumps/moves for any figure on the specified location." alt="" coords="451,5,599,32"/>
+<area shape="rect" id="node7" href="$class_referee_a7b9a5d3b326c1c2cdc78c26a24502ba6.html#a7b9a5d3b326c1c2cdc78c26a24502ba6" title="Gets all available moves for certain Figure::Color." alt="" coords="648,5,781,32"/>
+</map>

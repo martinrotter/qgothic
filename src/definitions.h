@@ -15,7 +15,7 @@ const QString LANG_BASE		= ":/translations";
 
 const QString APP_NAME		= "QGothic";
 const QString APP_DESC		= QObject::tr("QGothic (Damn-Spel) board game.");
-const QString APP_VERSION	= "0.1.3";
+const QString APP_VERSION	= "0.1.8";
 const QString APP_AUTHOR	= "Martin Rotter";
 const QString APP_COPYRIGHT	= "Copyright (C) 2011-2012 Martin Rotter";
 const QString APP_URL		= "http://code.google.com/p/qonverter/";
@@ -31,6 +31,7 @@ const QString SET_GAME		= "Game";
 /////////////////////
 /// Game defines.
 /////////////////////
+const QString GAM_TURNS		= ":/graphics/current-player.png";
 const QString GAM_HUMAN		= QObject::tr(" human");
 const QString GAM_HUMAN_IMG	= ":/graphics/dif-human.png";
 const QString GAM_HUMAN_IMG_B	= ":/graphics/dif-human-big.png";

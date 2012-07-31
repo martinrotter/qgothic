@@ -41,6 +41,13 @@ Location GBoard::locationFromPoint(const QPoint &point) const {
     return Location(x, y);
 }
 
+void GBoard::clearSelections() {
+    m_is_piece_selected = false;
+    m_available_pieces.clear();
+    m_available_moves.clear();
+    repaint();
+}
+
 void GBoard::mousePressEvent(QMouseEvent *e) {
     QWidget::mousePressEvent(e);
 
@@ -62,18 +69,20 @@ void GBoard::mousePressEvent(QMouseEvent *e) {
 	m_selected_piece = clicked_location;
 
 	// je třeba zjistit kterymy figurkami jde tahnout
-	QList<Move> available_pieces = Referee::getMoves(Figure::getColorByType((*m_game->getBoard())(m_selected_piece)),
-							 *m_game->getBoard());
+	// na vykreslení tahnutelných figurek
+	QList<Move> available_moves = Referee::getMoves(Figure::getColorByType((*m_game->getBoard())(m_selected_piece)),
+							*m_game->getBoard());
 	m_available_pieces.clear();
-	foreach (Move move, available_pieces) {
+	foreach (Move move, available_moves) {
 	    m_available_pieces.append(move.getFrom());
 	}
 
-	QList<Move> available_moves = Referee::getBestMoves(Referee::getAllMoves(m_selected_piece, *m_game->getBoard()));
+	//QList<Move> available_moves = Referee::getBestMoves(Referee::getAllMoves(m_selected_piece, *m_game->getBoard()));
 
 
+	// do m_available_moves dej tahy ktere jdou udělat z vybranou figurkou
 	foreach (Move move, available_moves) {
-	    if (m_available_pieces.contains(move.getFrom()) == false) {
+	    if (move.getFrom() != clicked_location) {
 		available_moves.removeOne(move);
 	    }
 	}
@@ -87,13 +96,18 @@ void GBoard::mousePressEvent(QMouseEvent *e) {
 	if (clicked_location.isInvalid()) {
 	    return;
 	}
+
+	// klikli jsme tam kde už je vybraný kámen
 	if (clicked_location == m_selected_piece) {
 	    bool ends_in_same_place = false;
+	    // pokud nějaký tah končí na stejné pozici kde je kamen
+	    // tak nahodíme ends_in_same_place na true
 	    foreach (Move move, m_available_moves) {
 		if (clicked_location == move.getTo()) {
 		    ends_in_same_place = true;
 		}
 	    }
+	    // pokud nekončí tah na stejné pozici, tak odznačíme aktuání kámen
 	    if (ends_in_same_place == false) {
 		m_is_piece_selected = false;
 		m_available_moves.clear();
@@ -101,35 +115,37 @@ void GBoard::mousePressEvent(QMouseEvent *e) {
 		return;
 	    }
 	}
-
+/*
 	QList<Move> available_moves = Referee::getBestMoves(Referee::getAllMoves(m_selected_piece, *m_game->getBoard()));
 	foreach (Move move, available_moves) {
 	    if (m_available_pieces.contains(move.getFrom()) == false) {
 		available_moves.removeOne(move);
 	    }
 	}
+*/
 
-	m_available_moves.clear();
+
 	m_available_pieces.clear();
+	m_is_piece_selected = false;
 
 
 	//qDebug() << "pocet moznych tahu: " << available_moves.size();
-	foreach (Move move, available_moves) {	    // našli jsme vhodný tah
+	foreach (Move move, m_available_moves) {	    // našli jsme vhodný tah
 	    // ošetřovat, že když je na tahu člověk, tak může táhnout jen svoji barvou
 	    // navíc je zde více možných rovnocenných tahů
 	    if (clicked_location == move.getTo()) {
 		m_game->makeMove(move);
-		m_is_piece_selected = false;
+		m_available_moves.clear();
 		repaint();
 		return;
 	    }
 	}
-	m_is_piece_selected = false;
+
+	m_available_moves.clear();
 	mousePressEvent(e);
     }
     repaint();
 }
-
 
 void GBoard::paintEvent(QPaintEvent *e) {
     QStyleOption opt;

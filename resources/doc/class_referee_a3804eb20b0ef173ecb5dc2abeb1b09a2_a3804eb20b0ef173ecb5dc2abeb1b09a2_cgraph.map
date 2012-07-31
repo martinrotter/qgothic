@@ -1,0 +1,5 @@
+<map id="Referee::getAllPawnMoves" name="Referee::getAllPawnMoves">
+<area shape="rect" id="node3" href="$class_referee_aa34ec5da7bdf189428480fadd6dfdb24.html#aa34ec5da7bdf189428480fadd6dfdb24" title="Finds all posibble jumps for pawn." alt="" coords="235,5,402,32"/>
+<area shape="rect" id="node7" href="$class_referee_a3112eff2c936b13911657e84a8223009.html#a3112eff2c936b13911657e84a8223009" title="Finds all posibble simple moves (without jumps) for pawn." alt="" coords="235,56,402,83"/>
+<area shape="rect" id="node5" href="$class_referee_a761072555690d427e2e733bb38d78731.html#a761072555690d427e2e733bb38d78731" title="Directions for pawn move." alt="" coords="451,31,637,57"/>
+</map>

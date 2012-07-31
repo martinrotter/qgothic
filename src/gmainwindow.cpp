@@ -258,8 +258,8 @@ void GMainWindow::controlGame(bool running) {
 	m_labelStatusState->setText(tr("Paused"));
 	m_labelStatusState->setToolTip(tr("Game is paused."));
 	m_game->setState(Game::PAUSED);
+	m_ui->m_gboard->clearSelections();
     }
-
     repaint();
 }
 
@@ -281,14 +281,14 @@ void GMainWindow::updateTable(bool just_turning) {
 	case Figure::BLACK:
 	    m_ui->m_labelWhiteTurns->setText("");
 	    m_ui->m_labelWhiteTurns->setToolTip("");
-	    m_ui->m_labelBlackTurns->setToolTip("Black player has his turn.");
+	    m_ui->m_labelBlackTurns->setToolTip(tr("Black player has his turn."));
 	    m_ui->m_labelBlackTurns->setText(QString(GAM_PLAY_STYLE).arg("32",
-									 ":/graphics/current-player.png", ""));
+									 GAM_TURNS, ""));
 	    break;
 	case Figure::WHITE:
-	    m_ui->m_labelWhiteTurns->setToolTip("White player has his turn.");
+	    m_ui->m_labelWhiteTurns->setToolTip(tr("White player has his turn."));
 	    m_ui->m_labelWhiteTurns->setText(QString(GAM_PLAY_STYLE).arg("32",
-									 ":/graphics/current-player.png", ""));
+									 GAM_TURNS, ""));
 	    m_ui->m_labelBlackTurns->setText("");
 	    m_ui->m_labelBlackTurns->setToolTip("");
 	    break;

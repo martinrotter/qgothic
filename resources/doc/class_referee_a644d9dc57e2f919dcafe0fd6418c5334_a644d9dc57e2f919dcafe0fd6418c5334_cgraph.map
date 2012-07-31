@@ -1,0 +1,10 @@
+<map id="Referee::getAllMoves" name="Referee::getAllMoves">
+<area shape="rect" id="node3" href="$class_referee_a3804eb20b0ef173ecb5dc2abeb1b09a2.html#a3804eb20b0ef173ecb5dc2abeb1b09a2" title="Finds both jumps/moves for pawn." alt="" coords="205,56,387,83"/>
+<area shape="rect" id="node12" href="$class_referee_ae2620f23d897796ec6b14350146ea4f9.html#ae2620f23d897796ec6b14350146ea4f9" title="Finds both jumps/moves for queen." alt="" coords="203,107,389,133"/>
+<area shape="rect" id="node5" href="$class_referee_aa34ec5da7bdf189428480fadd6dfdb24.html#aa34ec5da7bdf189428480fadd6dfdb24" title="Finds all posibble jumps for pawn." alt="" coords="439,5,606,32"/>
+<area shape="rect" id="node9" href="$class_referee_a3112eff2c936b13911657e84a8223009.html#a3112eff2c936b13911657e84a8223009" title="Finds all posibble simple moves (without jumps) for pawn." alt="" coords="439,56,606,83"/>
+<area shape="rect" id="node7" href="$class_referee_a761072555690d427e2e733bb38d78731.html#a761072555690d427e2e733bb38d78731" title="Directions for pawn move." alt="" coords="659,44,845,71"/>
+<area shape="rect" id="node14" href="$class_referee_a4022a6fa7510756c702cfb91b8800630.html#a4022a6fa7510756c702cfb91b8800630" title="Finds all posibble jumps for queen." alt="" coords="437,107,608,133"/>
+<area shape="rect" id="node18" href="$class_referee_af707e04b844f3faa25f279b9aea65b91.html#af707e04b844f3faa25f279b9aea65b91" title="Finds all posibble simple moves (without jumps) for queen." alt="" coords="437,157,608,184"/>
+<area shape="rect" id="node16" href="$class_referee_ac55aa3a4318bc581e2f6d17c4327fd40.html#ac55aa3a4318bc581e2f6d17c4327fd40" title="Directions for queen move." alt="" coords="657,120,847,147"/>
+</map>

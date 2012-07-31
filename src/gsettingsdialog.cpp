@@ -10,7 +10,7 @@ GSettingsDialog::GSettingsDialog(Game *game, GMainWindow *parent) :
     m_ui->setupUi(this);
 
     // Prepare interface.
-    setFixedSize(sizeHint().width(), sizeHint().height());
+    //setFixedSize(sizeHint().width(), sizeHint().height());
     m_ui->m_stackedSections->setCurrentIndex(0);
 
     // Create connections for members.
@@ -18,6 +18,7 @@ GSettingsDialog::GSettingsDialog(Game *game, GMainWindow *parent) :
 
     // Load players.
     loadPlayers();
+    enablePlayerBoxes();
     changePlayerIcons();
     // Load appearance.
     loadAppearance();
@@ -28,8 +29,8 @@ GSettingsDialog::~GSettingsDialog() {
 }
 
 void GSettingsDialog::loadPlayers() {
-    Player::State white_state = m_game->getPlayer(Figure::WHITE).getState();
-    Player::State black_state = m_game->getPlayer(Figure::BLACK).getState();
+    Player::State white_state = static_cast<Player::State>(GSettings::value(SET_GAME, "white_player_dif", 0).toInt());
+    Player::State black_state = static_cast<Player::State>(GSettings::value(SET_GAME, "black_player_dif", 2).toInt());
 
     m_ui->m_comboWhite->setCurrentIndex(white_state == Player::HUMAN ? 0 : 1);
     m_ui->m_comboBlack->setCurrentIndex(black_state == Player::HUMAN ? 0 : 1);
@@ -47,9 +48,23 @@ void GSettingsDialog::loadPlayers() {
     if (black_state != Player::HUMAN) {
 	buttons_black[black_state-1]->setChecked(true);
     }
+
+    m_ui->m_radioBlackStarts->setChecked(GSettings::value(SET_GAME, "starting_player", 0).toInt());
 }
 
 void GSettingsDialog::changePlayerIcons() {
+    // Mark starting player with an image.
+    if (m_ui->m_radioBlackStarts->isChecked()) {
+	m_ui->m_labelBlackStarts->setText(QString(GAM_PLAY_STYLE).arg("32",
+								      GAM_TURNS, ""));
+	m_ui->m_labelWhiteStarts->clear();
+    }
+    else {
+	m_ui->m_labelWhiteStarts->setText(QString(GAM_PLAY_STYLE).arg("32",
+								      GAM_TURNS, ""));
+	m_ui->m_labelBlackStarts->clear();
+    }
+
     // Setup white player.
     if (m_ui->m_comboWhite->currentIndex() == 0) {
 	m_ui->m_labelWhite->setText(QString(GAM_PLAY_STYLE).arg("32",
@@ -109,6 +124,8 @@ void GSettingsDialog::createConnections() {
     connect(m_ui->m_blackEasy, SIGNAL(clicked()), this, SLOT(changePlayerIcons()));
     connect(m_ui->m_blackMedium, SIGNAL(clicked()), this, SLOT(changePlayerIcons()));
     connect(m_ui->m_blackHard, SIGNAL(clicked()), this, SLOT(changePlayerIcons()));
+    connect(m_ui->m_radioBlackStarts, SIGNAL(toggled(bool)), this, SLOT(changePlayerIcons()));
+    connect(m_ui->m_radioWhiteStarts, SIGNAL(toggled(bool)), this, SLOT(changePlayerIcons()));
 }
 
 void GSettingsDialog::setPlayers() {
@@ -147,6 +164,9 @@ void GSettingsDialog::setPlayers() {
 
     m_game->setPlayer(white);
     m_game->setPlayer(black);
+    GSettings::setValue(SET_GAME, "white_player_dif", white.getState());
+    GSettings::setValue(SET_GAME, "black_player_dif", black.getState());
+    GSettings::setValue(SET_GAME, "starting_player", static_cast<int>(m_ui->m_radioBlackStarts->isChecked()));
 }
 
 void GSettingsDialog::loadAppearance() {

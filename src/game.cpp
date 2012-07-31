@@ -1,5 +1,7 @@
 #include "game.h"
 #include "historyitem.h"
+#include "gsettings.h"
+#include "definitions.h"
 
 #include <QDebug>
 #include <QObject>
@@ -9,13 +11,16 @@
 Game::Game(QObject *parent) :
     QObject(parent), m_board(new Board()), m_history(new History(this)),
     m_generator(new Generator()), m_state(Game::PAUSED),
-    m_current_player(0) {
+    m_current_player(GSettings::value(SET_GAME, "starting_player", 0).toInt()) {
 
     qRegisterMetaType<Move>("Move");
     connect(m_generator, SIGNAL(moveGenerated(Move)), this, SLOT(makeMove(Move)));
     connect(m_history, SIGNAL(changed(int)), this, SLOT(informAboutHistory()));
-    m_players << Player(Player::HUMAN, Figure::WHITE);
-    m_players << Player(Player::MEDIUM, Figure::BLACK);
+
+    m_players << Player(static_cast<Player::State>(GSettings::value(SET_GAME, "white_player_dif", 0).toInt()),
+			Figure::WHITE);
+    m_players << Player(static_cast<Player::State>(GSettings::value(SET_GAME, "black_player_dif", 2).toInt()),
+			Figure::BLACK);
 }
 
 Game::~Game() {
@@ -39,7 +44,7 @@ void Game::newGame() {
 
     //informAboutHistory();
     setState(Game::PAUSED);
-    m_current_player = 0;
+    m_current_player = GSettings::value(SET_GAME, "starting_player", 0).toInt();
     emit boardChanged();
     emit playersSwapped();
 }

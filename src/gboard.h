@@ -23,6 +23,10 @@ class GBoard : public QWidget {
 
 	Location locationFromPoint(const QPoint &point) const;
 
+    public slots:
+	void clearSelections();
+
+
     private:
 	Game *m_game;
 	int m_offset;

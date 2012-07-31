@@ -1,0 +1,5 @@
+<map id="Referee::getAllQueenMoves" name="Referee::getAllQueenMoves">
+<area shape="rect" id="node3" href="$class_referee_a4022a6fa7510756c702cfb91b8800630.html#a4022a6fa7510756c702cfb91b8800630" title="Finds all posibble jumps for queen." alt="" coords="240,5,411,32"/>
+<area shape="rect" id="node7" href="$class_referee_af707e04b844f3faa25f279b9aea65b91.html#af707e04b844f3faa25f279b9aea65b91" title="Finds all posibble simple moves (without jumps) for queen." alt="" coords="240,56,411,83"/>
+<area shape="rect" id="node5" href="$class_referee_ac55aa3a4318bc581e2f6d17c4327fd40.html#ac55aa3a4318bc581e2f6d17c4327fd40" title="Directions for queen move." alt="" coords="459,31,650,57"/>
+</map>
