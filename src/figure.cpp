@@ -6,7 +6,7 @@
 Figure::Figure() {
 }
 
-QString Figure::figureToString(Figure::Type figure) {
+QString Figure::toString(Figure::Type figure) {
     switch (figure) {
 	case Figure::WHITE_PAWN:
 	    return QObject::tr("white pawn");

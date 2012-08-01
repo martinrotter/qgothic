@@ -6,7 +6,7 @@
 
 TARGET	    = qgothic
 TEMPLATE    = app
-QT	    += core webkit
+QT	    += core webkit xml
 CONFIG	    += console
 CONFIG	    -= app_bundle
 DEFINES	    *= QT_USE_QSTRINGBUILDER
@@ -17,6 +17,7 @@ OBJECTS_DIR = build
 MOC_DIR	    = build
 UI_DIR	    = build
 INCLUDEPATH = src
+INCLUDEPATH += src/3rd-party
 SUBDIRS	    += extensions
 CODECFORTR  = UTF-8
 LANGUAGE    = C++
@@ -43,7 +44,8 @@ SOURCES += src/main.cpp \
     src/historyitem.cpp \
     src/historymodel.cpp \
     src/gtreeview.cpp \
-    src/gsettings.cpp
+    src/gsettings.cpp \
+    src/3rd-party/simplecrypt.cpp
 
 HEADERS += \
     src/location.h \
@@ -67,7 +69,8 @@ HEADERS += \
     src/historyitem.h \
     src/historymodel.h \
     src/gtreeview.h \
-    src/gsettings.h
+    src/gsettings.h \
+    src/3rd-party/simplecrypt.h
 
 FORMS += \
     ui/gmainwindow.ui \

@@ -7,7 +7,22 @@
 HistoryModel::HistoryModel(History *history, QObject *parent)
     : QAbstractItemModel(parent), m_history(history), m_columnCount(3) {
 
-    m_initialIndex << tr("1") << tr("White starts") << tr("No Move");
+    setInitialPlayerHeader(0);
+}
+
+void HistoryModel::setInitialPlayerHeader(int current_player) {
+    switch (static_cast<Figure::Color>(current_player)) {
+	case Figure::WHITE:
+	    m_initialIndex.clear();
+	    m_initialIndex << tr("1") << tr("White starts") << tr("No Move");
+	    break;
+	case Figure::BLACK:
+	    m_initialIndex.clear();
+	    m_initialIndex << tr("1") << tr("Black starts") << tr("No Move");
+	    break;
+	default:
+	    break;
+    }
 }
 
 int HistoryModel::columnCount(const QModelIndex &parent) const {

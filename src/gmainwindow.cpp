@@ -13,7 +13,7 @@
 #include <QMessageBox>
 #include <QProgressBar>
 #include <QMouseEvent>
-#include <QDataStream>
+#include <QFileDialog>
 
 
 GMainWindow::GMainWindow(QWidget *parent) : QMainWindow(parent), m_ui(new Ui::GMainWindow) {
@@ -132,7 +132,7 @@ void GMainWindow::setupWindow() {
 #endif
     // Switch controlbox to left or right side.
     switchControlBox(static_cast<Qt::Alignment>(GSettings::value(SET_APPEAR ,"controlbox_alignment",
-										Qt::AlignLeft).toInt()));
+								 Qt::AlignLeft).toInt()));
 }
 
 void GMainWindow::createConnections() {
@@ -153,13 +153,18 @@ void GMainWindow::createConnections() {
     connect(m_ui->m_buttonRedo, SIGNAL(clicked()), this, SLOT(pauseGame()));
     connect(m_ui->m_buttonRedo, SIGNAL(clicked()), m_game, SLOT(redo()));
 
-    connect(m_ui->m_historyView, SIGNAL(currentRowChanged(int,int)), this, SLOT(moveInGame(int,int)));
+    connect(m_ui->m_historyView, SIGNAL(currentRowChanged(int,int)),
+	    this, SLOT(moveInGame(int,int)));
 
-    connect(m_game->getHistory(), SIGNAL(changed(int)), m_ui->m_historyView, SLOT(setCurrentRow(int)));
+    connect(m_game, SIGNAL(initialPlayerChanged(int)),
+	    m_historyModel, SLOT(setInitialPlayerHeader(int)));
+    connect(m_game->getHistory(), SIGNAL(changed(int)),
+	    m_ui->m_historyView, SLOT(setCurrentRow(int)));
     connect(m_game, SIGNAL(playersSwapped()), this, SLOT(updateTable()));
     connect(m_game, SIGNAL(moveSearchStarted()), this, SLOT(moveStart()));
     connect(m_game, SIGNAL(moveSearchFinished()), this, SLOT(moveEnd()));
-    connect(m_game, SIGNAL(stateChanged(bool)), m_ui->m_buttonPlayPause, SLOT(setChecked(bool)));
+    connect(m_game, SIGNAL(stateChanged(bool)),
+	    m_ui->m_buttonPlayPause, SLOT(setChecked(bool)));
     connect(m_game, SIGNAL(canUndo(bool)), m_ui->m_buttonUndo, SLOT(setEnabled(bool)));
     connect(m_game, SIGNAL(canRedo(bool)), m_ui->m_buttonRedo, SLOT(setEnabled(bool)));
     connect(m_game, SIGNAL(boardChanged()), m_ui->m_gboard, SLOT(repaint()));
@@ -265,8 +270,8 @@ void GMainWindow::controlGame(bool running) {
 
 void GMainWindow::updateTable(bool just_turning) {
 
-    switch (m_game->getBoard()->getState()) { 
-	    break;
+    switch (m_game->getBoard()->getState()) {
+	break;
 	case Board::DRAW:
 	    break;
 	case Board::WHITE_WON:
@@ -333,12 +338,24 @@ void GMainWindow::updateTable(bool just_turning) {
 
 void GMainWindow::save() {
     pauseGame();
-    m_game->saveGame(QDataStream());
+
+    QString file_name = QFileDialog::getSaveFileName(this, tr("Save Game"),
+						     QDir::homePath(),
+						     APP_SAVE_FILTER);
+    if (file_name.size() > 0) {
+	m_game->saveGame(file_name);
+    }
 }
 
 void GMainWindow::load() {
     pauseGame();
-    m_game->loadGame(QDataStream());
+
+    QString file_name = QFileDialog::getOpenFileName(this, tr("Load Game"),
+						     QDir::homePath(),
+						     APP_SAVE_FILTER);
+    if (file_name.size() > 0) {
+	m_game->loadGame(QString());
+    }
 }
 
 void GMainWindow::newGame() {
@@ -357,6 +374,7 @@ void GMainWindow::about() {
 
 void GMainWindow::quit() {
     pauseGame();
+    GSettings::checkSettings();
     qDebug() << "exiting";
     QApplication::exit(EXIT_SUCCESS);
 }

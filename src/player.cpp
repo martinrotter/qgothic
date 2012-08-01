@@ -9,18 +9,16 @@ Player::Player(State state, Figure::Color color) : m_color(color), m_state(state
 Player::Player() : m_color(Figure::WHITE), m_state(Player::EASY) {
 }
 
-Player &Player::setColor(Figure::Color color) {
+void Player::setColor(Figure::Color color) {
     m_color = color;
-    return *this;
 }
 
 Figure::Color Player::getColor() const {
     return m_color;
 }
 
-Player &Player::setState(Player::State state) {
+void Player::setState(Player::State state) {
     m_state = state;
-    return *this;
 }
 
 Player::State Player::getState() const {

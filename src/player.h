@@ -36,9 +36,9 @@ class Player {
 
 	Player();
 
-	Player &setColor(Figure::Color color);
+	void setColor(Figure::Color color);
 	Figure::Color getColor() const;
-	Player &setState(Player::State state);
+	void setState(Player::State state);
 	Player::State getState() const;
 
 	/*!

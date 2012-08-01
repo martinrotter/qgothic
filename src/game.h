@@ -32,8 +32,8 @@ class Game : public QObject {
 	History *getHistory() const;
 
 	void newGame();
-	void saveGame(const QDataStream &out);
-	void loadGame(const QDataStream &in);
+	void saveGame(const QString &file_name);
+	void loadGame(const QString &file_name);
 
 	Player getCurrentPlayer() const;
 	void computerMove();
@@ -61,6 +61,7 @@ class Game : public QObject {
 	//void humanTurnsWhenPaused();
 	void boardChanged();
 	void stateChanged(bool);
+	void initialPlayerChanged(int);
 	void playersSwapped();
 	void moveSearchStarted();
 	void moveSearchFinished();

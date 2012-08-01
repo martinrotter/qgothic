@@ -29,8 +29,16 @@ GSettingsDialog::~GSettingsDialog() {
 }
 
 void GSettingsDialog::loadPlayers() {
-    Player::State white_state = static_cast<Player::State>(GSettings::value(SET_GAME, "white_player_dif", 0).toInt());
-    Player::State black_state = static_cast<Player::State>(GSettings::value(SET_GAME, "black_player_dif", 2).toInt());
+    int white_dif = GSettings::value(SET_GAME, "white_player_dif", 0).toInt();
+    int black_dif = GSettings::value(SET_GAME, "black_player_dif", 2).toInt();
+
+    Player::State white_state = white_dif <= Player::HARD && white_dif >= Player::HUMAN ?
+				    static_cast<Player::State>(white_dif) :
+				    Player::HUMAN;
+
+    Player::State black_state = black_dif <= Player::HARD && black_dif >= Player::HUMAN ?
+				    static_cast<Player::State>(black_dif) :
+				    Player::MEDIUM;
 
     m_ui->m_comboWhite->setCurrentIndex(white_state == Player::HUMAN ? 0 : 1);
     m_ui->m_comboBlack->setCurrentIndex(black_state == Player::HUMAN ? 0 : 1);
@@ -49,22 +57,11 @@ void GSettingsDialog::loadPlayers() {
 	buttons_black[black_state-1]->setChecked(true);
     }
 
-    m_ui->m_radioBlackStarts->setChecked(GSettings::value(SET_GAME, "starting_player", 0).toInt());
+    int current_player = GSettings::value(SET_GAME, "starting_player", 0).toInt();
+    m_ui->m_radioBlackStarts->setChecked(current_player == Figure::BLACK);
 }
 
 void GSettingsDialog::changePlayerIcons() {
-    // Mark starting player with an image.
-    if (m_ui->m_radioBlackStarts->isChecked()) {
-	m_ui->m_labelBlackStarts->setText(QString(GAM_PLAY_STYLE).arg("32",
-								      GAM_TURNS, ""));
-	m_ui->m_labelWhiteStarts->clear();
-    }
-    else {
-	m_ui->m_labelWhiteStarts->setText(QString(GAM_PLAY_STYLE).arg("32",
-								      GAM_TURNS, ""));
-	m_ui->m_labelBlackStarts->clear();
-    }
-
     // Setup white player.
     if (m_ui->m_comboWhite->currentIndex() == 0) {
 	m_ui->m_labelWhite->setText(QString(GAM_PLAY_STYLE).arg("32",

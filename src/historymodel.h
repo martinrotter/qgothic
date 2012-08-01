@@ -19,9 +19,8 @@ class HistoryModel : public QAbstractItemModel {
 	QModelIndex index(int row, int column, const QModelIndex &parent) const;
 	QModelIndex parent(const QModelIndex &child) const;
 	
-    signals:
-	
     public slots:
+	void setInitialPlayerHeader(int current_player);
 
     private:
 	History *m_history;

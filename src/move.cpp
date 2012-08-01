@@ -131,7 +131,7 @@ QString Move::toFiguresString() const {
 	int counter = 1;
 	foreach (JumpedFigure fig, *m_jumpedFigures) {
 	    jumped_figures.append(QObject::tr("\n %1. %2 at location %3").arg(QString::number(counter++),
-									      Figure::figureToString(fig.second),
+									      Figure::toString(fig.second),
 									      fig.first.toString()));
 	}
 	return jumped_figures;

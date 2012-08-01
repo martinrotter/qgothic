@@ -18,7 +18,7 @@ void History::clear() {
     m_history->clear();
     m_index = 0;
 
-    m_history->append(new HistoryItem(Move(), 0, 0));
+    m_history->append(new HistoryItem(Move(), 1, 0));
 
     emit changed(m_index);
 }

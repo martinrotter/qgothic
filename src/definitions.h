@@ -5,6 +5,8 @@
 #include <QDir>
 
 
+typedef unsigned long long ull;
+
 /////////////////////
 /// Paths and names.
 /////////////////////
@@ -14,11 +16,13 @@ const QString CONFIG_NAME	= "qgothic.ini";
 const QString LANG_BASE		= ":/translations";
 
 const QString APP_NAME		= "QGothic";
+const QString APP_SAVE_FILE	= QObject::tr("QGothic Game File");
+const QString APP_SAVE_FILTER	= QString("%1 (*.qgo)").arg(APP_SAVE_FILE);
 const QString APP_DESC		= QObject::tr("QGothic (Damn-Spel) board game.");
-const QString APP_VERSION	= "0.1.8";
+const QString APP_VERSION	= "0.2.1";
 const QString APP_AUTHOR	= "Martin Rotter";
 const QString APP_COPYRIGHT	= "Copyright (C) 2011-2012 Martin Rotter";
-const QString APP_URL		= "http://code.google.com/p/qonverter/";
+const QString APP_URL		= "http://code.google.com/p/qgothic/";
 const QString APP_EMAIL		= "rotter.martinos@gmail.com";
 const QString APP_DEBUG		= QString("[%1] ").arg(APP_NAME);
 
