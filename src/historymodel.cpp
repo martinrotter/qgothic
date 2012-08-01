@@ -15,10 +15,12 @@ void HistoryModel::setInitialPlayerHeader(int current_player) {
 	case Figure::WHITE:
 	    m_initialIndex.clear();
 	    m_initialIndex << tr("1") << tr("White starts") << tr("No Move");
+	    reset();
 	    break;
 	case Figure::BLACK:
 	    m_initialIndex.clear();
 	    m_initialIndex << tr("1") << tr("Black starts") << tr("No Move");
+	    reset();
 	    break;
 	default:
 	    break;

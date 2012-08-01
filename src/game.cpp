@@ -11,7 +11,9 @@
 
 #include <QCryptographicHash>
 #include <QXmlStreamWriter>
+#include <QDomDocument>
 
+typedef QPair<Move, int> Item;
 
 Game::Game(QObject *parent) :
     QObject(parent), m_board(new Board()), m_history(new History(this)),
@@ -46,76 +48,87 @@ Game::~Game() {
     delete m_generator;
 }
 
-void Game::saveGame(const QString &file_name) {
+bool Game::saveGame(const QString &file_name) {
     // vytvoří xml strukturu s historií a potřebnými daty
     // na konec qbytearray přidá MD5 checksum
     // zašifruje QByteArray
     // uloži do souboru
-    QByteArray array;
-    QXmlStreamWriter writer(&array);
 
-    // Initialize xml structure.
-    writer.setAutoFormatting(true);
-    writer.setAutoFormattingIndent(2);
-    writer.writeStartDocument();
+    QFile file(file_name);
+    if (file.open(QIODevice::WriteOnly | QIODevice::Text) == true) {
+	QString array;
+	QXmlStreamWriter writer(&array);
 
-    // Write general data about application.
-    writer.writeStartElement("general");
-    writer.writeTextElement("version", APP_VERSION);
-    writer.writeTextElement("date", QDateTime::currentDateTime().toString(Qt::ISODate));
-    writer.writeEndElement();
+	// Initialize xml structure.
+	writer.setAutoFormatting(true);
+	writer.setAutoFormattingIndent(2);
+	writer.setCodec("UTF-8");
+	writer.writeStartDocument();
 
-    // Write information about game (eg. players, current player).
-    writer.writeStartElement("game");
-    writer.writeTextElement("current-player", QString::number(m_current_player));
-    writer.writeEndElement();
+	// Write general data about application.
+	writer.writeStartElement("saved-game");
+	writer.writeAttribute("version", APP_VERSION);
+	writer.writeAttribute("date", QDateTime::currentDateTime().toString(Qt::ISODate));
 
-    // Write history to xml structure.
-    writer.writeStartElement("history");
-    writer.writeAttribute("index", QString::number(m_history->getIndex()));
-    // Write all moves from history.
-    for (int i = 1; i < m_history->count(); i++) {
-	writer.writeStartElement("item");
-	writer.writeAttribute("ordinal-number",
-			      QString::number(m_history->at(i)->getOrdinalNumber()));
-	writer.writeAttribute("moves-without-jumps",
-			      QString::number(m_history->at(i)->getMovesWithoutJump()));
-	// Write move
-	writer.writeStartElement("move");
-	writer.writeAttribute("from", m_history->at(i)->getMove()->getFrom().toString());
-	writer.writeAttribute("to", m_history->at(i)->getMove()->getTo().toString());
-	writer.writeAttribute("type-of-figure", QString::number(m_history->at(i)->getMove()->getFigureType()));
-	writer.writeAttribute("promoted", QString::number(m_history->at(i)->getMove()->getPromoted()));
-	// Write jumped figures.
-	writer.writeStartElement("jumped-figures");
-	foreach (JumpedFigure figure, m_history->at(i)->getMove()->getJumpedFigures()) {
-	    writer.writeStartElement("figure");
-	    writer.writeAttribute("location", figure.first.toString());
-	    writer.writeAttribute("type-of-figure", QString::number(figure.second));
+	// Write information about game (eg. players, current player).
+	writer.writeStartElement("game");
+	writer.writeTextElement("current-player", QString::number(m_current_player));
+	writer.writeEndElement();
+
+	// Write history to xml structure.
+	writer.writeStartElement("history");
+	writer.writeAttribute("index", QString::number(m_history->getIndex()));
+	// Write all moves from history.
+	for (int i = 1; i < m_history->count(); i++) {
+	    writer.writeStartElement("item");
+	    writer.writeAttribute("ordinal-number",
+				  QString::number(m_history->at(i)->getOrdinalNumber()));
+	    writer.writeAttribute("moves-without-jumps",
+				  QString::number(m_history->at(i)->getMovesWithoutJump()));
+	    // Write move
+	    writer.writeStartElement("move");
+	    writer.writeAttribute("from", m_history->at(i)->getMove()->getFrom().toString());
+	    writer.writeAttribute("to", m_history->at(i)->getMove()->getTo().toString());
+	    writer.writeAttribute("type-of-figure", QString::number(m_history->at(i)->getMove()->getFigureType()));
+	    writer.writeAttribute("promoted", QString::number(m_history->at(i)->getMove()->getPromoted()));
+	    // Write jumped figures.
+	    writer.writeStartElement("jumped-figures");
+	    foreach (JumpedFigure figure, m_history->at(i)->getMove()->getJumpedFigures()) {
+		writer.writeStartElement("figure");
+		writer.writeAttribute("location", figure.first.toString());
+		writer.writeAttribute("type-of-figure", QString::number(figure.second));
+		writer.writeEndElement();
+	    }
+	    writer.writeEndElement();
+	    writer.writeEndElement();
 	    writer.writeEndElement();
 	}
 	writer.writeEndElement();
+
+	// Finalize xml document.
 	writer.writeEndElement();
-	writer.writeEndElement();
-    }
-    writer.writeEndElement();
+	writer.writeEndDocument();
 
-    // Finalize xml document.
-    writer.writeEndDocument();
+	// Append MD5 checksum as the last line of the xml structure.
+	//array.append(QCryptographicHash::hash(QByteArray().append(array), QCryptographicHash::Md5).toHex());
 
-    // Append MD5 checksum as the last line of the xml structure.
-    array.append(QCryptographicHash::hash(array, QCryptographicHash::Md5).toHex());
-
-    // Write encrypted snapshot of actual game into file.
-    QFile file(file_name);
-    if (file.open(QIODevice::WriteOnly | QIODevice::Text) == true) {
+	// Write encrypted snapshot of actual game into file.
 	QTextStream out(&file);
-	// 0c2ad4a4acb9f023
-	// 3f5e300c8d2e95d4
+	// Hash for encrypting game files.
+	// 0x3f5e300c8d2e95d4
 	SimpleCrypt crypto(Q_UINT64_C(0x3f5e300c8d2e95d4));
-	out << crypto.encryptToByteArray(array);
+	crypto.setCompressionMode(SimpleCrypt::CompressionAlways);
+	crypto.setIntegrityProtectionMode(SimpleCrypt::ProtectionHash);
+
+	out << crypto.encryptToString(array);
+	//out << array;
 	out.flush();
 	file.close();
+	//qDebug() << array;
+	return true;
+    }
+    else {
+	return false;
     }
     /*
     QByteArray result = crypto.encryptToByteArray(array);
@@ -125,11 +138,90 @@ void Game::saveGame(const QString &file_name) {
     */
 }
 
-void Game::loadGame(const QString &file_name) {
+bool Game::loadGame(const QString &file_name) {
     // načte data ze souboru xml do QByteArray
     // dešifruje data
     // z posledního řádku veme MD5 Sum a odstraní z dat
     // ověří MD5 sum a načte historii a další nastavení z dat
+
+    // Open file with saved game.
+    QFile file(file_name);
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text) == true) {
+	// Decrypt contents of saved game and then close the file.
+	SimpleCrypt crypto(Q_UINT64_C(0x3f5e300c8d2e95d4));
+	crypto.setCompressionMode(SimpleCrypt::CompressionAlways);
+	crypto.setIntegrityProtectionMode(SimpleCrypt::ProtectionHash);
+
+	QString array = crypto.decryptToString(QString(file.readAll()));
+	file.close();
+
+	qDebug() << array;
+
+	// If file is too small (it is corrupted or decryption failed, then
+	// return from this function.
+	if (array.size() < APP_SAVE_LIMIT) {
+	    return false;
+	}
+
+	int tmp_current_player;
+	int tmp_starting_player;
+	int tmp_his_curr_index;
+	QList<QPair<Move, int> > tmp_his_items;
+
+	QDomDocument reader;
+	reader.setContent(array);
+
+	QDomNodeList list_game = reader.elementsByTagName("current-player");
+	if (list_game.at(0).isElement()) {
+	    tmp_current_player = list_game.at(0).toElement().text().toInt();
+	    //qDebug() << tmp_current_player;
+	}
+
+	// Add current index to temp.
+	QDomNodeList list_history = reader.elementsByTagName("history");
+	tmp_his_curr_index = list_history.at(0).toElement().attribute("index").toInt();
+	//qDebug() << tmp_his_curr_index;
+
+	// Add each item of history to temp.
+	QDomNodeList list_items = reader.elementsByTagName("item");
+	for (int i = 0; i < list_items.size(); i++) {
+	    QPair<Move, int> new_move;
+	    // Set moves without jumps for this move.
+	    new_move.second = list_items.at(0).toElement().attribute("moves-without-jumps").toInt();
+
+	    // načti zbytek tahu, odkud, kam, jaka figurka
+	    // a preskocene figurky
+
+	    QDomElement move = list_items.at(i).childNodes().at(0).toElement();
+	    new_move.first.setFrom(Location::fromString(move.attribute("from")));
+	    new_move.first.setTo(Location::fromString(move.attribute("to")));
+	    new_move.first.setFigureType(static_cast<Figure::Type>(move.attribute("type-of-figure").toInt()));
+	    new_move.first.setPromoted(static_cast<bool>(move.attribute("promoted").toInt()));
+
+	    // projdi skočené figurky
+	    QDomNodeList list_jumped_figures = move.elementsByTagName("figure");
+	    for (int i = 0; i < list_jumped_figures.size(); i++) {
+		JumpedFigure figure;
+		QDomElement new_figure = list_jumped_figures.at(i).toElement();
+		Location loc = Location::fromString(new_figure.attribute("location"));
+		Figure::Type typ = static_cast<Figure::Type>(new_figure.attribute("type-of-figure").toInt());
+		new_move.first.addJumpedFigure(loc, typ);
+	    }
+	    tmp_his_items.append(new_move);
+	}
+
+	// checking loaded data
+	foreach (Item move, tmp_his_items) {
+	    qDebug() << move.first.toString();
+	}
+
+	// Set data into game and start new game.
+
+	return true;
+    }
+    else {
+	return false;
+    }
 }
 
 void Game::newGame() {

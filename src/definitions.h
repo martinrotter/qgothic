@@ -15,7 +15,10 @@ const QString CONFIG_NAME	= "qgothic.ini";
 
 const QString LANG_BASE		= ":/translations";
 
+const QString WORD_ERROR	= QObject::tr("Error");
+
 const QString APP_NAME		= "QGothic";
+const int APP_SAVE_LIMIT	= 30;
 const QString APP_SAVE_FILE	= QObject::tr("QGothic Game File");
 const QString APP_SAVE_FILTER	= QString("%1 (*.qgo)").arg(APP_SAVE_FILE);
 const QString APP_DESC		= QObject::tr("QGothic (Damn-Spel) board game.");

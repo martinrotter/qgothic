@@ -13,6 +13,13 @@ Location::Location(const Location &location) : m_x(location.getX()), m_y(locatio
 Location::Location(int x, int y) : m_x(x), m_y(y) {
 }
 
+Location Location::fromString(const QString &string) {
+    Location loc;
+    loc.setX(string.at(0).toAscii()-'A');
+    loc.setY(string.at(1).toAscii()-'1');
+    return loc;
+}
+
 Location Location::operator+(const Location &rhs) const {
     return Location(getX() + rhs.getX(),
 		    getY() + rhs.getY());

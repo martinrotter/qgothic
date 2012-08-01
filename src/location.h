@@ -34,6 +34,8 @@ class Location {
 	bool operator!=(const Location &rhs) const;
 	Location operator!() const;
 
+	static Location fromString(const QString &string);
+
     private:
 	int m_x;
 	int m_y;

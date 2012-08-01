@@ -343,7 +343,10 @@ void GMainWindow::save() {
 						     QDir::homePath(),
 						     APP_SAVE_FILTER);
     if (file_name.size() > 0) {
-	m_game->saveGame(file_name);
+	if (m_game->saveGame(file_name) == false) {
+	    QMessageBox::warning(this, WORD_ERROR, tr("Game couldn't be saved because target file is not writable or some kind of other error occured."
+						      "\n\nFile: %1").arg(file_name));
+	}
     }
 }
 
@@ -354,7 +357,10 @@ void GMainWindow::load() {
 						     QDir::homePath(),
 						     APP_SAVE_FILTER);
     if (file_name.size() > 0) {
-	m_game->loadGame(QString());
+	if (m_game->loadGame(file_name) == false) {
+	    QMessageBox::warning(this, WORD_ERROR, tr("Game couldn't be loaded because this file is not in valid format."
+						      "\n\nFile: %1").arg(file_name));
+	}
     }
 }
 

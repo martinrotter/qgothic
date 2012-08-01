@@ -32,8 +32,8 @@ class Game : public QObject {
 	History *getHistory() const;
 
 	void newGame();
-	void saveGame(const QString &file_name);
-	void loadGame(const QString &file_name);
+	bool saveGame(const QString &file_name);
+	bool loadGame(const QString &file_name);
 
 	Player getCurrentPlayer() const;
 	void computerMove();
