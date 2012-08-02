@@ -31,6 +31,9 @@ class Game : public QObject {
 	Game::State getState() const;
 	History *getHistory() const;
 
+	void setStartingPlayer(int starting_player);
+	int getStartingPlayer() const;
+
 	void newGame();
 	bool saveGame(const QString &file_name);
 	bool loadGame(const QString &file_name);
@@ -55,7 +58,8 @@ class Game : public QObject {
 	History *m_history;
 	Generator *m_generator;
 	Game::State m_state;
-	int m_current_player;
+	int m_currentPlayer;
+	int m_startingPlayer;
 
     signals:
 	//void humanTurnsWhenPaused();

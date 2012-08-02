@@ -24,11 +24,11 @@ Game::Game(QObject *parent) :
     connect(m_history, SIGNAL(changed(int)), this, SLOT(informAboutHistory()));
 
     int current_player = GSettings::value(SET_GAME, "starting_player", 0).toInt();
-    m_current_player = current_player >= 0 && current_player <= 1 ?
+    m_currentPlayer = current_player >= 0 && current_player <= 1 ?
 			   current_player :
 			   0;
 
-    emit initialPlayerChanged(m_current_player);
+    setStartingPlayer(m_currentPlayer);
 
     int white_dif = GSettings::value(SET_GAME, "white_player_dif", 0).toInt();
     int black_dif = GSettings::value(SET_GAME, "black_player_dif", 2).toInt();
@@ -73,7 +73,8 @@ bool Game::saveGame(const QString &file_name) {
 	// ještě přidat nastavení hráčů
 	// Write information about game (eg. players, current player).
 	writer.writeStartElement("game");
-	writer.writeTextElement("current-player", QString::number(m_current_player));
+	writer.writeTextElement("starting-player", QString::number(m_startingPlayer));
+	writer.writeTextElement("current-player", QString::number(m_currentPlayer));
 	writer.writeTextElement("white-player", QString::number(getPlayer(Figure::WHITE).getState()));
 	writer.writeTextElement("black-player", QString::number(getPlayer(Figure::BLACK).getState()));
 	writer.writeEndElement();
@@ -166,7 +167,7 @@ bool Game::loadGame(const QString &file_name) {
 	    return false;
 	}
 
-	int tmp_current_player;
+	int tmp_current_player, tmp_starting_player;
 	Player::State white_player, black_player;
 
 	//int tmp_starting_player;
@@ -178,6 +179,9 @@ bool Game::loadGame(const QString &file_name) {
 
 	QDomNodeList list_game = reader.elementsByTagName("current-player");
 	tmp_current_player = list_game.at(0).toElement().text().toInt();
+
+	QDomNodeList list_starting = reader.elementsByTagName("starting-player");
+	tmp_starting_player = list_starting.at(0).toElement().text().toInt();
 
 	QDomNodeList list_white_pl = reader.elementsByTagName("white-player");
 	white_player = static_cast<Player::State>(list_white_pl.at(0).toElement().text().toInt());
@@ -195,7 +199,7 @@ bool Game::loadGame(const QString &file_name) {
 	for (int i = 0; i < list_items.size(); i++) {
 	    QPair<Move, int> new_move;
 	    // Set moves without jumps for this move.
-	    new_move.second = list_items.at(0).toElement().attribute("moves-without-jumps").toInt();
+	    new_move.second = list_items.at(i).toElement().attribute("moves-without-jumps").toInt();
 
 	    // načti zbytek tahu, odkud, kam, jaka figurka
 	    // a preskocene figurky
@@ -209,7 +213,6 @@ bool Game::loadGame(const QString &file_name) {
 	    // projdi skočené figurky
 	    QDomNodeList list_jumped_figures = move.elementsByTagName("figure");
 	    for (int i = 0; i < list_jumped_figures.size(); i++) {
-		JumpedFigure figure;
 		QDomElement new_figure = list_jumped_figures.at(i).toElement();
 		Location loc = Location::fromString(new_figure.attribute("location"));
 		Figure::Type typ = static_cast<Figure::Type>(new_figure.attribute("type-of-figure").toInt());
@@ -238,10 +241,15 @@ bool Game::loadGame(const QString &file_name) {
 	foreach (Item move, tmp_his_items) {
 	    m_history->addMove(move.first, move.second);
 	}
+
+
+	GSettings::setValue(SET_GAME, "starting_player", tmp_starting_player);
+	setStartingPlayer(tmp_starting_player);
+	m_currentPlayer = tmp_starting_player;
 	m_history->setIndex(0);
 
 	//emit initialPlayerChanged(tmp);
-	emit playersSwapped();
+	//emit playersSwapped();
 	//emit boardChanged();
 
 	return true;
@@ -261,11 +269,12 @@ void Game::newGame() {
     setState(Game::PAUSED);
 
     int current_player = GSettings::value(SET_GAME, "starting_player", 0).toInt();
-    m_current_player = current_player == 0 || current_player == 1 ?
+    m_currentPlayer = current_player == 0 || current_player == 1 ?
 			   current_player :
 			   0;
 
-    emit initialPlayerChanged(m_current_player);
+    setStartingPlayer(m_currentPlayer);
+
     emit boardChanged();
     emit playersSwapped();
 }
@@ -335,7 +344,7 @@ void Game::setState(Game::State state) {
 }
 
 Player Game::getCurrentPlayer() const {
-    return m_players[m_current_player];
+    return m_players[m_currentPlayer];
 }
 
 void Game::undo() {
@@ -356,8 +365,8 @@ void Game::undo() {
 	m_history->decrement();
 	emit boardChanged();
 
-	m_current_player = m_current_player == 0 ? 1 : 0;
-	qDebug() << "current player: " << m_current_player;
+	m_currentPlayer = m_currentPlayer == 0 ? 1 : 0;
+	qDebug() << "current player: " << m_currentPlayer;
 	qDebug() << "tahy beze skoku: " << m_board->getActualMovesNoJump();
 	emit playersSwapped();
 	informAboutHistory();
@@ -381,8 +390,8 @@ void Game::redo() {
 
 	emit boardChanged();
 
-	m_current_player = m_current_player == 0 ? 1 : 0;
-	qDebug() << "current player: " << m_current_player;
+	m_currentPlayer = m_currentPlayer == 0 ? 1 : 0;
+	qDebug() << "current player: " << m_currentPlayer;
 	qDebug() << "tahy beze skoku: " << m_board->getActualMovesNoJump();
 	emit playersSwapped();
 	informAboutHistory();
@@ -390,6 +399,15 @@ void Game::redo() {
     else {
 	qDebug() << "cannot redo";
     }
+}
+
+int Game::getStartingPlayer() const {
+    return m_startingPlayer;
+}
+
+void Game::setStartingPlayer(int starting_player) {
+    m_startingPlayer = starting_player;
+    emit initialPlayerChanged(m_startingPlayer);
 }
 
 History *Game::getHistory() const {
@@ -401,8 +419,8 @@ Game::State Game::getState() const {
 }
 
 void Game::swapPlayer() {
-    m_current_player = m_current_player == 0 ? 1 : 0;
-    qDebug() << "current player: " << m_current_player;
+    m_currentPlayer = m_currentPlayer == 0 ? 1 : 0;
+    qDebug() << "current player: " << m_currentPlayer;
     emit playersSwapped();
     if (getCurrentPlayer().getState() != Player::HUMAN &&
 	    m_state == Game::RUNNING) {
