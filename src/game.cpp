@@ -167,18 +167,13 @@ bool Game::loadGame(const QString &file_name) {
 	    return false;
 	}
 
-	int tmp_current_player, tmp_starting_player;
+	int tmp_starting_player;
 	Player::State white_player, black_player;
 
-	//int tmp_starting_player;
-	int tmp_his_curr_index;
 	QList<QPair<Move, int> > tmp_his_items;
 
 	QDomDocument reader;
 	reader.setContent(array);
-
-	QDomNodeList list_game = reader.elementsByTagName("current-player");
-	tmp_current_player = list_game.at(0).toElement().text().toInt();
 
 	QDomNodeList list_starting = reader.elementsByTagName("starting-player");
 	tmp_starting_player = list_starting.at(0).toElement().text().toInt();
@@ -188,11 +183,6 @@ bool Game::loadGame(const QString &file_name) {
 
 	QDomNodeList list_black_pl = reader.elementsByTagName("black-player");
 	black_player = static_cast<Player::State>(list_black_pl.at(0).toElement().text().toInt());
-
-	// Add current index to temp.
-	QDomNodeList list_history = reader.elementsByTagName("history");
-	tmp_his_curr_index = list_history.at(0).toElement().attribute("index").toInt();
-	//qDebug() << tmp_his_curr_index;
 
 	// Add each item of history to temp.
 	QDomNodeList list_items = reader.elementsByTagName("item");

@@ -34,11 +34,34 @@ class Player {
 	 */
 	Player(Player::State state, Figure::Color color);
 
+	/*!
+	 * \brief Default constructor.
+	 */
 	Player();
 
+	/*!
+	 * \brief Sets new color for this player.
+	 * \param color New color to set for this player.
+	 */
 	void setColor(Figure::Color color);
+
+	/*!
+	 * \brief Gets actual color of this player.
+	 * \return Method returns actual color of this player.
+	 */
 	Figure::Color getColor() const;
+
+	/*!
+	 * \brief Sets new state for this player.
+	 * \param color New state to set for this player.
+	 */
 	void setState(Player::State state);
+
+
+	/*!
+	 * \brief Gets actual state of this player.
+	 * \return Method returns actual state of this player.
+	 */
 	Player::State getState() const;
 
 	/*!

@@ -33,7 +33,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <QFlags>
 
 /**
-  @short Simple encryption and decryption of strings and byte arrays
+  @short Simple encryption and decryption of strings and byte arrays provided by Andre Somers.
 
   This class provides a simple implementation of encryption and decryption
   of strings and byte arrays.

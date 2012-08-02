@@ -112,11 +112,26 @@ class Referee {
 	 */
 	static QList<Move> getMoves(const Figure::Color &color, Board &board);
 
+	/*!
+	 * \brief Decides whether certain figure is located in queen-promotion area of the board.
+	 * \param location Location of figure to decide about.
+	 * \param color_of_figure Color of figure to decide about.
+	 * \param board Board where figure is located on.
+	 * \return Method returns true if figure is on position, on which it could be
+	 * promoted to queen if it is actually a pawn.
+	 */
 	static bool isInQueenArea(const Location &location,
 				  const Figure::Color &color_of_figure,
 				  const Board &board);
 
+	/*!
+	 * \brief Contains available directions for pawns.
+	 */
 	static QList<Location> *s_pawnDirections;
+
+	/*!
+	 * \brief Contains available directions for queens.
+	 */
 	static QList<Location> *s_queenDirections;
 
 };

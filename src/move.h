@@ -10,13 +10,29 @@
 
 typedef QPair<Location, Figure::Type> JumpedFigure;
 
+/*!
+ * \brief Move representation.
+ */
 class Move {
 
     public:
+	/*!
+	 * \brief Default constructor.
+	 */
 	Move();
+	/*!
+	 * \brief Copy constructor.
+	 * \param move Instance to copy.
+	 */
 	Move(const Move &move);
+
 	~Move();
 
+	/*!
+	 * \brief Sets from location of this move.
+	 * \param location Location to set.
+	 * \return Method returns reference to the actual Move instance.
+	 */
 	Move &setFrom(const Location &location);
 	Location &getFrom() const;
 	Move &setTo(const Location &location);

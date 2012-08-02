@@ -45,7 +45,7 @@ PROJECT_BRIEF          = "Simple board game written using Qt."
 # exceed 55 pixels and the maximum width should not exceed 200 pixels. 
 # Doxygen will copy the logo to the output directory.
 
-PROJECT_LOGO           = resources/graphics/qgothic-small.png
+PROJECT_LOGO           = 
 
 # The OUTPUT_DIRECTORY tag is used to specify the (relative or absolute) 
 # base path where the generated documentation will be put. 
@@ -827,7 +827,7 @@ SOURCE_BROWSER         = YES
 # Setting the INLINE_SOURCES tag to YES will include the body 
 # of functions and classes directly in the documentation.
 
-INLINE_SOURCES         = NO
+INLINE_SOURCES         = YES
 
 # Setting the STRIP_CODE_COMMENTS tag to YES (the default) will instruct 
 # doxygen to hide any special comment blocks from generated source code 
