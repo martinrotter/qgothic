@@ -70,9 +70,12 @@ bool Game::saveGame(const QString &file_name) {
 	writer.writeAttribute("version", APP_VERSION);
 	writer.writeAttribute("date", QDateTime::currentDateTime().toString(Qt::ISODate));
 
+	// ještě přidat nastavení hráčů
 	// Write information about game (eg. players, current player).
 	writer.writeStartElement("game");
 	writer.writeTextElement("current-player", QString::number(m_current_player));
+	writer.writeTextElement("white-player", QString::number(getPlayer(Figure::WHITE).getState()));
+	writer.writeTextElement("black-player", QString::number(getPlayer(Figure::BLACK).getState()));
 	writer.writeEndElement();
 
 	// Write history to xml structure.
@@ -164,7 +167,9 @@ bool Game::loadGame(const QString &file_name) {
 	}
 
 	int tmp_current_player;
-	int tmp_starting_player;
+	Player::State white_player, black_player;
+
+	//int tmp_starting_player;
 	int tmp_his_curr_index;
 	QList<QPair<Move, int> > tmp_his_items;
 
@@ -172,10 +177,13 @@ bool Game::loadGame(const QString &file_name) {
 	reader.setContent(array);
 
 	QDomNodeList list_game = reader.elementsByTagName("current-player");
-	if (list_game.at(0).isElement()) {
-	    tmp_current_player = list_game.at(0).toElement().text().toInt();
-	    //qDebug() << tmp_current_player;
-	}
+	tmp_current_player = list_game.at(0).toElement().text().toInt();
+
+	QDomNodeList list_white_pl = reader.elementsByTagName("white-player");
+	white_player = static_cast<Player::State>(list_white_pl.at(0).toElement().text().toInt());
+
+	QDomNodeList list_black_pl = reader.elementsByTagName("black-player");
+	black_player = static_cast<Player::State>(list_black_pl.at(0).toElement().text().toInt());
 
 	// Add current index to temp.
 	QDomNodeList list_history = reader.elementsByTagName("history");
@@ -211,11 +219,30 @@ bool Game::loadGame(const QString &file_name) {
 	}
 
 	// checking loaded data
+	/*
 	foreach (Item move, tmp_his_items) {
-	    qDebug() << move.first.toString();
+	    qDebug() << move.first;
 	}
+	*/
 
 	// Set data into game and start new game.
+	newGame();
+
+	GSettings::setValue(SET_GAME, "white_player_dif", white_player);
+	GSettings::setValue(SET_GAME, "black_player_dif", black_player);
+
+	m_players.clear();
+	m_players << Player(white_player, Figure::WHITE);
+	m_players << Player(black_player, Figure::BLACK);
+
+	foreach (Item move, tmp_his_items) {
+	    m_history->addMove(move.first, move.second);
+	}
+	m_history->setIndex(0);
+
+	//emit initialPlayerChanged(tmp);
+	emit playersSwapped();
+	//emit boardChanged();
 
 	return true;
     }

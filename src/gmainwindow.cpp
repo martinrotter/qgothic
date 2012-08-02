@@ -360,6 +360,8 @@ void GMainWindow::load() {
 	if (m_game->loadGame(file_name) == false) {
 	    QMessageBox::warning(this, WORD_ERROR, tr("Game couldn't be loaded because this file is not in valid format."
 						      "\n\nFile: %1").arg(file_name));
+	} else {
+	    updateTable(false);
 	}
     }
 }
