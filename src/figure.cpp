@@ -21,7 +21,7 @@ QString Figure::toString(Figure::Type figure) {
     }
 }
 
-QList<Figure::Type> Figure::getTypesByColor(const Color &color) {
+QList<Figure::Type> Figure::getTypeByColor(const Color &color) {
     QList<Figure::Type> types;
     switch (color) {
 	case Figure::BLACK:

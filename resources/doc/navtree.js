@@ -1,12 +1,15 @@
 var NAVTREE =
 [
   [ "QGothic", "index.html", [
+    [ "QGothic", "index.html", null ],
+    [ "Modules", "modules.html", "modules" ],
     [ "Classes", null, [
       [ "Class List", "annotated.html", "annotated" ],
       [ "Class Index", "classes.html", null ],
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", null ],
         [ "Functions", "functions_func.html", null ],
+        [ "Variables", "functions_vars.html", null ],
         [ "Enumerations", "functions_enum.html", null ],
         [ "Enumerator", "functions_eval.html", null ]
       ] ]
@@ -20,7 +23,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "algorithms_8cpp_source.html",
-"gmainwindow_8h_source.html"
+"class_player_aca6d427d0f3a9718acc9a3165fad5330.html#aca6d427d0f3a9718acc9a3165fad5330"
 ];
 
 var navTreeSubIndices = new Array();

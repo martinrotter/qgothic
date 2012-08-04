@@ -24,7 +24,6 @@ class Game : public QObject {
 
 	void setPlayer(Player player);
 	Board *getBoard() const;
-	Generator *getGenerator() const;
 	Player getPlayer(Figure::Color color) const;
 	void swapPlayer();
 	void setState(Game::State state);
@@ -45,9 +44,7 @@ class Game : public QObject {
     public slots:
 	void undo();
 	void redo();
-
 	void makeMove(const Move &move);
-	void makeInverseMove(const Move &move);
 
     protected slots:
 	void informAboutHistory();
@@ -62,7 +59,6 @@ class Game : public QObject {
 	int m_startingPlayer;
 
     signals:
-	//void humanTurnsWhenPaused();
 	void boardChanged();
 	void stateChanged(bool);
 	void initialPlayerChanged(int);

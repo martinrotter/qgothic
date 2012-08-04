@@ -1,3 +1,6 @@
 <map id="Referee::getQueenMoves" name="Referee::getQueenMoves">
 <area shape="rect" id="node3" href="$class_referee_ac55aa3a4318bc581e2f6d17c4327fd40.html#ac55aa3a4318bc581e2f6d17c4327fd40" title="Directions for queen move." alt="" coords="225,5,415,32"/>
+<area shape="rect" id="node5" href="$class_move_ac3095b8b9a3b7cb0c33b87b07bb0a564.html#ac3095b8b9a3b7cb0c33b87b07bb0a564" title="Figure type setter for Move." alt="" coords="247,56,393,83"/>
+<area shape="rect" id="node7" href="$class_move_a3ed38782fc4a08ab45c5b449d1b8706d.html#a3ed38782fc4a08ab45c5b449d1b8706d" title="Sets from Location of this move." alt="" coords="265,107,375,133"/>
+<area shape="rect" id="node9" href="$class_move_a25e8824b8475cf0b226298975340b8d5.html#a25e8824b8475cf0b226298975340b8d5" title="Sets to Location of this move." alt="" coords="273,157,367,184"/>
 </map>

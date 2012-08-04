@@ -1,0 +1,10 @@
+<map id="Move::setFrom" name="Move::setFrom">
+<area shape="rect" id="node3" href="$class_referee_aa34ec5da7bdf189428480fadd6dfdb24.html#aa34ec5da7bdf189428480fadd6dfdb24" title="Finds all posibble jumps for pawn." alt="" coords="167,5,334,32"/>
+<area shape="rect" id="node11" href="$class_referee_a3112eff2c936b13911657e84a8223009.html#a3112eff2c936b13911657e84a8223009" title="Finds all posibble simple moves (without jumps) for pawn." alt="" coords="167,56,334,83"/>
+<area shape="rect" id="node14" href="$class_referee_a4022a6fa7510756c702cfb91b8800630.html#a4022a6fa7510756c702cfb91b8800630" title="Finds all posibble jumps for queen." alt="" coords="165,107,336,133"/>
+<area shape="rect" id="node19" href="$class_referee_af707e04b844f3faa25f279b9aea65b91.html#af707e04b844f3faa25f279b9aea65b91" title="Finds all posibble simple moves (without jumps) for queen." alt="" coords="165,157,336,184"/>
+<area shape="rect" id="node5" href="$class_referee_a3804eb20b0ef173ecb5dc2abeb1b09a2.html#a3804eb20b0ef173ecb5dc2abeb1b09a2" title="Finds both jumps/moves for pawn." alt="" coords="387,56,568,83"/>
+<area shape="rect" id="node7" href="$class_referee_a644d9dc57e2f919dcafe0fd6418c5334.html#a644d9dc57e2f919dcafe0fd6418c5334" title="Finds jumps/moves for any figure on the specified location." alt="" coords="619,81,767,108"/>
+<area shape="rect" id="node9" href="$class_referee_a7b9a5d3b326c1c2cdc78c26a24502ba6.html#a7b9a5d3b326c1c2cdc78c26a24502ba6" title="Gets all available moves for certain Figure::Color." alt="" coords="816,81,949,108"/>
+<area shape="rect" id="node16" href="$class_referee_ae2620f23d897796ec6b14350146ea4f9.html#ae2620f23d897796ec6b14350146ea4f9" title="Finds both jumps/moves for queen." alt="" coords="384,107,571,133"/>
+</map>

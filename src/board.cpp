@@ -60,7 +60,7 @@ QList<Location> Board::getLocations(Figure::Color color) {
     QList<Location> list;
     for (int i = 0; i < m_size; i++) {
 	for (int j = 0; j < m_size; j++) {
-	    if (Figure::getTypesByColor(color).contains(m_field[i][j])) {
+	    if (Figure::getTypeByColor(color).contains(m_field[i][j])) {
 		list.append(Location(j, i));
 	    }
 	}
@@ -183,33 +183,4 @@ void Board::makeInverseMove(const Move &move, bool update_state) {
     if (update_state) {
 	updateState();
     }
-}
-
-QString Board::toString() const {
-    QString board_string = "   -----------------\n";
-    for (int i = m_size-1; i >= 0; i--) {
-	board_string += QString("%1  |").arg(QString::number(i+1));
-	for (int j = 0; j < m_size; j++) {
-	    switch (m_field[i][j]) {
-		case Figure::BLACK_PAWN:
-		    board_string += "b|";
-		    break;
-		case Figure::BLACK_QUEEN:
-		    board_string += "B|";
-		    break;
-		case Figure::WHITE_PAWN:
-		    board_string += "w|";
-		    break;
-		case Figure::WHITE_QUEEN:
-		    board_string += "W|";
-		    break;
-		default:
-		    board_string += " |";
-		    break;
-	    }
-	}
-	board_string += "\n   -----------------\n";
-    }
-    board_string += "    A-B-C-D-E-F-G-H\n";
-    return board_string;
 }

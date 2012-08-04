@@ -26,27 +26,24 @@ QList<JumpedFigure> &Move::getJumpedFigures() const {
     return *m_jumpedFigures;
 }
 
-Move &Move::setFrom(const Location &location) {
+void Move::setFrom(const Location &location) {
     *m_from = location;
-    return *this;
 }
 
 Location &Move::getFrom() const {
     return *m_from;
 }
 
-Move &Move::setTo(const Location &location) {
+void Move::setTo(const Location &location) {
     *m_to = location;
-    return *this;
 }
 
 Location &Move::getTo() const {
     return *m_to;
 }
 
-Move &Move::setPromoted(bool promoted) {
+void Move::setPromoted(bool promoted) {
     m_promoted = promoted;
-    return *this;
 }
 
 bool Move::getPromoted() const {
@@ -67,10 +64,6 @@ void Move::addJumpedFigures(const QList<JumpedFigure> &figures) {
     if (figures.size() > 0) {
 	m_jumpedFigures->append(figures);
     }
-}
-
-bool Move::containsJumps() const {
-    return m_jumpedFigures->size();
 }
 
 int Move::price() const {
@@ -103,9 +96,8 @@ bool Move::operator==(const Move &rhs) const {
     return true;
 }
 
-Move &Move::setFigureType(Figure::Type type_of_figure) {
+void Move::setFigureType(Figure::Type type_of_figure) {
     m_typeOfFigure = type_of_figure;
-    return *this;
 }
 
 Figure::Type Move::getFigureType() const {
@@ -116,7 +108,7 @@ bool Move::operator!=(const Move &rhs) const {
     return !(*this == rhs);
 }
 
-QString Move::toShortString() const {
+QString Move::toString() const {
     QString to = m_to->toString();
     QString from = m_from->toString();
     return QString("%1-%2").arg(from, to);
@@ -136,17 +128,4 @@ QString Move::toFiguresString() const {
 	}
 	return jumped_figures;
     }
-}
-
-QString Move::toString() const {
-    QString to = m_to->toString();
-    QString from = m_from->toString();
-    QString jumped_figures;
-
-    foreach (JumpedFigure fig, *m_jumpedFigures) {
-	jumped_figures += "-jumped " + fig.first.toString();
-    }
-
-    return QString("[%1%2--%3] (%4) %5").arg(from, to, QString::number(m_typeOfFigure),
-					     QString::number((int)m_promoted), jumped_figures);
 }

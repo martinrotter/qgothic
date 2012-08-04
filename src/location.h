@@ -9,6 +9,8 @@ class Board;
  * \brief Location on the playing board.
  *
  * Location class represents position on the playing board.
+ *
+ * \ingroup Core
  */
 class Location {
 
@@ -17,9 +19,9 @@ class Location {
 	Location(const Location &location);
 	Location(int x, int y);
 
-	Location &setX(int x);
+	void setX(int x);
 	int getX() const;
-	Location &setY(int y);
+	void setY(int y);
 	int getY() const;
 
 	bool isOnBoard(const Board &board) const;

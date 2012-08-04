@@ -100,7 +100,9 @@ QList<Move> Referee::getQueenJumps(const Location &location, Board &board) {
 		// dokud je tato pozice volná
 		while (next_location.isOnBoard(board) && next_location.isFree(board)) {
 		    Move move;
-		    move.setFigureType(board(location)).setFrom(Location(location)).setTo(Location(next_location));
+		    move.setFigureType(board(location));
+		    move.setFrom(Location(location));
+		    move.setTo(Location(next_location));
 		    move.addJumpedFigure(current_location, board(current_location));
 		    // delame tah a na teto upravene desce hledame dalsi meziskoky z daneho mista
 		    board.makeMove(move, false);
@@ -147,7 +149,9 @@ QList<Move> Referee::getPawnJumps(const Location &location, Board &board) {
 		// dokud je tato pozice volná
 		if (next_location.isOnBoard(board) && next_location.isFree(board)) {
 		    Move move;
-		    move.setFigureType(board(location)).setFrom(Location(location)).setTo(Location(next_location));
+		    move.setFigureType(board(location));
+		    move.setFrom(Location(location));
+		    move.setTo(Location(next_location));
 		    move.addJumpedFigure(current_location, board(current_location));
 
 		    // figurka doskakala na pozici damy a predtim nebyla v pozici damy
@@ -190,13 +194,15 @@ QList<Move> Referee::getPawnJumps(const Location &location, Board &board) {
 QList<Move> Referee::getPawnMoves(const Location &location, Board &board) {
     QList<Move> moves;
     foreach (Location dir, getPawnDirections()) {
-	Location current_location = Figure::getTypesByColor(Figure::WHITE).contains(board(location)) ?
+	Location current_location = Figure::getTypeByColor(Figure::WHITE).contains(board(location)) ?
 					location + dir :
 					location + !dir;
 	if (current_location.isOnBoard(board)) {
 	    if (board(current_location) == Figure::EMPTY) {
 		Move move;
-		move.setFrom(location).setTo(current_location).setFigureType(board(location));
+		move.setFrom(location);
+		move.setTo(current_location);
+		move.setFigureType(board(location));
 		if (isInQueenArea(move.getTo(), Figure::getColorByType(board(move.getFrom())), board)) {
 		    move.setPromoted(true);
 		}
@@ -216,7 +222,9 @@ QList<Move> Referee::getQueenMoves(const Location &location, Board &board) {
 	    if (current_location.isOnBoard(board)) {
 		if (board(current_location) == Figure::EMPTY) {
 		    Move move;
-		    move.setFrom(location).setTo(current_location).setFigureType(board(location));
+		    move.setFrom(location);
+		    move.setTo(current_location);
+		    move.setFigureType(board(location));
 		    moves.append(move);
 		}
 		else {

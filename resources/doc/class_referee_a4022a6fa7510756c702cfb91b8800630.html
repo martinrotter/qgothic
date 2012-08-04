@@ -7,12 +7,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-  $(document).ready(initResizable);
-</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -21,7 +15,6 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="qgothic-small.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">QGothic
    </div>
@@ -36,26 +29,40 @@
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="class_referee.html">Referee</a></li>  </ul>
 </div>
-<script type="text/javascript">
-$(document).ready(function(){initNavTree('class_referee.html','');});
-</script>
-<div id="doc-content">
+</div><!-- top -->
 <div class="contents">
+<table cellspacing="0" cellpadding="0" border="0">
+  <tr>
+   <td valign="top">
+      <div class="navtab">
+        <table>
+          <tr><td class="navtab"><a class="qindex" href="class_referee_a644d9dc57e2f919dcafe0fd6418c5334.html#a644d9dc57e2f919dcafe0fd6418c5334">getAllMoves</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="class_referee_a3804eb20b0ef173ecb5dc2abeb1b09a2.html#a3804eb20b0ef173ecb5dc2abeb1b09a2">getAllPawnMoves</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="class_referee_ae2620f23d897796ec6b14350146ea4f9.html#ae2620f23d897796ec6b14350146ea4f9">getAllQueenMoves</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="class_referee_af6fba82f820cf71c37aedd9844e530fb.html#af6fba82f820cf71c37aedd9844e530fb">getBestMoves</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="class_referee_a7b9a5d3b326c1c2cdc78c26a24502ba6.html#a7b9a5d3b326c1c2cdc78c26a24502ba6">getMoves</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="class_referee_a761072555690d427e2e733bb38d78731.html#a761072555690d427e2e733bb38d78731">getPawnDirections</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="class_referee_aa34ec5da7bdf189428480fadd6dfdb24.html#aa34ec5da7bdf189428480fadd6dfdb24">getPawnJumps</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="class_referee_a3112eff2c936b13911657e84a8223009.html#a3112eff2c936b13911657e84a8223009">getPawnMoves</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="class_referee_ac55aa3a4318bc581e2f6d17c4327fd40.html#ac55aa3a4318bc581e2f6d17c4327fd40">getQueenDirections</a></td></tr>
+          <tr><td class="navtab"><a class="qindexHL" href="class_referee_a4022a6fa7510756c702cfb91b8800630.html#a4022a6fa7510756c702cfb91b8800630">getQueenJumps</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="class_referee_af707e04b844f3faa25f279b9aea65b91.html#af707e04b844f3faa25f279b9aea65b91">getQueenMoves</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="class_referee_a6f531efa4d3125a9d049e2aaeffcdebf.html#a6f531efa4d3125a9d049e2aaeffcdebf">isInQueenArea</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="class_referee_ae5a1f2caea4207bd673a315da55d7a6a.html#ae5a1f2caea4207bd673a315da55d7a6a">s_pawnDirections</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="class_referee_a783332f20abb11658242de3048d636d9.html#a783332f20abb11658242de3048d636d9">s_queenDirections</a></td></tr>
+        </table>
+      </div>
+   </td>
+   <td valign="top" class="mempage">
 <a class="anchor" id="a4022a6fa7510756c702cfb91b8800630"></a>
 <div class="memitem">
 <div class="memproto">
@@ -100,10 +107,57 @@ $(document).ready(function(){initNavTree('class_referee.html','');});
 
 <p>Definition at line <a class="el" href="referee_8cpp_source.html#l00085">85</a> of file <a class="el" href="referee_8cpp_source.html">referee.cpp</a>.</p>
 
-<p>References <a class="el" href="referee_8cpp_source.html#l00242">getQueenDirections()</a>.</p>
+<p>References <a class="el" href="move_8cpp_source.html#l00053">Move::addJumpedFigure()</a>, <a class="el" href="move_8cpp_source.html#l00063">Move::addJumpedFigures()</a>, <a class="el" href="move_8cpp_source.html#l00025">Move::getJumpedFigures()</a>, <a class="el" href="referee_8cpp_source.html#l00254">getQueenDirections()</a>, <a class="el" href="move_8cpp_source.html#l00041">Move::getTo()</a>, <a class="el" href="move_8cpp_source.html#l00099">Move::setFigureType()</a>, <a class="el" href="move_8cpp_source.html#l00029">Move::setFrom()</a>, and <a class="el" href="move_8cpp_source.html#l00037">Move::setTo()</a>.</p>
 
 <p>Referenced by <a class="el" href="referee_8cpp_source.html#l00034">getAllQueenMoves()</a>.</p>
-
+<div class="fragment"><div class="line">                                                                         {</div>
+<div class="line">    QList&lt;Move&gt; moves;</div>
+<div class="line"></div>
+<div class="line">    <span class="keywordflow">foreach</span> (<a class="code" href="class_location.html" title="Location on the playing board.">Location</a> dir, <a class="code" href="class_referee_ac55aa3a4318bc581e2f6d17c4327fd40.html#ac55aa3a4318bc581e2f6d17c4327fd40" title="Directions for queen move.">getQueenDirections</a>()) {</div>
+<div class="line">        <span class="comment">//qDebug() &lt;&lt; dir.toString();</span></div>
+<div class="line">        <a class="code" href="class_location.html" title="Location on the playing board.">Location</a> current_location(location);</div>
+<div class="line"></div>
+<div class="line">        <span class="keywordflow">do</span> {</div>
+<div class="line">            current_location += dir;</div>
+<div class="line">            <span class="comment">// posunuli jsme se na další pozici a kontrolujeme zda na ní je protihráč</span></div>
+<div class="line">            <span class="comment">// pokud ano tak skáčeme na libovolnou VOLNOU pozici za tímto kamenem</span></div>
+<div class="line">            <span class="keywordflow">if</span> (current_location.isOnBoard(board) &amp;&amp; Figure::getColorByType(board(current_location)) == Figure::negateColor(Figure::getColorByType(board(location)))) {</div>
+<div class="line">                <span class="comment">// posunuli jsme se tedy na prvni pozici za protihráčův kámen</span></div>
+<div class="line">                <span class="comment">//qDebug() &lt;&lt; board(current_location);</span></div>
+<div class="line">                <a class="code" href="class_location.html" title="Location on the playing board.">Location</a> next_location = current_location + dir;</div>
+<div class="line">                <span class="comment">// dokud je tato pozice volná</span></div>
+<div class="line">                <span class="keywordflow">while</span> (next_location.isOnBoard(board) &amp;&amp; next_location.isFree(board)) {</div>
+<div class="line">                    <a class="code" href="class_move.html" title="Move representation.">Move</a> move;</div>
+<div class="line">                    move.<a class="code" href="class_move_ac3095b8b9a3b7cb0c33b87b07bb0a564.html#ac3095b8b9a3b7cb0c33b87b07bb0a564" title="Figure type setter for Move.">setFigureType</a>(board(location));</div>
+<div class="line">                    move.<a class="code" href="class_move_a3ed38782fc4a08ab45c5b449d1b8706d.html#a3ed38782fc4a08ab45c5b449d1b8706d" title="Sets from Location of this move.">setFrom</a>(<a class="code" href="class_location.html" title="Location on the playing board.">Location</a>(location));</div>
+<div class="line">                    move.<a class="code" href="class_move_a25e8824b8475cf0b226298975340b8d5.html#a25e8824b8475cf0b226298975340b8d5" title="Sets to Location of this move.">setTo</a>(<a class="code" href="class_location.html" title="Location on the playing board.">Location</a>(next_location));</div>
+<div class="line">                    move.<a class="code" href="class_move_adfadbb8f0001b9320ce952b0a4b65786.html#adfadbb8f0001b9320ce952b0a4b65786" title="Adds newly jumped figure to this Move.">addJumpedFigure</a>(current_location, board(current_location));</div>
+<div class="line">                    <span class="comment">// delame tah a na teto upravene desce hledame dalsi meziskoky z daneho mista</span></div>
+<div class="line">                    board.makeMove(move, <span class="keyword">false</span>);</div>
+<div class="line">                    QList&lt;Move&gt; next_moves = <a class="code" href="class_referee_a4022a6fa7510756c702cfb91b8800630.html#a4022a6fa7510756c702cfb91b8800630" title="Finds all posibble jumps for queen.">getQueenJumps</a>(next_location, board);</div>
+<div class="line">                    <span class="comment">// jsou k dispozici dalsi skoky</span></div>
+<div class="line">                    <span class="keywordflow">if</span> (next_moves.size() &gt; 0) {</div>
+<div class="line">                        <span class="keywordflow">foreach</span> (<a class="code" href="class_move.html" title="Move representation.">Move</a> next_move, next_moves) {</div>
+<div class="line">                            <a class="code" href="class_move.html" title="Move representation.">Move</a> final_move(move);</div>
+<div class="line">                            final_move.setTo(<a class="code" href="class_location.html" title="Location on the playing board.">Location</a>(next_move.<a class="code" href="class_move_a85ba9325c1b85d27660c011223c86bca.html#a85ba9325c1b85d27660c011223c86bca" title="Gets to Location of this move.">getTo</a>()));</div>
+<div class="line">                            final_move.addJumpedFigures(next_move.<a class="code" href="class_move_a3654e19aa96f7c62639127abfeadffac.html#a3654e19aa96f7c62639127abfeadffac" title="Jumped figures getter.">getJumpedFigures</a>());</div>
+<div class="line">                            moves.append(final_move);</div>
+<div class="line">                        }</div>
+<div class="line">                    }</div>
+<div class="line">                    <span class="keywordflow">else</span> {</div>
+<div class="line">                        moves.append(move);</div>
+<div class="line">                    }</div>
+<div class="line">                    board.makeInverseMove(move, <span class="keyword">false</span>);</div>
+<div class="line">                    next_location += dir;</div>
+<div class="line">                }</div>
+<div class="line">                <span class="keywordflow">break</span>;</div>
+<div class="line">            }</div>
+<div class="line">        }</div>
+<div class="line">        <span class="keywordflow">while</span> (current_location.isOnBoard(board) &amp;&amp; current_location.isFree(board));</div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">return</span> moves;</div>
+<div class="line">}</div>
+</div><!-- fragment -->
 <p><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
@@ -111,7 +165,7 @@ $(document).ready(function(){initNavTree('class_referee.html','');});
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="class_referee_a4022a6fa7510756c702cfb91b8800630_a4022a6fa7510756c702cfb91b8800630_cgraph.png" border="0" usemap="#class_referee_a4022a6fa7510756c702cfb91b8800630_a4022a6fa7510756c702cfb91b8800630_cgraph" alt=""/></div>
 <map name="class_referee_a4022a6fa7510756c702cfb91b8800630_a4022a6fa7510756c702cfb91b8800630_cgraph" id="class_referee_a4022a6fa7510756c702cfb91b8800630_a4022a6fa7510756c702cfb91b8800630_cgraph">
-<area shape="rect" id="node3" href="class_referee_ac55aa3a4318bc581e2f6d17c4327fd40.html#ac55aa3a4318bc581e2f6d17c4327fd40" title="Directions for queen move." alt="" coords="225,5,415,32"/></map>
+<area shape="rect" id="node3" href="class_move_adfadbb8f0001b9320ce952b0a4b65786.html#adfadbb8f0001b9320ce952b0a4b65786" title="Adds newly jumped figure to this Move." alt="" coords="237,5,403,32"/><area shape="rect" id="node5" href="class_move_a5f04ca9ee62d99aa19fd12c09be70873.html#a5f04ca9ee62d99aa19fd12c09be70873" title="Adds jumped figures to the current Move." alt="" coords="234,56,406,83"/><area shape="rect" id="node7" href="class_move_a3654e19aa96f7c62639127abfeadffac.html#a3654e19aa96f7c62639127abfeadffac" title="Jumped figures getter." alt="" coords="235,107,405,133"/><area shape="rect" id="node9" href="class_referee_ac55aa3a4318bc581e2f6d17c4327fd40.html#ac55aa3a4318bc581e2f6d17c4327fd40" title="Directions for queen move." alt="" coords="225,157,415,184"/><area shape="rect" id="node11" href="class_move_a85ba9325c1b85d27660c011223c86bca.html#a85ba9325c1b85d27660c011223c86bca" title="Gets to Location of this move." alt="" coords="273,208,367,235"/><area shape="rect" id="node13" href="class_move_ac3095b8b9a3b7cb0c33b87b07bb0a564.html#ac3095b8b9a3b7cb0c33b87b07bb0a564" title="Figure type setter for Move." alt="" coords="247,259,393,285"/><area shape="rect" id="node15" href="class_move_a3ed38782fc4a08ab45c5b449d1b8706d.html#a3ed38782fc4a08ab45c5b449d1b8706d" title="Sets from Location of this move." alt="" coords="265,309,375,336"/><area shape="rect" id="node17" href="class_move_a25e8824b8475cf0b226298975340b8d5.html#a25e8824b8475cf0b226298975340b8d5" title="Sets to Location of this move." alt="" coords="273,360,367,387"/></map>
 </div>
 </p>
 
@@ -128,16 +182,15 @@ $(document).ready(function(){initNavTree('class_referee.html','');});
 
 </div>
 </div>
+    </td>
+  </tr>
+</table>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="class_referee.html">Referee</a></li>
-    <li class="footer">Generated on Fri Jul 27 2012 14:31:16 for QGothic by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated on Sat Aug 4 2012 16:02:12 for QGothic by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.1.2
+</small></address>
 </body>
 </html>

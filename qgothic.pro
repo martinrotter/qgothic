@@ -70,7 +70,8 @@ HEADERS += \
     src/historymodel.h \
     src/gtreeview.h \
     src/gsettings.h \
-    src/3rd-party/simplecrypt.h
+    src/3rd-party/simplecrypt.h \
+    src/documentation.h
 
 FORMS += \
     ui/gmainwindow.ui \

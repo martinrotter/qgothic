@@ -34,8 +34,6 @@ class Board {
 	void setActualMovesNoJump(int moves_without_jump);
 	int getMaxMovesNoJump() const;
 
-	QString toString() const;
-
 	void makeMove(const Move &move, bool update_state = true);
 	void makeInverseMove(const Move &move, bool update_state = true);
 
@@ -52,7 +50,6 @@ class Board {
 	Board::State m_state;
 
 	Figure::Type **m_field;
-
 
 };
 

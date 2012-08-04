@@ -12,7 +12,6 @@ var class_player =
     [ "getState", "class_player_a9c34b9fc662bb73fa4f701e961787acf.html#a9c34b9fc662bb73fa4f701e961787acf", null ],
     [ "operator!=", "class_player_a49b05d5c9104718d335637331fccffaa.html#a49b05d5c9104718d335637331fccffaa", null ],
     [ "operator==", "class_player_ac7be5507a08ea99108e80d8edfafac11.html#ac7be5507a08ea99108e80d8edfafac11", null ],
-    [ "setColor", "class_player_a9cbe3b4e8c80407dadc4a6f7e83bfbca.html#a9cbe3b4e8c80407dadc4a6f7e83bfbca", null ],
-    [ "setState", "class_player_ae1fc867235e4ff06148cb0ecb002314b.html#ae1fc867235e4ff06148cb0ecb002314b", null ],
-    [ "toString", "class_player_a7495749f035d08e3647f0d4085d9be59.html#a7495749f035d08e3647f0d4085d9be59", null ]
+    [ "setColor", "class_player_a59e5840e8a5aa80daf304a3b900a7be7.html#a59e5840e8a5aa80daf304a3b900a7be7", null ],
+    [ "setState", "class_player_ade736e6c011fbc44b23e7c906bbcf304.html#ade736e6c011fbc44b23e7c906bbcf304", null ]
 ];

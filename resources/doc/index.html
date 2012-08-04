@@ -3,16 +3,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>QGothic: Main Page</title>
+<title>QGothic: QGothic</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-  $(document).ready(initResizable);
-</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -21,7 +15,6 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="qgothic-small.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">QGothic
    </div>
@@ -36,39 +29,44 @@
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-$(document).ready(function(){initNavTree('index.html','');});
-</script>
-<div id="doc-content">
 <div class="header">
   <div class="headertitle">
-<div class="title">QGothic Documentation</div>  </div>
+<div class="title">QGothic </div>  </div>
 </div><!--header-->
 <div class="contents">
-</div><!-- contents -->
-</div><!-- doc-content -->
+<div class="textblock"><p>QGothic is simple board game written entirely using Qt framework. QGothic was developed primarily for GNU/Linux (with KDE environment) and for Windows 7. <a class="el" href="class_game.html">Game</a> was tested on those operating systems and should run flawlessly.</p>
+<p>Note that this document is not user-guide for the QGothic game. It is meant to be used as starting point for anyone who may want to extend QGothic.</p>
+<h1>Prerequisities For Programmers</h1>
+<ul>
+<li>Qt (with supported C++ compiler/toolchain)</li>
+<li>Doxygen</li>
+</ul>
+<h1>Hardware Requirements</h1>
+<ul>
+<li>For building QGothic<ul>
+<li>any decent personal computer able to compile C++ source code</li>
+</ul>
+</li>
+<li>For running QGothic<ul>
+<li>CPU: single-core pentium os more than enough (x86 or x86-64 architecture)</li>
+<li>HDD: 60 MB of free space (for executable and extra Qt .dll files on Windows, much less free space needed on Linux)</li>
+<li>RAM: 6-25 MB (QGothic process takes up to 25 MB of memory, tested on GNU/Linux and Windows 7)</li>
+<li>VGA: OpenGL support required (with recompilation there is "&amp;ndash;graphicssystem raster" possibility </li>
+</ul>
+</li>
+</ul>
+</div></div><!-- contents -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="footer">Generated on Fri Jul 27 2012 14:31:16 for QGothic by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated on Sat Aug 4 2012 16:02:12 for QGothic by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.1.2
+</small></address>
 </body>
 </html>

@@ -21,7 +21,6 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="qgothic-small.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">QGothic
    </div>
@@ -56,13 +55,57 @@ $(document).ready(function(){initNavTree('class_move.html','');});
 </script>
 <div id="doc-content">
 <div class="contents">
+<a class="anchor" id="a97da481d7be849adb53235d0198b6d3d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_move.html">Move</a> &amp; Move::setFrom </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_location.html">Location</a> &amp;&#160;</td>
+          <td class="paramname"><em>location</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets from location of this move. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">location</td><td><a class="el" href="class_location.html" title="Location on the playing board.">Location</a> to set. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Method returns reference to the actual <a class="el" href="class_move.html" title="Move representation.">Move</a> instance. </dd></dl>
+
+<p>Definition at line <a class="el" href="move_8cpp_source.html#l00029">29</a> of file <a class="el" href="move_8cpp_source.html">move.cpp</a>.</p>
+
+<p>Referenced by <a class="el" href="referee_8cpp_source.html#l00131">Referee::getPawnJumps()</a>, <a class="el" href="referee_8cpp_source.html#l00190">Referee::getPawnMoves()</a>, <a class="el" href="referee_8cpp_source.html#l00085">Referee::getQueenJumps()</a>, and <a class="el" href="referee_8cpp_source.html#l00210">Referee::getQueenMoves()</a>.</p>
+<div class="fragment"><div class="line">                                            {</div>
+<div class="line">    *m_from = location;</div>
+<div class="line">    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line">}</div>
+</div><!-- fragment -->
+<p><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="class_move_a97da481d7be849adb53235d0198b6d3d_a97da481d7be849adb53235d0198b6d3d_icgraph.png" border="0" usemap="#class_move_a97da481d7be849adb53235d0198b6d3d_a97da481d7be849adb53235d0198b6d3d_icgraph" alt=""/></div>
+<map name="class_move_a97da481d7be849adb53235d0198b6d3d_a97da481d7be849adb53235d0198b6d3d_icgraph" id="class_move_a97da481d7be849adb53235d0198b6d3d_a97da481d7be849adb53235d0198b6d3d_icgraph">
+<area shape="rect" id="node3" href="class_referee_aa34ec5da7bdf189428480fadd6dfdb24.html#aa34ec5da7bdf189428480fadd6dfdb24" title="Finds all posibble jumps for pawn." alt="" coords="167,5,334,32"/><area shape="rect" id="node11" href="class_referee_a3112eff2c936b13911657e84a8223009.html#a3112eff2c936b13911657e84a8223009" title="Finds all posibble simple moves (without jumps) for pawn." alt="" coords="167,56,334,83"/><area shape="rect" id="node14" href="class_referee_a4022a6fa7510756c702cfb91b8800630.html#a4022a6fa7510756c702cfb91b8800630" title="Finds all posibble jumps for queen." alt="" coords="165,107,336,133"/><area shape="rect" id="node19" href="class_referee_af707e04b844f3faa25f279b9aea65b91.html#af707e04b844f3faa25f279b9aea65b91" title="Finds all posibble simple moves (without jumps) for queen." alt="" coords="165,157,336,184"/><area shape="rect" id="node5" href="class_referee_a3804eb20b0ef173ecb5dc2abeb1b09a2.html#a3804eb20b0ef173ecb5dc2abeb1b09a2" title="Finds both jumps/moves for pawn." alt="" coords="387,56,568,83"/><area shape="rect" id="node7" href="class_referee_a644d9dc57e2f919dcafe0fd6418c5334.html#a644d9dc57e2f919dcafe0fd6418c5334" title="Finds jumps/moves for any figure on the specified location." alt="" coords="619,81,767,108"/><area shape="rect" id="node9" href="class_referee_a7b9a5d3b326c1c2cdc78c26a24502ba6.html#a7b9a5d3b326c1c2cdc78c26a24502ba6" title="Gets all available moves for certain Figure::Color." alt="" coords="816,81,949,108"/><area shape="rect" id="node16" href="class_referee_ae2620f23d897796ec6b14350146ea4f9.html#ae2620f23d897796ec6b14350146ea4f9" title="Finds both jumps/moves for queen." alt="" coords="384,107,571,133"/></map>
+</div>
+</p>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_move.html">Move</a></li>
-    <li class="footer">Generated on Fri Jul 27 2012 14:31:16 for QGothic by
+    <li class="footer">Generated on Fri Aug 3 2012 18:47:53 for QGothic by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

@@ -92,8 +92,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>498</width>
-            <height>356</height>
+            <width>506</width>
+            <height>364</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_2">
@@ -227,6 +227,9 @@
                     </item>
                     <item row="2" column="0">
                      <widget class="QRadioButton" name="m_blackHard">
+                      <property name="enabled">
+                       <bool>true</bool>
+                      </property>
                       <property name="text">
                        <string>Hard</string>
                       </property>
@@ -350,8 +353,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>145</width>
-            <height>92</height>
+            <width>184</width>
+            <height>97</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_3">
@@ -443,8 +446,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>115</width>
-            <height>28</height>
+            <width>143</width>
+            <height>16</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_4">

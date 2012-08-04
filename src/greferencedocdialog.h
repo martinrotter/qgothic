@@ -10,6 +10,11 @@ namespace Ui {
     class GReferenceDocDialog;
 }
 
+/*!
+ * \brief Dialog containing reference documentation for programmers.
+ *
+ * \ingroup Gui
+ */
 class GReferenceDocDialog : public QDialog {
 	Q_OBJECT
 	
@@ -17,11 +22,9 @@ class GReferenceDocDialog : public QDialog {
 	explicit GReferenceDocDialog(QWidget *parent = 0);
 	~GReferenceDocDialog();
 
-    protected slots:
-	void adjustGeometry();
-	
     private:
 	Ui::GReferenceDocDialog *m_ui;
+
 };
 
 #endif // GREFERENCEDOCDIALOG_H

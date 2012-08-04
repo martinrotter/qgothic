@@ -14,7 +14,7 @@ var class_board =
     [ "getMaxMovesNoJump", "class_board_a369e3ffbe7710d533ddaf84e0b5c8090.html#a369e3ffbe7710d533ddaf84e0b5c8090", null ],
     [ "getSize", "class_board_a65a9e00ec8f504699ca6226f78516a1e.html#a65a9e00ec8f504699ca6226f78516a1e", null ],
     [ "getState", "class_board_a947ea91a7157ab9457eb0d336af12d21.html#a947ea91a7157ab9457eb0d336af12d21", null ],
-    [ "makeInverseMove", "class_board_a30c4799069992cd93f4db216b8851acd.html#a30c4799069992cd93f4db216b8851acd", null ],
+    [ "makeInverseMove", "class_board_a467a6c05e30213ed2acef0e4015ff1a9.html#a467a6c05e30213ed2acef0e4015ff1a9", null ],
     [ "makeMove", "class_board_addcc8daf003876d5a07fdc07b191db94.html#addcc8daf003876d5a07fdc07b191db94", null ],
     [ "operator()", "class_board_af19d20bd3e2fbe9a368c24f798e30c6d.html#af19d20bd3e2fbe9a368c24f798e30c6d", null ],
     [ "operator()", "class_board_a7761c0c791f2db8d473788cb06b6b7e8.html#a7761c0c791f2db8d473788cb06b6b7e8", null ],

@@ -59,14 +59,12 @@ QString Location::toString() const {
     return QString("%1%2").arg(QChar(getX() + 'A')).arg(getY() + 1);
 }
 
-Location &Location::setX(int x) {
+void Location::setX(int x) {
     m_x = x;
-    return *this;
 }
 
-Location &Location::setY(int y) {
+void Location::setY(int y) {
     m_y = y;
-    return *this;
 }
 
 int Location::getX() const {

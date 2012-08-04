@@ -7,12 +7,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-  $(document).ready(initResizable);
-</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -21,7 +15,6 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="qgothic-small.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">QGothic
    </div>
@@ -36,6 +29,7 @@
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -45,21 +39,11 @@
       <li><a href="files.html"><span>File&#160;List</span></a></li>
     </ul>
   </div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
 </div>
-<script type="text/javascript">
-$(document).ready(function(){initNavTree('move_8h_source.html','');});
-</script>
-<div id="doc-content">
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">move.h</div>  </div>
@@ -77,55 +61,69 @@ $(document).ready(function(){initNavTree('move_8h_source.html','');});
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">typedef</span> QPair&lt;Location, Figure::Type&gt; JumpedFigure;</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="code" href="class_move.html">   13</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_move.html">Move</a> {</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <a class="code" href="class_move.html">Move</a>();</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <a class="code" href="class_move.html">Move</a>(<span class="keyword">const</span> <a class="code" href="class_move.html">Move</a> &amp;move);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        ~<a class="code" href="class_move.html">Move</a>();</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="code" href="class_move.html">   16</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_move.html" title="Move representation.">Move</a> {</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <a class="code" href="class_move.html">Move</a> &amp;setFrom(<span class="keyword">const</span> <a class="code" href="class_location.html" title="Location on the playing board.">Location</a> &amp;location);</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <a class="code" href="class_location.html" title="Location on the playing board.">Location</a> &amp;getFrom() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <a class="code" href="class_move.html">Move</a> &amp;setTo(<span class="keyword">const</span> <a class="code" href="class_location.html" title="Location on the playing board.">Location</a> &amp;location);</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <a class="code" href="class_location.html" title="Location on the playing board.">Location</a> &amp;getTo() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <a class="code" href="class_move.html">Move</a> &amp;setPromoted(<span class="keywordtype">bool</span> promoted);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keywordtype">bool</span> getPromoted() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <a class="code" href="class_move.html">Move</a> &amp;setFigureType(Figure::Type type_of_figure);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        Figure::Type getFigureType() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        QList&lt;JumpedFigure&gt;  &amp;getJumpedFigures() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordtype">void</span> addJumpedFigure(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, Figure::Type type_of_figure);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordtype">void</span> addJumpedFigure(<span class="keyword">const</span> <a class="code" href="class_location.html" title="Location on the playing board.">Location</a> &amp;location, Figure::Type type_of_figure);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keywordtype">void</span> addJumpedFigures(<span class="keyword">const</span> QList&lt;JumpedFigure&gt; &amp;figures);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keywordtype">bool</span> containsJumps() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keywordtype">int</span> price() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        QString toString() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        QString toShortString() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <a class="code" href="class_move_a4b1acc3a67d30c385ad9a6000526393a.html#a4b1acc3a67d30c385ad9a6000526393a" title="Default constructor.">Move</a>();</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <a class="code" href="class_move_a4b1acc3a67d30c385ad9a6000526393a.html#a4b1acc3a67d30c385ad9a6000526393a" title="Default constructor.">Move</a>(<span class="keyword">const</span> <a class="code" href="class_move.html" title="Move representation.">Move</a> &amp;move);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        ~<a class="code" href="class_move.html" title="Move representation.">Move</a>();</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_move_a3ed38782fc4a08ab45c5b449d1b8706d.html#a3ed38782fc4a08ab45c5b449d1b8706d" title="Sets from Location of this move.">setFrom</a>(<span class="keyword">const</span> <a class="code" href="class_location.html" title="Location on the playing board.">Location</a> &amp;location);</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code" href="class_move.html">Move</a> &amp;rhs) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keywordtype">bool</span> operator!=(<span class="keyword">const</span> <a class="code" href="class_move.html">Move</a> &amp;rhs) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <a class="code" href="class_location.html" title="Location on the playing board.">Location</a> *m_from;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <a class="code" href="class_location.html" title="Location on the playing board.">Location</a> *m_to;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        Figure::Type m_typeOfFigure;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordtype">bool</span> m_promoted;    </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        QList&lt;JumpedFigure&gt; *m_jumpedFigures;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;};</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <a class="code" href="class_location.html" title="Location on the playing board.">Location</a> &amp;<a class="code" href="class_move_a7716bddc755705c7870fc94830d13130.html#a7716bddc755705c7870fc94830d13130" title="Gets from Location of this move.">getFrom</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_move_a25e8824b8475cf0b226298975340b8d5.html#a25e8824b8475cf0b226298975340b8d5" title="Sets to Location of this move.">setTo</a>(<span class="keyword">const</span> <a class="code" href="class_location.html" title="Location on the playing board.">Location</a> &amp;location);</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#endif // MOVE_H</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <a class="code" href="class_location.html" title="Location on the playing board.">Location</a> &amp;<a class="code" href="class_move_a85ba9325c1b85d27660c011223c86bca.html#a85ba9325c1b85d27660c011223c86bca" title="Gets to Location of this move.">getTo</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_move_ad4f005c8fde12dad6d845a1b2327eec5.html#ad4f005c8fde12dad6d845a1b2327eec5" title="Sets if figure was promoted to the queen at the end if this Move.">setPromoted</a>(<span class="keywordtype">bool</span> promoted);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_move_a9348c2ae0f9e430ac0291e6452a6c254.html#a9348c2ae0f9e430ac0291e6452a6c254" title="Move promotion indicator.">getPromoted</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_move_ac3095b8b9a3b7cb0c33b87b07bb0a564.html#ac3095b8b9a3b7cb0c33b87b07bb0a564" title="Figure type setter for Move.">setFigureType</a>(Figure::Type type_of_figure);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        Figure::Type <a class="code" href="class_move_add3266701f8334bdaa65628cc7a96b41.html#add3266701f8334bdaa65628cc7a96b41" title="Figure type getter for Move.">getFigureType</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        QList&lt;JumpedFigure&gt; &amp;<a class="code" href="class_move_a3654e19aa96f7c62639127abfeadffac.html#a3654e19aa96f7c62639127abfeadffac" title="Jumped figures getter.">getJumpedFigures</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_move_adfadbb8f0001b9320ce952b0a4b65786.html#adfadbb8f0001b9320ce952b0a4b65786" title="Adds newly jumped figure to this Move.">addJumpedFigure</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, Figure::Type type_of_figure);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_move_adfadbb8f0001b9320ce952b0a4b65786.html#adfadbb8f0001b9320ce952b0a4b65786" title="Adds newly jumped figure to this Move.">addJumpedFigure</a>(<span class="keyword">const</span> <a class="code" href="class_location.html" title="Location on the playing board.">Location</a> &amp;location, Figure::Type type_of_figure);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_move_a5f04ca9ee62d99aa19fd12c09be70873.html#a5f04ca9ee62d99aa19fd12c09be70873" title="Adds jumped figures to the current Move.">addJumpedFigures</a>(<span class="keyword">const</span> QList&lt;JumpedFigure&gt; &amp;figures);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="class_move_a919754f47537a9ed9d7e05f9866ba94a.html#a919754f47537a9ed9d7e05f9866ba94a" title="Counts price of this Move.">price</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        <span class="comment">// Move is invalid if its m_from X coord is negative number.</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="keywordtype">bool</span> isValid() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        QString toFiguresString() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        QString toString() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code" href="class_move.html" title="Move representation.">Move</a> &amp;rhs) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        <span class="keywordtype">bool</span> operator!=(<span class="keyword">const</span> <a class="code" href="class_move.html" title="Move representation.">Move</a> &amp;rhs) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        <span class="keyword">static</span> <a class="code" href="class_move.html" title="Move representation.">Move</a> <a class="code" href="class_move_a70a458cab4911da39af21a7a52210fcf.html#a70a458cab4911da39af21a7a52210fcf" title="Universal invalid Move instance generator.">getInvalidMove</a>();</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        <a class="code" href="class_location.html" title="Location on the playing board.">Location</a> *m_from;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        <a class="code" href="class_location.html" title="Location on the playing board.">Location</a> *m_to;</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        Figure::Type m_typeOfFigure;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        <span class="keywordtype">bool</span> m_promoted;    </div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;        QList&lt;JumpedFigure&gt; *m_jumpedFigures;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;};</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="preprocessor">#endif // MOVE_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><b>move.h</b></li>
-    <li class="footer">Generated on Fri Jul 27 2012 14:31:15 for QGothic by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated on Sat Aug 4 2012 16:02:10 for QGothic by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.1.2
+</small></address>
 </body>
 </html>

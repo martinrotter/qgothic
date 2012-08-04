@@ -62,13 +62,7 @@ class Player {
 	 * \brief Gets actual state of this player.
 	 * \return Method returns actual state of this player.
 	 */
-	Player::State getState() const;
-
-	/*!
-	 * \brief Textual representation of Player object.
-	 * \return Method returns textual representation of Player object.
-	 */
-	QString toString() const;
+	State getState() const;
 
 	/*!
 	 * \brief Operator of equality for Player objects.

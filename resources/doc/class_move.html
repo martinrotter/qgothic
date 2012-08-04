@@ -7,12 +7,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-  $(document).ready(initResizable);
-</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -21,7 +15,6 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="qgothic-small.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">QGothic
    </div>
@@ -36,6 +29,7 @@
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -48,87 +42,83 @@
     </ul>
   </div>
 </div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-$(document).ready(function(){initNavTree('class_move.html','');});
-</script>
-<div id="doc-content">
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_move-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Move Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="class_move.html" title="Move representation.">Move</a> representation.  
+ <a href="class_move.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="move_8h_source.html">move.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad8a007087ea49c9f77edfe2c10e373e4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad8a007087ea49c9f77edfe2c10e373e4"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Move</b> (const <a class="el" href="class_move.html">Move</a> &amp;move)</td></tr>
-<tr class="memitem:a97da481d7be849adb53235d0198b6d3d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a97da481d7be849adb53235d0198b6d3d"></a>
-<a class="el" href="class_move.html">Move</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>setFrom</b> (const <a class="el" href="class_location.html">Location</a> &amp;location)</td></tr>
-<tr class="memitem:a7716bddc755705c7870fc94830d13130"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7716bddc755705c7870fc94830d13130"></a>
-<a class="el" href="class_location.html">Location</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getFrom</b> () const </td></tr>
-<tr class="memitem:a630d6cafc26f02a39b6da1ffb1934c03"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a630d6cafc26f02a39b6da1ffb1934c03"></a>
-<a class="el" href="class_move.html">Move</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>setTo</b> (const <a class="el" href="class_location.html">Location</a> &amp;location)</td></tr>
-<tr class="memitem:a85ba9325c1b85d27660c011223c86bca"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a85ba9325c1b85d27660c011223c86bca"></a>
-<a class="el" href="class_location.html">Location</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getTo</b> () const </td></tr>
-<tr class="memitem:a0dcb1f57b3d13275423b4afddddda952"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0dcb1f57b3d13275423b4afddddda952"></a>
-<a class="el" href="class_move.html">Move</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>setPromoted</b> (bool promoted)</td></tr>
-<tr class="memitem:a9348c2ae0f9e430ac0291e6452a6c254"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9348c2ae0f9e430ac0291e6452a6c254"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>getPromoted</b> () const </td></tr>
-<tr class="memitem:a83115b51ac619d762ad0042600c47e64"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a83115b51ac619d762ad0042600c47e64"></a>
-<a class="el" href="class_move.html">Move</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>setFigureType</b> (Figure::Type type_of_figure)</td></tr>
-<tr class="memitem:add3266701f8334bdaa65628cc7a96b41"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="add3266701f8334bdaa65628cc7a96b41"></a>
-Figure::Type&#160;</td><td class="memItemRight" valign="bottom"><b>getFigureType</b> () const </td></tr>
-<tr class="memitem:a3654e19aa96f7c62639127abfeadffac"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3654e19aa96f7c62639127abfeadffac"></a>
-QList&lt; JumpedFigure &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getJumpedFigures</b> () const </td></tr>
-<tr class="memitem:adfadbb8f0001b9320ce952b0a4b65786"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adfadbb8f0001b9320ce952b0a4b65786"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addJumpedFigure</b> (int x, int y, Figure::Type type_of_figure)</td></tr>
-<tr class="memitem:acba66c209bcad28bff461c63dee64e3c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acba66c209bcad28bff461c63dee64e3c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addJumpedFigure</b> (const <a class="el" href="class_location.html">Location</a> &amp;location, Figure::Type type_of_figure)</td></tr>
-<tr class="memitem:a5f04ca9ee62d99aa19fd12c09be70873"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5f04ca9ee62d99aa19fd12c09be70873"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addJumpedFigures</b> (const QList&lt; JumpedFigure &gt; &amp;figures)</td></tr>
-<tr class="memitem:a4fdfeab3c56c8a740f92ebe696f52cb8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4fdfeab3c56c8a740f92ebe696f52cb8"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>containsJumps</b> () const </td></tr>
-<tr class="memitem:a919754f47537a9ed9d7e05f9866ba94a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a919754f47537a9ed9d7e05f9866ba94a"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>price</b> () const </td></tr>
+<tr class="memitem:a4b1acc3a67d30c385ad9a6000526393a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_move_a4b1acc3a67d30c385ad9a6000526393a.html#a4b1acc3a67d30c385ad9a6000526393a">Move</a> ()</td></tr>
+<tr class="memdesc:a4b1acc3a67d30c385ad9a6000526393a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <a href="#a4b1acc3a67d30c385ad9a6000526393a"></a><br/></td></tr>
+<tr class="memitem:ad8a007087ea49c9f77edfe2c10e373e4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_move_ad8a007087ea49c9f77edfe2c10e373e4.html#ad8a007087ea49c9f77edfe2c10e373e4">Move</a> (const <a class="el" href="class_move.html">Move</a> &amp;move)</td></tr>
+<tr class="memdesc:ad8a007087ea49c9f77edfe2c10e373e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <a href="#ad8a007087ea49c9f77edfe2c10e373e4"></a><br/></td></tr>
+<tr class="memitem:a3ed38782fc4a08ab45c5b449d1b8706d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_move_a3ed38782fc4a08ab45c5b449d1b8706d.html#a3ed38782fc4a08ab45c5b449d1b8706d">setFrom</a> (const <a class="el" href="class_location.html">Location</a> &amp;location)</td></tr>
+<tr class="memdesc:a3ed38782fc4a08ab45c5b449d1b8706d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets from <a class="el" href="class_location.html" title="Location on the playing board.">Location</a> of this move.  <a href="#a3ed38782fc4a08ab45c5b449d1b8706d"></a><br/></td></tr>
+<tr class="memitem:a7716bddc755705c7870fc94830d13130"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_location.html">Location</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_move_a7716bddc755705c7870fc94830d13130.html#a7716bddc755705c7870fc94830d13130">getFrom</a> () const </td></tr>
+<tr class="memdesc:a7716bddc755705c7870fc94830d13130"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets from <a class="el" href="class_location.html" title="Location on the playing board.">Location</a> of this move.  <a href="#a7716bddc755705c7870fc94830d13130"></a><br/></td></tr>
+<tr class="memitem:a25e8824b8475cf0b226298975340b8d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_move_a25e8824b8475cf0b226298975340b8d5.html#a25e8824b8475cf0b226298975340b8d5">setTo</a> (const <a class="el" href="class_location.html">Location</a> &amp;location)</td></tr>
+<tr class="memdesc:a25e8824b8475cf0b226298975340b8d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets to <a class="el" href="class_location.html" title="Location on the playing board.">Location</a> of this move.  <a href="#a25e8824b8475cf0b226298975340b8d5"></a><br/></td></tr>
+<tr class="memitem:a85ba9325c1b85d27660c011223c86bca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_location.html">Location</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_move_a85ba9325c1b85d27660c011223c86bca.html#a85ba9325c1b85d27660c011223c86bca">getTo</a> () const </td></tr>
+<tr class="memdesc:a85ba9325c1b85d27660c011223c86bca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets to <a class="el" href="class_location.html" title="Location on the playing board.">Location</a> of this move.  <a href="#a85ba9325c1b85d27660c011223c86bca"></a><br/></td></tr>
+<tr class="memitem:ad4f005c8fde12dad6d845a1b2327eec5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_move_ad4f005c8fde12dad6d845a1b2327eec5.html#ad4f005c8fde12dad6d845a1b2327eec5">setPromoted</a> (bool promoted)</td></tr>
+<tr class="memdesc:ad4f005c8fde12dad6d845a1b2327eec5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets if figure was promoted to the queen at the end if this <a class="el" href="class_move.html" title="Move representation.">Move</a>.  <a href="#ad4f005c8fde12dad6d845a1b2327eec5"></a><br/></td></tr>
+<tr class="memitem:a9348c2ae0f9e430ac0291e6452a6c254"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_move_a9348c2ae0f9e430ac0291e6452a6c254.html#a9348c2ae0f9e430ac0291e6452a6c254">getPromoted</a> () const </td></tr>
+<tr class="memdesc:a9348c2ae0f9e430ac0291e6452a6c254"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_move.html" title="Move representation.">Move</a> promotion indicator.  <a href="#a9348c2ae0f9e430ac0291e6452a6c254"></a><br/></td></tr>
+<tr class="memitem:ac3095b8b9a3b7cb0c33b87b07bb0a564"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_move_ac3095b8b9a3b7cb0c33b87b07bb0a564.html#ac3095b8b9a3b7cb0c33b87b07bb0a564">setFigureType</a> (Figure::Type type_of_figure)</td></tr>
+<tr class="memdesc:ac3095b8b9a3b7cb0c33b87b07bb0a564"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_figure.html">Figure</a> type setter for <a class="el" href="class_move.html" title="Move representation.">Move</a>.  <a href="#ac3095b8b9a3b7cb0c33b87b07bb0a564"></a><br/></td></tr>
+<tr class="memitem:add3266701f8334bdaa65628cc7a96b41"><td class="memItemLeft" align="right" valign="top">Figure::Type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_move_add3266701f8334bdaa65628cc7a96b41.html#add3266701f8334bdaa65628cc7a96b41">getFigureType</a> () const </td></tr>
+<tr class="memdesc:add3266701f8334bdaa65628cc7a96b41"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_figure.html">Figure</a> type getter for <a class="el" href="class_move.html" title="Move representation.">Move</a>.  <a href="#add3266701f8334bdaa65628cc7a96b41"></a><br/></td></tr>
+<tr class="memitem:a3654e19aa96f7c62639127abfeadffac"><td class="memItemLeft" align="right" valign="top">QList&lt; JumpedFigure &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_move_a3654e19aa96f7c62639127abfeadffac.html#a3654e19aa96f7c62639127abfeadffac">getJumpedFigures</a> () const </td></tr>
+<tr class="memdesc:a3654e19aa96f7c62639127abfeadffac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Jumped figures getter.  <a href="#a3654e19aa96f7c62639127abfeadffac"></a><br/></td></tr>
+<tr class="memitem:adfadbb8f0001b9320ce952b0a4b65786"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_move_adfadbb8f0001b9320ce952b0a4b65786.html#adfadbb8f0001b9320ce952b0a4b65786">addJumpedFigure</a> (int x, int y, Figure::Type type_of_figure)</td></tr>
+<tr class="memdesc:adfadbb8f0001b9320ce952b0a4b65786"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds newly jumped figure to this <a class="el" href="class_move.html" title="Move representation.">Move</a>.  <a href="#adfadbb8f0001b9320ce952b0a4b65786"></a><br/></td></tr>
+<tr class="memitem:acba66c209bcad28bff461c63dee64e3c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_move_acba66c209bcad28bff461c63dee64e3c.html#acba66c209bcad28bff461c63dee64e3c">addJumpedFigure</a> (const <a class="el" href="class_location.html">Location</a> &amp;location, Figure::Type type_of_figure)</td></tr>
+<tr class="memdesc:acba66c209bcad28bff461c63dee64e3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds newly jumped figure to this <a class="el" href="class_move.html" title="Move representation.">Move</a>.  <a href="#acba66c209bcad28bff461c63dee64e3c"></a><br/></td></tr>
+<tr class="memitem:a5f04ca9ee62d99aa19fd12c09be70873"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_move_a5f04ca9ee62d99aa19fd12c09be70873.html#a5f04ca9ee62d99aa19fd12c09be70873">addJumpedFigures</a> (const QList&lt; JumpedFigure &gt; &amp;figures)</td></tr>
+<tr class="memdesc:a5f04ca9ee62d99aa19fd12c09be70873"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds jumped figures to the current <a class="el" href="class_move.html" title="Move representation.">Move</a>.  <a href="#a5f04ca9ee62d99aa19fd12c09be70873"></a><br/></td></tr>
+<tr class="memitem:a919754f47537a9ed9d7e05f9866ba94a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_move_a919754f47537a9ed9d7e05f9866ba94a.html#a919754f47537a9ed9d7e05f9866ba94a">price</a> () const </td></tr>
+<tr class="memdesc:a919754f47537a9ed9d7e05f9866ba94a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Counts price of this <a class="el" href="class_move.html" title="Move representation.">Move</a>.  <a href="#a919754f47537a9ed9d7e05f9866ba94a"></a><br/></td></tr>
+<tr class="memitem:a35ec7de5bf670acdace6a4fe63572f05"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a35ec7de5bf670acdace6a4fe63572f05"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isValid</b> () const </td></tr>
+<tr class="memitem:a531b36b8ab7e698af55eed0b46e20bc7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a531b36b8ab7e698af55eed0b46e20bc7"></a>
+QString&#160;</td><td class="memItemRight" valign="bottom"><b>toFiguresString</b> () const </td></tr>
 <tr class="memitem:a7abc781d480e2e47f5b681227a227886"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7abc781d480e2e47f5b681227a227886"></a>
 QString&#160;</td><td class="memItemRight" valign="bottom"><b>toString</b> () const </td></tr>
-<tr class="memitem:a42d2bb84dd97bdbdade5e90020816116"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a42d2bb84dd97bdbdade5e90020816116"></a>
-QString&#160;</td><td class="memItemRight" valign="bottom"><b>toShortString</b> () const </td></tr>
 <tr class="memitem:a8fd5c9dde1d9168d67bfb8cbbd1b50af"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8fd5c9dde1d9168d67bfb8cbbd1b50af"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="class_move.html">Move</a> &amp;rhs) const </td></tr>
 <tr class="memitem:aa2bc776acc9e9019df755616e475ccb0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa2bc776acc9e9019df755616e475ccb0"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (const <a class="el" href="class_move.html">Move</a> &amp;rhs) const </td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a70a458cab4911da39af21a7a52210fcf"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_move.html">Move</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_move_a70a458cab4911da39af21a7a52210fcf.html#a70a458cab4911da39af21a7a52210fcf">getInvalidMove</a> ()</td></tr>
+<tr class="memdesc:a70a458cab4911da39af21a7a52210fcf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Universal invalid <a class="el" href="class_move.html" title="Move representation.">Move</a> instance generator.  <a href="#a70a458cab4911da39af21a7a52210fcf"></a><br/></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock">
-<p>Definition at line <a class="el" href="move_8h_source.html#l00013">13</a> of file <a class="el" href="move_8h_source.html">move.h</a>.</p>
+<div class="textblock"><p><a class="el" href="class_move.html" title="Move representation.">Move</a> representation. </p>
+
+<p>Definition at line <a class="el" href="move_8h_source.html#l00016">16</a> of file <a class="el" href="move_8h_source.html">move.h</a>.</p>
 </div><hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/<a class="el" href="move_8h_source.html">move.h</a></li>
 <li>src/<a class="el" href="move_8cpp_source.html">move.cpp</a></li>
 </ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="class_move.html">Move</a></li>
-    <li class="footer">Generated on Fri Jul 27 2012 14:31:16 for QGothic by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated on Sat Aug 4 2012 16:02:11 for QGothic by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.1.2
+</small></address>
 </body>
 </html>

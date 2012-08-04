@@ -92,8 +92,8 @@ class Referee {
 
 	/*!
 	 * \brief Finds jumps/moves for any figure on the specified location.
-	 * \param location Position of certain figure on the board.
-	 * \param location Position of pawn on the board.
+	 * \param location Location of certain figure on the board.
+	 * \param location Location of pawn on the board.
 	 * \param board Board to search the moves on.
 	 * \return Method returns all found moves (including jumps of course) for selected figure
 	 * specified by its location on the board.

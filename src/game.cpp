@@ -33,11 +33,14 @@ Game::Game(QObject *parent) :
     int white_dif = GSettings::value(SET_GAME, "white_player_dif", 0).toInt();
     int black_dif = GSettings::value(SET_GAME, "black_player_dif", 2).toInt();
 
-    m_players << Player(white_dif <= Player::HARD && white_dif >= Player::HUMAN ?
+    /*
+     * disable hard dif for now -> use < instead of  <=
+     */
+    m_players << Player(white_dif < Player::HARD && white_dif >= Player::HUMAN ?
 			    static_cast<Player::State>(white_dif) :
 			    Player::HUMAN,
 			Figure::WHITE);
-    m_players << Player(black_dif <= Player::HARD && black_dif >= Player::HUMAN ?
+    m_players << Player(black_dif < Player::HARD && black_dif >= Player::HUMAN ?
 			    static_cast<Player::State>(black_dif) :
 			    Player::MEDIUM,
 			Figure::BLACK);
@@ -284,10 +287,6 @@ void Game::informAboutHistory() {
     emit canRedo(m_history->canRedo());
 }
 
-void Game::makeInverseMove(const Move &move) {
-    m_board->makeInverseMove(move);
-}
-
 void Game::makeMove(const Move &move) {
     // zkontroluj stav hry
     emit moveSearchFinished();
@@ -322,10 +321,6 @@ void Game::makeMove(const Move &move) {
 
 Board *Game::getBoard() const {
     return m_board;
-}
-
-Generator *Game::getGenerator() const {
-    return m_generator;
 }
 
 void Game::setState(Game::State state) {

@@ -1,10 +1,21 @@
 <map id="Referee::getAllMoves" name="Referee::getAllMoves">
-<area shape="rect" id="node3" href="$class_referee_a3804eb20b0ef173ecb5dc2abeb1b09a2.html#a3804eb20b0ef173ecb5dc2abeb1b09a2" title="Finds both jumps/moves for pawn." alt="" coords="205,56,387,83"/>
-<area shape="rect" id="node12" href="$class_referee_ae2620f23d897796ec6b14350146ea4f9.html#ae2620f23d897796ec6b14350146ea4f9" title="Finds both jumps/moves for queen." alt="" coords="203,107,389,133"/>
-<area shape="rect" id="node5" href="$class_referee_aa34ec5da7bdf189428480fadd6dfdb24.html#aa34ec5da7bdf189428480fadd6dfdb24" title="Finds all posibble jumps for pawn." alt="" coords="439,5,606,32"/>
-<area shape="rect" id="node9" href="$class_referee_a3112eff2c936b13911657e84a8223009.html#a3112eff2c936b13911657e84a8223009" title="Finds all posibble simple moves (without jumps) for pawn." alt="" coords="439,56,606,83"/>
-<area shape="rect" id="node7" href="$class_referee_a761072555690d427e2e733bb38d78731.html#a761072555690d427e2e733bb38d78731" title="Directions for pawn move." alt="" coords="659,44,845,71"/>
-<area shape="rect" id="node14" href="$class_referee_a4022a6fa7510756c702cfb91b8800630.html#a4022a6fa7510756c702cfb91b8800630" title="Finds all posibble jumps for queen." alt="" coords="437,107,608,133"/>
-<area shape="rect" id="node18" href="$class_referee_af707e04b844f3faa25f279b9aea65b91.html#af707e04b844f3faa25f279b9aea65b91" title="Finds all posibble simple moves (without jumps) for queen." alt="" coords="437,157,608,184"/>
-<area shape="rect" id="node16" href="$class_referee_ac55aa3a4318bc581e2f6d17c4327fd40.html#ac55aa3a4318bc581e2f6d17c4327fd40" title="Directions for queen move." alt="" coords="657,120,847,147"/>
+<area shape="rect" id="node3" href="$class_referee_a3804eb20b0ef173ecb5dc2abeb1b09a2.html#a3804eb20b0ef173ecb5dc2abeb1b09a2" title="Finds both jumps/moves for pawn." alt="" coords="205,309,387,336"/>
+<area shape="rect" id="node41" href="$class_referee_ae2620f23d897796ec6b14350146ea4f9.html#ae2620f23d897796ec6b14350146ea4f9" title="Finds both jumps/moves for queen." alt="" coords="203,360,389,387"/>
+<area shape="rect" id="node5" href="$class_referee_aa34ec5da7bdf189428480fadd6dfdb24.html#aa34ec5da7bdf189428480fadd6dfdb24" title="Finds all posibble jumps for pawn." alt="" coords="439,309,606,336"/>
+<area shape="rect" id="node31" href="$class_referee_a3112eff2c936b13911657e84a8223009.html#a3112eff2c936b13911657e84a8223009" title="Finds all posibble simple moves (without jumps) for pawn." alt="" coords="439,259,606,285"/>
+<area shape="rect" id="node7" href="$class_move_adfadbb8f0001b9320ce952b0a4b65786.html#adfadbb8f0001b9320ce952b0a4b65786" title="Adds newly jumped figure to this Move." alt="" coords="669,512,835,539"/>
+<area shape="rect" id="node9" href="$class_move_a5f04ca9ee62d99aa19fd12c09be70873.html#a5f04ca9ee62d99aa19fd12c09be70873" title="Adds jumped figures to the current Move." alt="" coords="666,563,838,589"/>
+<area shape="rect" id="node11" href="$class_move_a7716bddc755705c7870fc94830d13130.html#a7716bddc755705c7870fc94830d13130" title="Gets from Location of this move." alt="" coords="697,56,807,83"/>
+<area shape="rect" id="node13" href="$class_move_a3654e19aa96f7c62639127abfeadffac.html#a3654e19aa96f7c62639127abfeadffac" title="Jumped figures getter." alt="" coords="667,461,837,488"/>
+<area shape="rect" id="node15" href="$class_referee_a761072555690d427e2e733bb38d78731.html#a761072555690d427e2e733bb38d78731" title="Directions for pawn move." alt="" coords="659,107,845,133"/>
+<area shape="rect" id="node17" href="$class_move_a9348c2ae0f9e430ac0291e6452a6c254.html#a9348c2ae0f9e430ac0291e6452a6c254" title="Move promotion indicator." alt="" coords="684,208,820,235"/>
+<area shape="rect" id="node19" href="$class_move_a85ba9325c1b85d27660c011223c86bca.html#a85ba9325c1b85d27660c011223c86bca" title="Gets to Location of this move." alt="" coords="705,259,799,285"/>
+<area shape="rect" id="node21" href="$class_referee_a6f531efa4d3125a9d049e2aaeffcdebf.html#a6f531efa4d3125a9d049e2aaeffcdebf" title="Decides whether certain figure is located in queen&#45;promotion area of the board." alt="" coords="671,157,833,184"/>
+<area shape="rect" id="node23" href="$class_move_ac3095b8b9a3b7cb0c33b87b07bb0a564.html#ac3095b8b9a3b7cb0c33b87b07bb0a564" title="Figure type setter for Move." alt="" coords="679,309,825,336"/>
+<area shape="rect" id="node25" href="$class_move_a3ed38782fc4a08ab45c5b449d1b8706d.html#a3ed38782fc4a08ab45c5b449d1b8706d" title="Sets from Location of this move." alt="" coords="697,360,807,387"/>
+<area shape="rect" id="node27" href="$class_move_ad4f005c8fde12dad6d845a1b2327eec5.html#ad4f005c8fde12dad6d845a1b2327eec5" title="Sets if figure was promoted to the queen at the end if this Move." alt="" coords="684,5,820,32"/>
+<area shape="rect" id="node29" href="$class_move_a25e8824b8475cf0b226298975340b8d5.html#a25e8824b8475cf0b226298975340b8d5" title="Sets to Location of this move." alt="" coords="705,411,799,437"/>
+<area shape="rect" id="node43" href="$class_referee_a4022a6fa7510756c702cfb91b8800630.html#a4022a6fa7510756c702cfb91b8800630" title="Finds all posibble jumps for queen." alt="" coords="437,411,608,437"/>
+<area shape="rect" id="node54" href="$class_referee_af707e04b844f3faa25f279b9aea65b91.html#af707e04b844f3faa25f279b9aea65b91" title="Finds all posibble simple moves (without jumps) for queen." alt="" coords="437,360,608,387"/>
+<area shape="rect" id="node48" href="$class_referee_ac55aa3a4318bc581e2f6d17c4327fd40.html#ac55aa3a4318bc581e2f6d17c4327fd40" title="Directions for queen move." alt="" coords="657,613,847,640"/>
 </map>

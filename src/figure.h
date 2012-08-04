@@ -31,7 +31,7 @@ class Figure {
 	};
 
 	static QString toString(Figure::Type figure);
-	static QList<Figure::Type> getTypesByColor(const Figure::Color &color);
+	static QList<Figure::Type> getTypeByColor(const Figure::Color &color);
 	static Figure::Color getColorByType(const Figure::Type &type);
 	static Figure::Color negateColor(const Figure::Color &color);
 	static Figure::Type promote(const Figure::Type &type);

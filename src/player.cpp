@@ -25,11 +25,6 @@ Player::State Player::getState() const {
     return m_state;
 }
 
-QString Player::toString() const {
-    return QString("State: %1\n"
-		   "Color: %2").arg(m_state).arg(m_color);
-}
-
 bool Player::operator==(const Player &rhs) const {
     return m_color == rhs.getColor() && m_state == rhs.getState();
 }

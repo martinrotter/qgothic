@@ -1,0 +1,9 @@
+<map id="Move::addJumpedFigures" name="Move::addJumpedFigures">
+<area shape="rect" id="node3" href="$class_referee_aa34ec5da7bdf189428480fadd6dfdb24.html#aa34ec5da7bdf189428480fadd6dfdb24" title="Finds all posibble jumps for pawn." alt="" coords="229,5,395,32"/>
+<area shape="rect" id="node11" href="$class_referee_a4022a6fa7510756c702cfb91b8800630.html#a4022a6fa7510756c702cfb91b8800630" title="Finds all posibble jumps for queen." alt="" coords="227,56,397,83"/>
+<area shape="rect" id="node16" href="$class_move_ad8a007087ea49c9f77edfe2c10e373e4.html#ad8a007087ea49c9f77edfe2c10e373e4" title="Copy constructor." alt="" coords="265,107,359,133"/>
+<area shape="rect" id="node5" href="$class_referee_a3804eb20b0ef173ecb5dc2abeb1b09a2.html#a3804eb20b0ef173ecb5dc2abeb1b09a2" title="Finds both jumps/moves for pawn." alt="" coords="448,5,629,32"/>
+<area shape="rect" id="node7" href="$class_referee_a644d9dc57e2f919dcafe0fd6418c5334.html#a644d9dc57e2f919dcafe0fd6418c5334" title="Finds jumps/moves for any figure on the specified location." alt="" coords="681,31,829,57"/>
+<area shape="rect" id="node9" href="$class_referee_a7b9a5d3b326c1c2cdc78c26a24502ba6.html#a7b9a5d3b326c1c2cdc78c26a24502ba6" title="Gets all available moves for certain Figure::Color." alt="" coords="877,31,1011,57"/>
+<area shape="rect" id="node13" href="$class_referee_ae2620f23d897796ec6b14350146ea4f9.html#ae2620f23d897796ec6b14350146ea4f9" title="Finds both jumps/moves for queen." alt="" coords="445,56,632,83"/>
+</map>

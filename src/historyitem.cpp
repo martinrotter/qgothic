@@ -28,12 +28,12 @@ QString HistoryItem::getInfo(HistoryItem::Section section) const {
 	case HistoryItem::ID:
 	    return QString::number(getOrdinalNumber());
 	case HistoryItem::MOVE:
-	    return getMove()->toShortString();
+	    return getMove()->toString();
 	case HistoryItem::PLAYER:
 	    return Figure::getColorByType(getMove()->getFigureType()) == Figure::WHITE
 		    ? QObject::tr("White")
 		    : QObject::tr("Black");
 	default:
-	    return getMove()->toShortString();
+	    return getMove()->toString();
     }
 }

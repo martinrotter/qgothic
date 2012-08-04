@@ -1,3 +1,10 @@
 <map id="Referee::getPawnMoves" name="Referee::getPawnMoves">
-<area shape="rect" id="node3" href="$class_referee_a761072555690d427e2e733bb38d78731.html#a761072555690d427e2e733bb38d78731" title="Directions for pawn move." alt="" coords="221,5,408,32"/>
+<area shape="rect" id="node3" href="$class_move_a7716bddc755705c7870fc94830d13130.html#a7716bddc755705c7870fc94830d13130" title="Gets from Location of this move." alt="" coords="259,5,370,32"/>
+<area shape="rect" id="node5" href="$class_referee_a761072555690d427e2e733bb38d78731.html#a761072555690d427e2e733bb38d78731" title="Directions for pawn move." alt="" coords="221,56,408,83"/>
+<area shape="rect" id="node7" href="$class_move_a85ba9325c1b85d27660c011223c86bca.html#a85ba9325c1b85d27660c011223c86bca" title="Gets to Location of this move." alt="" coords="267,107,362,133"/>
+<area shape="rect" id="node9" href="$class_referee_a6f531efa4d3125a9d049e2aaeffcdebf.html#a6f531efa4d3125a9d049e2aaeffcdebf" title="Decides whether certain figure is located in queen&#45;promotion area of the board." alt="" coords="233,157,396,184"/>
+<area shape="rect" id="node11" href="$class_move_ac3095b8b9a3b7cb0c33b87b07bb0a564.html#ac3095b8b9a3b7cb0c33b87b07bb0a564" title="Figure type setter for Move." alt="" coords="242,208,387,235"/>
+<area shape="rect" id="node13" href="$class_move_a3ed38782fc4a08ab45c5b449d1b8706d.html#a3ed38782fc4a08ab45c5b449d1b8706d" title="Sets from Location of this move." alt="" coords="259,259,370,285"/>
+<area shape="rect" id="node15" href="$class_move_ad4f005c8fde12dad6d845a1b2327eec5.html#ad4f005c8fde12dad6d845a1b2327eec5" title="Sets if figure was promoted to the queen at the end if this Move." alt="" coords="247,309,383,336"/>
+<area shape="rect" id="node17" href="$class_move_a25e8824b8475cf0b226298975340b8d5.html#a25e8824b8475cf0b226298975340b8d5" title="Sets to Location of this move." alt="" coords="267,360,362,387"/>
 </map>

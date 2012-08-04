@@ -7,12 +7,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-  $(document).ready(initResizable);
-</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -21,7 +15,6 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="qgothic-small.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">QGothic
    </div>
@@ -36,6 +29,7 @@
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
@@ -45,21 +39,11 @@
       <li><a href="files.html"><span>File&#160;List</span></a></li>
     </ul>
   </div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
 </div>
-<script type="text/javascript">
-$(document).ready(function(){initNavTree('referee_8h_source.html','');});
-</script>
-<div id="doc-content">
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">referee.h</div>  </div>
@@ -102,26 +86,23 @@ $(document).ready(function(){initNavTree('referee_8h_source.html','');});
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <span class="keyword">static</span> QList&lt;Move&gt; <a class="code" href="class_referee_a7b9a5d3b326c1c2cdc78c26a24502ba6.html#a7b9a5d3b326c1c2cdc78c26a24502ba6" title="Gets all available moves for certain Figure::Color.">getMoves</a>(<span class="keyword">const</span> <a class="code" href="class_figure_a67d539a7a852950ae9d67160561b8e08.html#a67d539a7a852950ae9d67160561b8e08" title="Color of figures.">Figure::Color</a> &amp;color, <a class="code" href="class_board.html">Board</a> &amp;board);</div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">bool</span> isInQueenArea(<span class="keyword">const</span> <a class="code" href="class_location.html" title="Location on the playing board.">Location</a> &amp;location,</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                                  <span class="keyword">const</span> <a class="code" href="class_figure_a67d539a7a852950ae9d67160561b8e08.html#a67d539a7a852950ae9d67160561b8e08" title="Color of figures.">Figure::Color</a> &amp;color_of_figure,</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                                  <span class="keyword">const</span> <a class="code" href="class_board.html">Board</a> &amp;board);</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        <span class="keyword">static</span> QList&lt;Location&gt; *s_pawnDirections;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        <span class="keyword">static</span> QList&lt;Location&gt; *s_queenDirections;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;};</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="preprocessor">#endif // REFEREE_H</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="class_referee_a6f531efa4d3125a9d049e2aaeffcdebf.html#a6f531efa4d3125a9d049e2aaeffcdebf" title="Decides whether certain figure is located in queen-promotion area of the board.">isInQueenArea</a>(<span class="keyword">const</span> <a class="code" href="class_location.html" title="Location on the playing board.">Location</a> &amp;location,</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                                  <span class="keyword">const</span> <a class="code" href="class_figure_a67d539a7a852950ae9d67160561b8e08.html#a67d539a7a852950ae9d67160561b8e08" title="Color of figures.">Figure::Color</a> &amp;color_of_figure,</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                                  <span class="keyword">const</span> <a class="code" href="class_board.html">Board</a> &amp;board);</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;</div>
+<div class="line"><a name="l00130"></a><span class="lineno"><a class="code" href="class_referee_ae5a1f2caea4207bd673a315da55d7a6a.html#ae5a1f2caea4207bd673a315da55d7a6a">  130</a></span>&#160;        <span class="keyword">static</span> QList&lt;Location&gt; *<a class="code" href="class_referee_ae5a1f2caea4207bd673a315da55d7a6a.html#ae5a1f2caea4207bd673a315da55d7a6a" title="Contains available directions for pawns.">s_pawnDirections</a>;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;</div>
+<div class="line"><a name="l00135"></a><span class="lineno"><a class="code" href="class_referee_a783332f20abb11658242de3048d636d9.html#a783332f20abb11658242de3048d636d9">  135</a></span>&#160;        <span class="keyword">static</span> QList&lt;Location&gt; *<a class="code" href="class_referee_a783332f20abb11658242de3048d636d9.html#a783332f20abb11658242de3048d636d9" title="Contains available directions for queens.">s_queenDirections</a>;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;};</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="preprocessor">#endif // REFEREE_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><b>referee.h</b></li>
-    <li class="footer">Generated on Fri Jul 27 2012 14:31:15 for QGothic by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated on Sat Aug 4 2012 16:02:10 for QGothic by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.1.2
+</small></address>
 </body>
 </html>

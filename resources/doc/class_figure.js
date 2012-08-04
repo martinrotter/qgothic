@@ -16,8 +16,10 @@ var class_figure =
       [ "BLACK_PAWN", "class_figure_a1a96a996e3c8c0a48cf99a854a04d3cb.html#a1a96a996e3c8c0a48cf99a854a04d3cba5f2a9436a942a3484d197fbea151dfbc", null ],
       [ "BLACK_QUEEN", "class_figure_a1a96a996e3c8c0a48cf99a854a04d3cb.html#a1a96a996e3c8c0a48cf99a854a04d3cba370cf25e21ea13c972c35fa0bc05d281", null ]
     ] ],
+    [ "degrade", "class_figure_a55721c5d932a50b181caedfd6511dceb.html#a55721c5d932a50b181caedfd6511dceb", null ],
     [ "getColorByType", "class_figure_a31702be6a22bdc639dd2941df5bff2a7.html#a31702be6a22bdc639dd2941df5bff2a7", null ],
     [ "getTypesByColor", "class_figure_a40d4fe38cd61fda638d62a4483bbfe41.html#a40d4fe38cd61fda638d62a4483bbfe41", null ],
     [ "negateColor", "class_figure_addd4d867830b660b40cd1147b36fa7da.html#addd4d867830b660b40cd1147b36fa7da", null ],
-    [ "promote", "class_figure_a91ad1e30e52115bef06dcc8b99d25447.html#a91ad1e30e52115bef06dcc8b99d25447", null ]
+    [ "promote", "class_figure_a91ad1e30e52115bef06dcc8b99d25447.html#a91ad1e30e52115bef06dcc8b99d25447", null ],
+    [ "toString", "class_figure_a1a92cd5a4b0b2dea5ddd261aca336653.html#a1a92cd5a4b0b2dea5ddd261aca336653", null ]
 ];
