@@ -241,19 +241,19 @@ void GBoard::paintEvent(QPaintEvent *e) {
 		    //p.set
 		    p.setPen(QPen(Qt::black, 3.0));
 		    p.setBrush(QBrush(Qt::black));
-		    p.drawImage(QRect(x+3, y+3, block_size-6, block_size-6),
-				QImage(":/graphics/black-pawn.svg"));
+		    p.drawEllipse(x+block_size*0.1, y+block_size*0.1,
+						      block_size*0.8, block_size*0.8);
 		    break;
 		case Figure::WHITE_PAWN:
 		    //p.set
 		    p.setPen(QPen(Qt::black, 3.0));
 		    p.setBrush(QBrush(Qt::white));
-		    p.drawImage(QRect(x+3, y+3, block_size-6, block_size-6),
-				QImage(":/graphics/white-pawn.svg"));
+		    p.drawEllipse(x+block_size*0.1, y+block_size*0.1,
+				  block_size*0.8, block_size*0.8);
 		    break;
 		case Figure::BLACK_QUEEN:
 		    //p.set
-		    /*
+
 		    p.setPen(QPen(Qt::black, 3.0));
 		    p.setBrush(QBrush(Qt::black));
 		    p.drawEllipse(x+block_size*0.1, y+block_size*0.1,
@@ -261,22 +261,23 @@ void GBoard::paintEvent(QPaintEvent *e) {
 		    p.setPen(QPen(Qt::white, 3.0));
 		    p.drawEllipse(x+block_size*0.3, y+block_size*0.3,
 				  block_size*0.4, block_size*0.4);
-				  */
-		    p.drawImage(QRect(x+3, y+3, block_size-6, block_size-6),
-				QImage(":/graphics/black-queen.svg"));
+
+		    /*
+		    p.drawImage(QRect(x, y, block_size, block_size),
+				QImage(":/graphics/black-queen.png"));*/
 		    break;
 		case Figure::WHITE_QUEEN:
 		    //p.set
-		    /*
+
 		    p.setPen(QPen(Qt::black, 3.0));
 		    p.setBrush(QBrush(Qt::white));
 		    p.drawEllipse(x+block_size*0.1, y+block_size*0.1,
 				  block_size*0.8, block_size*0.8);
 		    p.drawEllipse(x+block_size*0.3, y+block_size*0.3,
 				  block_size*0.4, block_size*0.4);
-				  */
-		    p.drawImage(QRect(x+3, y+3, block_size-6, block_size-6),
-				QImage(":/graphics/white-queen.svg"));
+				  /*
+		    p.drawImage(QRect(x, y, block_size, block_size),
+				QImage(":/graphics/white-queen.png"));*/
 
 		    break;
 		default:
