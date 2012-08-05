@@ -30,7 +30,7 @@
  *  + HDD: 60 MB of free space (for executable and extra Qt .dll files on Windows, much less free
  *  space needed on Linux)
  *  + RAM: 6-25 MB (QGothic process takes up to 25 MB of memory, tested on GNU/Linux and Windows 7)
- *  + VGA: OpenGL support required (with recompilation there is "--graphicssystem raster" possibility
+ *  + VGA: OpenGL support required (with recompilation there is "graphicssystem raster" possibility
  */
 
 #endif // DOCUMENTATION_H

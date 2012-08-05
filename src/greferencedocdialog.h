@@ -19,7 +19,8 @@ class GReferenceDocDialog : public QDialog {
 	Q_OBJECT
 	
     public:
-	explicit GReferenceDocDialog(QWidget *parent = 0);
+	explicit GReferenceDocDialog(const QString &title,
+				     const QString &url, QWidget *parent = 0);
 	~GReferenceDocDialog();
 
     private:

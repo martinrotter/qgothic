@@ -92,8 +92,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>506</width>
-            <height>364</height>
+            <width>498</width>
+            <height>356</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_2">
@@ -121,7 +121,46 @@
               <property name="horizontalSpacing">
                <number>6</number>
               </property>
-              <item row="1" column="0">
+              <item row="1" column="1" colspan="2">
+               <widget class="QGroupBox" name="groupBox_7">
+                <property name="title">
+                 <string>Starting Player</string>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_2">
+                 <item>
+                  <widget class="QRadioButton" name="m_radioWhiteStarts">
+                   <property name="text">
+                    <string>White Player</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QRadioButton" name="m_radioBlackStarts">
+                   <property name="text">
+                    <string>Black Player</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_3">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item row="2" column="1">
                <widget class="QGroupBox" name="groupBox_4">
                 <property name="title">
                  <string>White Player</string>
@@ -196,7 +235,7 @@
                 </layout>
                </widget>
               </item>
-              <item row="1" column="1">
+              <item row="2" column="2">
                <widget class="QGroupBox" name="groupBox_5">
                 <property name="title">
                  <string>Black Player</string>
@@ -274,7 +313,7 @@
                 </layout>
                </widget>
               </item>
-              <item row="3" column="0" colspan="2">
+              <item row="4" column="1" colspan="2">
                <spacer name="verticalSpacer">
                 <property name="orientation">
                  <enum>Qt::Vertical</enum>
@@ -286,45 +325,6 @@
                  </size>
                 </property>
                </spacer>
-              </item>
-              <item row="0" column="0" colspan="2">
-               <widget class="QGroupBox" name="groupBox_7">
-                <property name="title">
-                 <string>Starting Player</string>
-                </property>
-                <layout class="QHBoxLayout" name="horizontalLayout_2">
-                 <item>
-                  <widget class="QRadioButton" name="m_radioWhiteStarts">
-                   <property name="text">
-                    <string>White Player</string>
-                   </property>
-                   <property name="checked">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QRadioButton" name="m_radioBlackStarts">
-                   <property name="text">
-                    <string>Black Player</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <spacer name="horizontalSpacer_3">
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                </layout>
-               </widget>
               </item>
              </layout>
             </widget>
@@ -353,8 +353,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>184</width>
-            <height>97</height>
+            <width>145</width>
+            <height>92</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_3">
@@ -446,7 +446,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>143</width>
+            <width>115</width>
             <height>16</height>
            </rect>
           </property>

@@ -32,15 +32,18 @@ class GMainWindow : public QMainWindow {
 	void setupWindow();
 
 	void switchControlBox(Qt::Alignment alignment);
+	Game::SaveState checkIfSaved();
 
     protected slots:
 	void referenceDocumentation();
+	void guideDocumentation();
 	void quit();
 	void about();
-	void save();
+	bool save();
 	void load();
 	void newGame();
 	void configuration();
+	void noticeAboutFinish(Board::State state);
 	void updateTable(bool just_turning = true);
 	void controlGame(bool running = false);
 	void continueGame();

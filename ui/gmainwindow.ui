@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>754</width>
-    <height>539</height>
+    <width>804</width>
+    <height>589</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -41,11 +41,23 @@
    <layout class="QHBoxLayout" name="horizontalLayout_2">
     <item>
      <widget class="QWidget" name="widget" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>271</width>
+        <height>16777215</height>
+       </size>
+      </property>
       <layout class="QGridLayout" name="gridLayout">
        <property name="margin">
         <number>0</number>
        </property>
-       <item row="0" column="0">
+       <item row="0" column="0" colspan="2">
         <widget class="QGroupBox" name="m_groupWhite">
          <property name="minimumSize">
           <size>
@@ -56,11 +68,11 @@
          <property name="title">
           <string>White player</string>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_2">
-          <item>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="0" column="0">
            <widget class="QLabel" name="m_labelWhiteType">
             <property name="text">
-             <string notr="true"/>
+             <string notr="true">s</string>
             </property>
             <property name="textFormat">
              <enum>Qt::RichText</enum>
@@ -73,10 +85,10 @@
             </property>
            </widget>
           </item>
-          <item>
-           <widget class="QLabel" name="m_labelWhiteNumber">
+          <item row="0" column="2">
+           <widget class="QLabel" name="m_labelNoJumpMovesWhite">
             <property name="text">
-             <string/>
+             <string>s</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -86,7 +98,7 @@
             </property>
            </widget>
           </item>
-          <item>
+          <item row="0" column="3">
            <widget class="QLabel" name="m_labelWhiteTurns">
             <property name="minimumSize">
              <size>
@@ -95,10 +107,23 @@
              </size>
             </property>
             <property name="text">
-             <string notr="true"/>
+             <string notr="true">s</string>
             </property>
             <property name="textFormat">
              <enum>Qt::RichText</enum>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::NoTextInteraction</set>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLabel" name="m_labelWhiteNumber">
+            <property name="text">
+             <string>s</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -111,86 +136,23 @@
          </layout>
         </widget>
        </item>
-       <item row="0" column="1">
-        <widget class="QGroupBox" name="m_groupBlack">
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="title">
-          <string>Black player</string>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout">
-          <item>
-           <widget class="QLabel" name="m_labelBlackType">
-            <property name="text">
-             <string notr="true"/>
-            </property>
-            <property name="textFormat">
-             <enum>Qt::RichText</enum>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-            <property name="textInteractionFlags">
-             <set>Qt::NoTextInteraction</set>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="m_labelBlackNumber">
-            <property name="text">
-             <string/>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-            <property name="textInteractionFlags">
-             <set>Qt::NoTextInteraction</set>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="m_labelBlackTurns">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>40</height>
-             </size>
-            </property>
-            <property name="text">
-             <string notr="true"/>
-            </property>
-            <property name="textFormat">
-             <enum>Qt::RichText</enum>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-            <property name="textInteractionFlags">
-             <set>Qt::NoTextInteraction</set>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="2" column="0" colspan="2">
+       <item row="5" column="0" colspan="2">
         <spacer name="verticalSpacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Minimum</enum>
+         </property>
          <property name="sizeHint" stdset="0">
           <size>
            <width>250</width>
-           <height>59</height>
+           <height>20</height>
           </size>
          </property>
         </spacer>
        </item>
-       <item row="3" column="0" colspan="2">
+       <item row="6" column="0" colspan="2">
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
           <spacer name="horizontalSpacer">
@@ -314,12 +276,12 @@
          </item>
         </layout>
        </item>
-       <item row="4" column="0" colspan="2">
+       <item row="7" column="0" colspan="2">
         <widget class="GTreeView" name="m_historyView">
          <property name="minimumSize">
           <size>
            <width>0</width>
-           <height>255</height>
+           <height>0</height>
           </size>
          </property>
          <property name="styleSheet">
@@ -353,13 +315,110 @@ QTreeView::branch:closed:has-children:has-siblings {
         </widget>
        </item>
        <item row="1" column="0" colspan="2">
-        <widget class="QLabel" name="m_labelStatus">
-         <property name="text">
-          <string/>
+        <widget class="QGroupBox" name="m_groupBlack">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
          </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
+         <property name="title">
+          <string>Black player</string>
          </property>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="0" column="0">
+           <widget class="QLabel" name="m_labelBlackType">
+            <property name="text">
+             <string notr="true">s</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::RichText</enum>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::NoTextInteraction</set>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLabel" name="m_labelBlackNumber">
+            <property name="text">
+             <string>s</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::NoTextInteraction</set>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QLabel" name="m_labelBlackTurns">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="text">
+             <string notr="true">s</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::RichText</enum>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::NoTextInteraction</set>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="m_labelNoJumpMovesBlack">
+            <property name="text">
+             <string>s</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::NoTextInteraction</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="2">
+        <widget class="QGroupBox" name="m_groupGame">
+         <property name="title">
+          <string>Game</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <item row="0" column="0">
+           <widget class="QLabel" name="m_labelJumps">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>32</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>s</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::NoTextInteraction</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </widget>
        </item>
       </layout>
@@ -368,21 +427,21 @@ QTreeView::branch:closed:has-children:has-siblings {
     <item>
      <widget class="GBoard" name="m_gboard" native="true">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
       <property name="minimumSize">
        <size>
-        <width>480</width>
-        <height>480</height>
+        <width>530</width>
+        <height>530</height>
        </size>
       </property>
       <property name="maximumSize">
        <size>
-        <width>480</width>
-        <height>480</height>
+        <width>530</width>
+        <height>530</height>
        </size>
       </property>
       <property name="styleSheet">
@@ -397,7 +456,7 @@ QTreeView::branch:closed:has-children:has-siblings {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>754</width>
+     <width>804</width>
      <height>21</height>
     </rect>
    </property>

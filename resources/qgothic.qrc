@@ -21,6 +21,13 @@
         <file>graphics/application-new.png</file>
         <file>graphics/application-save.png</file>
         <file>graphics/application-settings.png</file>
+        <file>graphics/status-equal.png</file>
+        <file>graphics/status-loser.png</file>
+        <file>graphics/status-ordinary.png</file>
+        <file>graphics/status-winner.png</file>
+        <file>graphics/game-jumps.png</file>
+        <file>graphics/game-pawns.png</file>
+        <file>graphics/svg.svg</file>
     </qresource>
     <qresource prefix="/support">
         <file>doc/algorithms_8cpp_source.html</file>

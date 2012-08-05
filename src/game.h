@@ -19,6 +19,13 @@ class Game : public QObject {
 	    PAUSED
 	};
 
+	enum SaveState {
+	    SAVED,
+	    SAVE_BUT_CANCELLED,
+	    DONT_SAVED,
+	    CANCELLED
+	};
+
 	Game(QObject *parent = 0);
 	~Game();
 
@@ -32,6 +39,8 @@ class Game : public QObject {
 
 	void setStartingPlayer(int starting_player);
 	int getStartingPlayer() const;
+
+	bool isSaved() const;
 
 	void newGame();
 	bool saveGame(const QString &file_name);
@@ -57,8 +66,10 @@ class Game : public QObject {
 	Game::State m_state;
 	int m_currentPlayer;
 	int m_startingPlayer;
+	bool m_isSaved;
 
     signals:
+	void gameFinished(Board::State);
 	void boardChanged();
 	void stateChanged(bool);
 	void initialPlayerChanged(int);

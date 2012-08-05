@@ -18,6 +18,7 @@
 
 GMainWindow::GMainWindow(QWidget *parent) : QMainWindow(parent), m_ui(new Ui::GMainWindow) {
     m_ui->setupUi(this);
+    m_ui->m_actionDisplayLog->setVisible(false);
 
     initialiseStatusBar();
 
@@ -28,8 +29,7 @@ GMainWindow::GMainWindow(QWidget *parent) : QMainWindow(parent), m_ui(new Ui::GM
     setupWindow();
 
     updateTable(false);
-    newGame();
-    pauseGame();
+    m_game->newGame();
 }
 
 GMainWindow::~GMainWindow() {
@@ -145,6 +145,7 @@ void GMainWindow::createConnections() {
     connect(m_ui->m_actionBestMove, SIGNAL(triggered()), this, SLOT(adviseMove()));
 
     connect(m_ui->m_actionReferenceDocs, SIGNAL(triggered()), this, SLOT(referenceDocumentation()));
+    connect(m_ui->m_actionBrowseHelp, SIGNAL(triggered()), this, SLOT(guideDocumentation()));
     connect(m_ui->m_actionAboutQGothic, SIGNAL(triggered()), this, SLOT(about()));
 
     connect(m_ui->m_buttonPlayPause, SIGNAL(toggled(bool)), this, SLOT(controlGame(bool)));
@@ -156,6 +157,7 @@ void GMainWindow::createConnections() {
     connect(m_ui->m_historyView, SIGNAL(currentRowChanged(int,int)),
 	    this, SLOT(moveInGame(int,int)));
 
+    connect(m_game, SIGNAL(gameFinished(Board::State)), this, SLOT(noticeAboutFinish(Board::State)));
     connect(m_game, SIGNAL(initialPlayerChanged(int)),
 	    m_historyModel, SLOT(setInitialPlayerHeader(int)));
     connect(m_game->getHistory(), SIGNAL(changed(int)),
@@ -178,6 +180,62 @@ void GMainWindow::configuration() {
     updateTable(false);
 }
 
+Game::SaveState GMainWindow::checkIfSaved() {
+    if (m_game->isSaved() == true) {
+	return Game::SAVED;
+    }
+
+    Game::SaveState state;
+    do {
+	QMessageBox msg_box;
+	msg_box.setWindowTitle(tr("Save Your Game"));
+	msg_box.setText(tr("This game has not been saved."));
+	msg_box.setInformativeText(tr("Do you want to save your game?"));
+	msg_box.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+	msg_box.setDefaultButton(QMessageBox::Save);
+	int ret = msg_box.exec();
+
+	switch (ret) {
+	    case QMessageBox::Save:
+		if (save() == false) {
+		    state = Game::SAVE_BUT_CANCELLED;
+		}
+		else {
+		    state = Game::SAVED;
+		}
+		break;
+	    case QMessageBox::Discard:
+		state = Game::DONT_SAVED;
+		break;
+	    default:
+		state = Game::CANCELLED;
+		break;
+	}
+    }
+    while (state == Game::SAVE_BUT_CANCELLED);
+
+    return state;
+}
+
+void GMainWindow::noticeAboutFinish(Board::State state) {
+    switch (state) {
+	case Board::DRAW:
+	    QMessageBox::information(this, tr("Game Has Ended"),
+				     tr("Game has ended in a draw."));
+	    break;
+	case Board::BLACK_WON:
+	    QMessageBox::information(this, tr("Game Has Ended"),
+				     tr("Black player has won this game."));
+	    break;
+	case Board::WHITE_WON:
+	    QMessageBox::information(this, tr("Game Has Ended"),
+				     tr("White player has won this game."));
+	    break;
+	default:
+	    break;
+    }
+}
+
 void GMainWindow::moveInGame(int new_index, int previous_index) {
     pauseGame();
 
@@ -197,8 +255,11 @@ void GMainWindow::moveInGame(int new_index, int previous_index) {
 }
 
 void GMainWindow::adviseMove() {
-    if (m_game->getCurrentPlayer().getState() != Player::HUMAN) {
-	QMessageBox::information(this, tr("Best move search"), tr("Non-human players cannot search for best move."));
+    if (m_game->getBoard()->getState() != Board::ORDINARY) {
+	QMessageBox::information(this, tr("Best Move Search"), tr("Cannot look for best move because game had ended."));
+    }
+    else if (m_game->getCurrentPlayer().getState() != Player::HUMAN) {
+	QMessageBox::information(this, tr("Best Move Search"), tr("Non-human players cannot search for best move."));
     }
     else {
 	Move move = Intelligence::computerMove(m_game->getCurrentPlayer(), *m_game->getBoard());
@@ -268,47 +329,101 @@ void GMainWindow::controlGame(bool running) {
     repaint();
 }
 
-void GMainWindow::updateTable(bool just_turning) {
+void GMainWindow::updateTable(bool just_turning) {    
+    if (m_game->getBoard()->getState() == Board::ORDINARY) {
+	switch (m_game->getCurrentPlayer().getColor()) {
+	    case Figure::BLACK:
+		m_ui->m_labelWhiteTurns->setText("");
+		m_ui->m_labelWhiteTurns->setToolTip("");
+		m_ui->m_labelBlackTurns->setToolTip(tr("Black player has his turn."));
+		m_ui->m_labelBlackTurns->setText(QString(GAM_PLAY_STYLE).arg("32",
+									     GAM_TURNS, ""));
+		break;
+	    case Figure::WHITE:
+		m_ui->m_labelWhiteTurns->setToolTip(tr("White player has his turn."));
+		m_ui->m_labelWhiteTurns->setText(QString(GAM_PLAY_STYLE).arg("32",
+									     GAM_TURNS, ""));
+		m_ui->m_labelBlackTurns->setText("");
+		m_ui->m_labelBlackTurns->setToolTip("");
+		break;
+	    default:
+		break;
+	}
+
+	m_ui->m_buttonPlayPause->setEnabled(true);
+    }
+    else {
+	m_ui->m_labelWhiteTurns->setToolTip("");
+	m_ui->m_labelWhiteTurns->clear();
+	m_ui->m_labelBlackTurns->clear();
+	m_ui->m_labelBlackTurns->setToolTip("");
+
+	m_ui->m_buttonPlayPause->setChecked(false);
+	m_ui->m_buttonPlayPause->setEnabled(false);
+    }
 
     switch (m_game->getBoard()->getState()) {
-	break;
+	case Board::ORDINARY:
+	    m_ui->m_labelNoJumpMovesWhite->setText(GAM_PLAY_STYLE.arg("16",
+								      GAM_ORDINARY,
+								      GAM_ORD));
+	    m_ui->m_labelNoJumpMovesBlack->setText(GAM_PLAY_STYLE.arg("16",
+								      GAM_ORDINARY,
+								      GAM_ORD));
+	    break;
 	case Board::DRAW:
+	    m_ui->m_labelNoJumpMovesWhite->setText(GAM_PLAY_STYLE.arg("16",
+								      GAM_DRAW,
+								      GAM_DRAWING));
+	    m_ui->m_labelNoJumpMovesBlack->setText(GAM_PLAY_STYLE.arg("16",
+								      GAM_DRAW,
+								      GAM_DRAWING));
 	    break;
 	case Board::WHITE_WON:
+	    m_ui->m_labelNoJumpMovesWhite->setText(GAM_PLAY_STYLE.arg("16",
+								      GAM_WON,
+								      GAM_WINNING));
+	    m_ui->m_labelNoJumpMovesBlack->setText(GAM_PLAY_STYLE.arg("16",
+								      GAM_LOST,
+								      GAM_LOSING));
 	    break;
 	case Board::BLACK_WON:
+	    m_ui->m_labelNoJumpMovesWhite->setText(GAM_PLAY_STYLE.arg("16",
+								      GAM_LOST,
+								      GAM_LOSING));
+	    m_ui->m_labelNoJumpMovesBlack->setText(GAM_PLAY_STYLE.arg("16",
+								      GAM_WON,
+								      GAM_WINNING));
 	    break;
 	default:
 	    break;
     }
 
-    switch (m_game->getCurrentPlayer().getColor()) {
-	case Figure::BLACK:
-	    m_ui->m_labelWhiteTurns->setText("");
-	    m_ui->m_labelWhiteTurns->setToolTip("");
-	    m_ui->m_labelBlackTurns->setToolTip(tr("Black player has his turn."));
-	    m_ui->m_labelBlackTurns->setText(QString(GAM_PLAY_STYLE).arg("32",
-									 GAM_TURNS, ""));
-	    break;
-	case Figure::WHITE:
-	    m_ui->m_labelWhiteTurns->setToolTip(tr("White player has his turn."));
-	    m_ui->m_labelWhiteTurns->setText(QString(GAM_PLAY_STYLE).arg("32",
-									 GAM_TURNS, ""));
-	    m_ui->m_labelBlackTurns->setText("");
-	    m_ui->m_labelBlackTurns->setToolTip("");
-	    break;
-	default:
-	    break;
-    }
+    int how_many_jumps = m_game->getBoard()->getActualMovesNoJump();
+    QString how_many_string = how_many_jumps == 1 ?
+				  tr(" 1/%1 move without jump").arg(m_game->getBoard()->getMaxMovesNoJump()) :
+				  tr(" %1/%2 moves without jump").arg(QString::number(how_many_jumps),
+								      QString::number(m_game->getBoard()->getMaxMovesNoJump()));
+    m_ui->m_labelJumps->setText(GAM_PLAY_STYLE.arg("16",
+						   GAM_JUMPS,
+						   how_many_string));
 
     int white_count = m_game->getBoard()->getLocations(Figure::WHITE).size();
     int black_count = m_game->getBoard()->getLocations(Figure::BLACK).size();
     white_count == 1
-	    ? m_ui->m_labelWhiteNumber->setText(tr("%1 figure").arg(QString::number(white_count)))
-	    : m_ui->m_labelWhiteNumber->setText(tr("%1 figures").arg(QString::number(white_count)));
+	    ? m_ui->m_labelWhiteNumber->setText(GAM_PLAY_STYLE.arg("16",
+								   GAM_PAWNS,
+								   tr("%1 figure").arg(QString::number(white_count))))
+	    : m_ui->m_labelWhiteNumber->setText(GAM_PLAY_STYLE.arg("16",
+								   GAM_PAWNS,
+								   tr("%1 figures").arg(QString::number(white_count))));
     black_count == 1
-	    ? m_ui->m_labelBlackNumber->setText(tr("%1 figure").arg(QString::number(black_count)))
-	    : m_ui->m_labelBlackNumber->setText(tr("%1 figures").arg(QString::number(black_count)));
+	    ? m_ui->m_labelBlackNumber->setText(GAM_PLAY_STYLE.arg("16",
+								   GAM_PAWNS,
+								   tr("%1 figure").arg(QString::number(black_count))))
+	    : m_ui->m_labelBlackNumber->setText(GAM_PLAY_STYLE.arg("16",
+								   GAM_PAWNS,
+								   tr("%1 figures").arg(QString::number(black_count))));
 
     /*
     // Reset history view, so that all changes are reflected.
@@ -336,7 +451,7 @@ void GMainWindow::updateTable(bool just_turning) {
 								states_texts[black]));
 }
 
-void GMainWindow::save() {
+bool GMainWindow::save() {
     pauseGame();
 
     QString file_name = QFileDialog::getSaveFileName(this, tr("Save Game"),
@@ -347,11 +462,19 @@ void GMainWindow::save() {
 	    QMessageBox::warning(this, WORD_ERROR, tr("Game couldn't be saved because target file is not writable or some kind of other error occured."
 						      "\n\nFile: %1").arg(file_name));
 	}
+	else {
+	    return true;
+	}
     }
+    return false;
 }
 
 void GMainWindow::load() {
     pauseGame();
+
+    if (checkIfSaved() == Game::CANCELLED) {
+	return;
+    }
 
     QString file_name = QFileDialog::getOpenFileName(this, tr("Load Game"),
 						     QDir::homePath(),
@@ -361,6 +484,9 @@ void GMainWindow::load() {
 	    QMessageBox::warning(this, WORD_ERROR, tr("Game couldn't be loaded because this file is not in valid format."
 						      "\n\nFile: %1").arg(file_name));
 	} else {
+	    while (m_game->getHistory()->canRedo()) {
+		m_game->redo();
+	    }
 	    updateTable(false);
 	}
     }
@@ -368,6 +494,11 @@ void GMainWindow::load() {
 
 void GMainWindow::newGame() {
     pauseGame();
+
+    if (checkIfSaved() == Game::CANCELLED) {
+	return;
+    }
+
     m_game->newGame();
 }
 
@@ -382,13 +513,28 @@ void GMainWindow::about() {
 
 void GMainWindow::quit() {
     pauseGame();
+
+    if (checkIfSaved() == Game::CANCELLED) {
+	return;
+    }
+
     GSettings::checkSettings();
     qDebug() << "exiting";
     QApplication::exit(EXIT_SUCCESS);
 }
 
+void GMainWindow::guideDocumentation() {
+    pauseGame();
+    GReferenceDocDialog(tr("User Guide"),
+			"qrc:/whatever",
+			this).exec();
+}
+
+
 void GMainWindow::referenceDocumentation() {
     pauseGame();
-    GReferenceDocDialog(this).exec();
+    GReferenceDocDialog(tr("Programmer's Documentation"),
+			"qrc:/support/doc/index.html",
+			this).exec();
 }
 

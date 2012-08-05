@@ -4,10 +4,12 @@
 #include <QDesktopWidget>
 
 
-GReferenceDocDialog::GReferenceDocDialog(QWidget *parent) :
+GReferenceDocDialog::GReferenceDocDialog(const QString &title, const QString &url, QWidget *parent) :
     QDialog(parent), m_ui(new Ui::GReferenceDocDialog) {
     m_ui->setupUi(this);
-    m_ui->m_webDocs->load(QUrl("qrc:/support/doc/index.html"));
+
+    setWindowTitle(title);
+    m_ui->m_webDocs->load(QUrl(url));
 }
 
 GReferenceDocDialog::~GReferenceDocDialog() {

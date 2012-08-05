@@ -271,6 +271,10 @@ void GBoard::paintEvent(QPaintEvent *e) {
 		    p.drawEllipse(x+block_size*0.3, y+block_size*0.3,
 				  block_size*0.4, block_size*0.4);
 				  */
+		    /*
+		    p.drawImage(QRect(x+3, y+3, block_size-6, block_size-6),
+				QImage(":/graphics/svg.svg"));
+				*/
 		    p.drawImage(QRect(x, y, block_size, block_size),
 				QImage(":/graphics/white-queen.png"));
 		    break;

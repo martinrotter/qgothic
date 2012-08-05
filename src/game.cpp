@@ -8,7 +8,6 @@
 #include <QObject>
 #include <QMetaType>
 #include <QDateTime>
-
 #include <QCryptographicHash>
 #include <QXmlStreamWriter>
 #include <QDomDocument>
@@ -17,7 +16,7 @@ typedef QPair<Move, int> Item;
 
 Game::Game(QObject *parent) :
     QObject(parent), m_board(new Board()), m_history(new History(this)),
-    m_generator(new Generator()), m_state(Game::PAUSED) {
+    m_generator(new Generator()), m_state(Game::PAUSED), m_isSaved(false) {
 
     qRegisterMetaType<Move>("Move");
     connect(m_generator, SIGNAL(moveGenerated(Move)), this, SLOT(makeMove(Move)));
@@ -132,6 +131,7 @@ bool Game::saveGame(const QString &file_name) {
 	out.flush();
 	file.close();
 	//qDebug() << array;
+	m_isSaved = true;
 	return true;
     }
     else {
@@ -143,6 +143,10 @@ bool Game::saveGame(const QString &file_name) {
     qDebug() << result;
     qDebug() << decrypted;
     */
+}
+
+bool Game::isSaved() const {
+    return m_isSaved;
 }
 
 bool Game::loadGame(const QString &file_name) {
@@ -256,6 +260,7 @@ void Game::newGame() {
     m_board->setInitialPositions();
     m_board->setActualMovesNoJump(0);
     m_board->setState(Board::ORDINARY);
+    m_isSaved = false;
     m_history->clear();
 
     //informAboutHistory();
@@ -345,8 +350,9 @@ void Game::undo() {
 
 	// tady jsem prohodil radky dva a dal -1 k preskocenym
 	// tahum, protoze vychazelo vyssi cislo
-	m_board->makeInverseMove(*item_to_undo->getMove());
 	m_board->setActualMovesNoJump(m_history->at(m_history->getIndex()-1)->getMovesWithoutJump());
+	m_board->makeInverseMove(*item_to_undo->getMove());
+
 	m_history->decrement();
 	emit boardChanged();
 
@@ -406,7 +412,11 @@ Game::State Game::getState() const {
 void Game::swapPlayer() {
     m_currentPlayer = m_currentPlayer == 0 ? 1 : 0;
     qDebug() << "current player: " << m_currentPlayer;
+    Board::State state =  m_board->getState();
     emit playersSwapped();
+    if (state != Board::ORDINARY) {
+	emit gameFinished(state);
+    }
     if (getCurrentPlayer().getState() != Player::HUMAN &&
 	    m_state == Game::RUNNING) {
 	computerMove();
