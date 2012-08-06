@@ -18,9 +18,9 @@ class Strategy {
 	 */
 	enum State {
 	    WINNING = 200,
-	    ALMOST_WINNING = 191,
+	    ALMOST_WINNING = 192,
 	    LOSING = -200,
-	    ALMOST_LOSING = -191,
+	    ALMOST_LOSING = -192,
 	    DRAW = 0
 	};
 
@@ -36,6 +36,8 @@ class Strategy {
 	 * better position for active player.
 	 */
 	static int simple(Board &board);
+
+	static int advanced(Board &board);
 
     private:
 	Strategy();

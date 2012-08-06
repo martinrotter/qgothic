@@ -24,8 +24,8 @@ Game::Game(QObject *parent) :
 
     int current_player = GSettings::value(SET_GAME, "starting_player", 0).toInt();
     m_currentPlayer = current_player >= 0 && current_player <= 1 ?
-			   current_player :
-			   0;
+			  current_player :
+			  0;
 
     setStartingPlayer(m_currentPlayer);
 
@@ -35,11 +35,11 @@ Game::Game(QObject *parent) :
     /*
      * disable hard dif for now -> use < instead of  <=
      */
-    m_players << Player(white_dif < Player::HARD && white_dif >= Player::HUMAN ?
+    m_players << Player(white_dif <= Player::HARD && white_dif >= Player::HUMAN ?
 			    static_cast<Player::State>(white_dif) :
 			    Player::HUMAN,
 			Figure::WHITE);
-    m_players << Player(black_dif < Player::HARD && black_dif >= Player::HUMAN ?
+    m_players << Player(black_dif <= Player::HARD && black_dif >= Player::HUMAN ?
 			    static_cast<Player::State>(black_dif) :
 			    Player::MEDIUM,
 			Figure::BLACK);
@@ -182,6 +182,12 @@ bool Game::loadGame(const QString &file_name) {
 	QDomDocument reader;
 	reader.setContent(array);
 
+	// We do not allow usage of saved games from previous QGothic builds.
+	QDomNodeList list_saved = reader.elementsByTagName("saved-game");
+	if (list_saved.at(0).toElement().attribute("version") != APP_VERSION) {
+	    return false;
+	}
+
 	QDomNodeList list_starting = reader.elementsByTagName("starting-player");
 	tmp_starting_player = list_starting.at(0).toElement().text().toInt();
 
@@ -245,6 +251,8 @@ bool Game::loadGame(const QString &file_name) {
 	m_currentPlayer = tmp_starting_player;
 	m_history->setIndex(0);
 
+	//informAboutHistory();
+
 	//emit initialPlayerChanged(tmp);
 	//emit playersSwapped();
 	//emit boardChanged();
@@ -268,8 +276,8 @@ void Game::newGame() {
 
     int current_player = GSettings::value(SET_GAME, "starting_player", 0).toInt();
     m_currentPlayer = current_player == 0 || current_player == 1 ?
-			   current_player :
-			   0;
+			  current_player :
+			  0;
 
     setStartingPlayer(m_currentPlayer);
 
@@ -288,6 +296,8 @@ void Game::computerMove() {
 }
 
 void Game::informAboutHistory() {
+    m_isSaved = false;
+
     emit canUndo(m_history->canUndo());
     emit canRedo(m_history->canRedo());
 }
@@ -307,6 +317,8 @@ void Game::makeMove(const Move &move) {
     // tady to running, táhnutí lidského hráče při pauznutí hry
     // We can make move only if game is running and it is not ended.
     if ((m_state == Game::RUNNING && getCurrentPlayer().getState() == Player::HUMAN) || m_board->getState() == Board::ORDINARY) {
+	m_isSaved = false;
+
 	m_board->makeMove(move);
 	m_history->addMove(move, m_board->getActualMovesNoJump());
     }
@@ -337,7 +349,7 @@ Player Game::getCurrentPlayer() const {
     return m_players[m_currentPlayer];
 }
 
-void Game::undo() {
+void Game::undo(bool repaint) {
     if (m_history->canUndo()) {
 
 	// nastavit pocet tahu beze skoku
@@ -352,14 +364,17 @@ void Game::undo() {
 	// tahum, protoze vychazelo vyssi cislo
 	m_board->setActualMovesNoJump(m_history->at(m_history->getIndex()-1)->getMovesWithoutJump());
 	m_board->makeInverseMove(*item_to_undo->getMove());
-
 	m_history->decrement();
-	emit boardChanged();
 
 	m_currentPlayer = m_currentPlayer == 0 ? 1 : 0;
 	qDebug() << "current player: " << m_currentPlayer;
 	qDebug() << "tahy beze skoku: " << m_board->getActualMovesNoJump();
-	emit playersSwapped();
+
+	if (repaint) {
+	    emit boardChanged();
+	    emit playersSwapped();
+	}
+
 	informAboutHistory();
     }
     else {
@@ -367,7 +382,7 @@ void Game::undo() {
     }
 }
 
-void Game::redo() {
+void Game::redo(bool repaint) {
     if (m_history->canRedo()) {
 
 	// nastavit pocet tahu beze skoku
@@ -379,12 +394,15 @@ void Game::redo() {
 	m_board->makeMove(*item_to_undo->getMove());
 	m_board->setActualMovesNoJump(item_to_undo->getMovesWithoutJump());
 
-	emit boardChanged();
-
 	m_currentPlayer = m_currentPlayer == 0 ? 1 : 0;
 	qDebug() << "current player: " << m_currentPlayer;
 	qDebug() << "tahy beze skoku: " << m_board->getActualMovesNoJump();
-	emit playersSwapped();
+
+	if (repaint) {
+	    emit boardChanged();
+	    emit playersSwapped();
+	}
+
 	informAboutHistory();
     }
     else {

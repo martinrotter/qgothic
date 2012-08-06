@@ -622,5 +622,6 @@
         <file>doc/simplecrypt_8cpp_source.html</file>
         <file>doc/simplecrypt_8h_source.html</file>
         <file>doc/style.css</file>
+        <file>doc/user-guide.html</file>
     </qresource>
 </RCC>

@@ -74,7 +74,7 @@ void History::consolidate() {
 }
 
 void History::addMove(Move move, int moves_without_jumps) {
-    HistoryItem *new_item = new HistoryItem(move, m_history->size()+1, moves_without_jumps);
+    HistoryItem *new_item = new HistoryItem(move, m_history->size(), moves_without_jumps);
 
     m_history->append(new_item);
     m_index = m_history->size()-1;

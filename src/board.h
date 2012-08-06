@@ -20,7 +20,7 @@ class Board {
 	    ORDINARY = 104
 	};
 
-	Board(int max_moves_without_jump = 30, int size = 8);
+	Board(int max_moves_without_jump = 60, int size = 8);
 	Board(const Board &board);
 	~Board();
 

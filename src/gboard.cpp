@@ -10,8 +10,6 @@
 
 GBoard::GBoard(QWidget *parent) : QWidget(parent),
     m_game(NULL), m_offset(25), m_is_piece_selected(false) {
-    setBackgroundRole(QPalette::Light);
-    setAutoFillBackground(true);
 }
 
 void GBoard::setGame(Game *game) {
@@ -164,7 +162,7 @@ void GBoard::paintEvent(QPaintEvent *e) {
     int x = m_offset + block_size*0.4, y = height() - m_offset*0.9;
 
     // Draw border.
-    p.fillRect(0, 0, width(), height(), QPalette().window().color());
+    p.fillRect(0, 0, width(), height(), Qt::transparent);
 
     p.setPen(QPen(Qt::black, 3.0));
     p.setBrush(QBrush(Qt::black));
@@ -188,7 +186,7 @@ void GBoard::paintEvent(QPaintEvent *e) {
     for (int i = 0; i < size; i++) {
 	for (int j = 0; j < size; j++) {
 	    if (!((i+j%2)%2)) {
-		p.fillRect(x, y, block_size, block_size, QColor(150, 150, 150));
+		p.fillRect(x, y, block_size, block_size, QColor(180, 220, 250));
 	    }
 	    else {
 		p.fillRect(x, y, block_size, block_size, Qt::white);
@@ -253,7 +251,7 @@ void GBoard::paintEvent(QPaintEvent *e) {
 		    break;
 		case Figure::BLACK_QUEEN:
 		    //p.set
-
+/*
 		    p.setPen(QPen(Qt::black, 3.0));
 		    p.setBrush(QBrush(Qt::black));
 		    p.drawEllipse(x+block_size*0.1, y+block_size*0.1,
@@ -261,24 +259,23 @@ void GBoard::paintEvent(QPaintEvent *e) {
 		    p.setPen(QPen(Qt::white, 3.0));
 		    p.drawEllipse(x+block_size*0.3, y+block_size*0.3,
 				  block_size*0.4, block_size*0.4);
+*/
 
-		    /*
 		    p.drawImage(QRect(x, y, block_size, block_size),
-				QImage(":/graphics/black-queen.png"));*/
+				QImage(":/graphics/black-queen.png"));
 		    break;
 		case Figure::WHITE_QUEEN:
 		    //p.set
-
+/*
 		    p.setPen(QPen(Qt::black, 3.0));
 		    p.setBrush(QBrush(Qt::white));
 		    p.drawEllipse(x+block_size*0.1, y+block_size*0.1,
 				  block_size*0.8, block_size*0.8);
 		    p.drawEllipse(x+block_size*0.3, y+block_size*0.3,
 				  block_size*0.4, block_size*0.4);
-				  /*
+			*/
 		    p.drawImage(QRect(x, y, block_size, block_size),
-				QImage(":/graphics/white-queen.png"));*/
-
+				QImage(":/graphics/white-queen.png"));
 		    break;
 		default:
 		    break;

@@ -19,10 +19,12 @@ const QString WORD_ERROR	= QObject::tr("Error");
 
 const QString APP_NAME		= "QGothic";
 const int APP_SAVE_LIMIT	= 30;
+const QString APP_SAVE_FILENAME	= QObject::tr("my-saved-game.qgo");
 const QString APP_SAVE_FILE	= QObject::tr("QGothic Game File");
-const QString APP_SAVE_FILTER	= QString("%1 (*.qgo)").arg(APP_SAVE_FILE);
+const QString APP_SAVE_FILE_ALL	= QObject::tr("All Files");
+const QString APP_SAVE_FILTER	= QString("%1 (*.qgo);;%2 (*.*)").arg(APP_SAVE_FILE, APP_SAVE_FILE_ALL);
 const QString APP_DESC		= QObject::tr("QGothic (Damn-Spel) board game.");
-const QString APP_VERSION	= "0.2.9";
+const QString APP_VERSION	= "0.2.11";
 const QString APP_AUTHOR	= "Martin Rotter";
 const QString APP_COPYRIGHT	= "Copyright (C) 2011-2012 Martin Rotter";
 const QString APP_URL		= "http://code.google.com/p/qgothic/";

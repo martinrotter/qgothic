@@ -1,0 +1,136 @@
+<html>	    	
+	<head>		      		
+		<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>		      		
+		<meta http-equiv="X-UA-Compatible" content="IE=9"/>		      		
+		<title>QGothic: QGothic      		
+		</title>		      		
+		<link href="tabs.css" rel="stylesheet" type="text/css"/>		      		
+		<link href="doxygen.css" rel="stylesheet" type="text/css" />	    	
+	</head>	    	
+	<body>		      		
+		<div id=top>			        			
+			<div id="titlearea">				          				
+				<table cellspacing="0" cellpadding="0">					            					
+					<tbody>						              						
+						<tr style="height: 56px;">							                							
+							<td style="padding-left: 0.5em;">						 								                  								
+								<div id="projectname">QGothic                  								
+								</div>								                  								
+								<div id="projectbrief">Simple board game written using Qt.                  								
+								</div>							</td>						              						
+						</tr>					            					
+					</tbody>				          				
+				</table>			        			
+			</div>			        			
+			<div id="navrow1" class="tabs">				          				
+				<ul class="tablist">					            					
+					<li class="current">             						
+						<a href="#general">               							
+							<span>General                							
+							</span></a>           					
+					</li>					            					
+					<li>           					
+					<a href="#rules">             						
+						<span>Game Rules              						
+						</span></a>           					
+					</li>							            					
+					<li>           					
+					<a href="#starting">             						
+						<span>Starting/Saving/Loading Games              						
+						</span></a>           					
+					</li>					            					
+					<li>           					
+					<a href="#configuration">             						
+						<span>Configuration              						
+						</span></a>           					
+					</li>					            					
+					<li>           					
+					<a href="#misc">             						
+						<span>Miscellaneous              						
+						</span></a>           					
+					</li>				          				
+				</ul>			        			
+			</div>		      		
+		</div>		 		      		
+		<div class="contents">       			
+			<div class="textblock">         				
+				<p>QGothic is simple board game developed using Qt framework. It is based on a well-know Altdeutsche Dame.</p>
+				
+				<h1><a name="general">General</a></h1>
+				<p>QGothic is simple checkers-like board game. It can be played in a very similar way to traditional chess, despite little different <a href="#rules">game rules</a>. This game is also known as Altdeutsche Dame or Damn-Spel. It has been inferred because of the similarities between south German and Turkish checker rules that Altdeutsche Dame may have influenced Turkish Checkers, invented around 1683.</p>
+				
+				<h1><a name="rules">Game Rules</a></h1>
+				<p>Note that QGothic's rules are different from traditional checkers.</p>
+				
+				<h3>Beginning of a Game</h3>
+				<ol>
+				<li>Usually white player starts, but sometimes this can be re-negotiated by players, so that black player can start sometimes too.</li>
+				</ol>
+				
+				<h3>Course of a Game</h3>
+				<ol>
+				<li>Game is played on rectangular board of 8x8 size.</li>
+				<li>Number of player is strictly limited to 2 players.</li>
+				<li>Players change in their turns regularly, one move is made during one turn.</li>
+				<li>Each player starts with 16 pawns located in 2 southest rows from view of that respective player.</li>
+				<li>Pawn can move ortogonally or diagonally by one field forward or to flanks. Moving backwards is not allowed.</li>
+				<li>Pawn can jump opponents's figures. Jumped figure has to be located just next to jumping pawn and field behind victim must be empty.</li>
+				<li>These simple pawn jumps can be chained in a jumping sequence.</li>
+				<li>If pawn reaches furthest row of board, it is promoted to the queen and move is ended. It's opponent's turn now.</li>
+				<li>Queen is allowed to move to all directions.</li>
+				<li>Queen can jump figure in its way, if there is at least one field empty behind jumped figure.</li>
+				<li>These simple queen jumps can be chained in a jumping sequence.</li>
+				<li>Each player must make a move containing the most available figures. Otherwise any move can be made.</li>
+				</ol>
+				
+				<h3>Ending of a Game</h3>
+				<ol>
+				<li>At least one player has no figures remaining.</li>
+				<li>There have been made certain number of non-jumping moves. This number is usually 30 moves per player. Winner is the player with more figures in this case. Same number of figures for both player means, that game ended in a draw. Points are given for each remaining figure in this state sometimes. Queens are evaluated by 4 points and pawns by 1 point. Points are summed up for each player and player with more points win. Same number of points means draw again.</li>
+				</ol>
+				
+				
+				<h1><a name="starting">Starting/Saving/Loading Games</a></h1>
+				<h3>Starting Game</h3>
+				<p>Game can be started by triggering Game -> New action or hitting CTRL+N key shortcut. User is asked to save his current game first. If new game is started, then beginning player is loaded from settings. So changing beginning player in a middle of active game has no signification for that actual game, but for newly started games only. But type of both players can be changed in-game and apply for currently active game.</p>
+				
+				<h3>Loading Game</h3>
+				<p>Game can be loaded by triggering Game -> Load action or hitting CTRL+L key shortcut. User is asked to save his current game first. QGothic supports its internal *.qgo files only. If loading fails, it is announced to the user.</p>
+				QGothic save game files store variety of things.
+				<ul>
+				<li>entire history of moves</li>
+				<li>difficulty and type of both players</li>
+				<li>color of beginning player</li>
+				<li>result of the game</li>
+				</ul>
+				
+				<p>Game is redo-ed to its last move, when it's loaded. So if game contains eg. 50 moves, it's rolled "forward" to the last player move.</p>
+				<p style="font-weight: bold;"><a name="note-1">NOTE</a>: Games saved under X.Y.Z build cannot be loaded in other versions of QGothic.</p>
+				
+				<h3>Saving Game</h3>
+				<p>Game can be saved by triggering Game -> New action or hitting CTRL+S key shortcut. Also read the above <a href="#note-1">note</a>.</p>
+				
+				<h1><a name="configuration">Configuration</a></h1>
+				Configuration dialog can be accessed by firing Tools -> Configuration action or hitting CTRL+C key shortcut. Configuration dialog allows you to edit some things like:
+				<ul>
+				<li>type and difficulty of both players</li>
+				<li>beginning player etc.</li>
+				<li>appearance of application</li>
+				</ul>
+				
+				<h1><a name="misc">Miscellaneous</a></h1>
+				
+				<h3>Graphical Board</h3>
+				<p>Board allows you to view moveable figures which can be highlighted with color when one of them is clicked. Also opponent's moveable figures can be highlighted as well by clicking on any of opponent's figure.</p>
+				
+				<h3>Pausing and Resuming Game</h3>
+				<p>Game <b>mustn't be</b> paused, if human player wants to make his turn. If AI has his turn (this can take exceptionally several seconds) game can be paused, but AI will finish his move. Game cannot be saved, loaded and overwritten by new game during that. Configuration dialog cannot be opened too. This situation is marked by "XYZ player is seeking the move." progress bar in left-down corner of the application window.</p>
+			</div>     		
+		</div>     		
+		<!-- contents -->      		
+		<!-- start footer part -->      		
+		<hr class="footer"/>     		
+		<address class="footer"><small>Simple QGothic User Guide</small>     		
+		</address>		 	    	
+	</body>
+</html>

@@ -51,8 +51,8 @@ class Game : public QObject {
 
 
     public slots:
-	void undo();
-	void redo();
+	void undo(bool repaint = true);
+	void redo(bool repaint = true);
 	void makeMove(const Move &move);
 
     protected slots:

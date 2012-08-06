@@ -189,8 +189,9 @@ Game::SaveState GMainWindow::checkIfSaved() {
     do {
 	QMessageBox msg_box;
 	msg_box.setWindowTitle(tr("Save Your Game"));
+	msg_box.setIcon(QMessageBox::Information);
 	msg_box.setText(tr("This game has not been saved."));
-	msg_box.setInformativeText(tr("Do you want to save your game?"));
+	msg_box.setInformativeText(tr("Do you want to save or discard your game?"));
 	msg_box.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
 	msg_box.setDefaultButton(QMessageBox::Save);
 	int ret = msg_box.exec();
@@ -241,32 +242,28 @@ void GMainWindow::moveInGame(int new_index, int previous_index) {
 
     // redo
     int how_many_times = abs(new_index-previous_index);
+    //m_game->blockSignals(true);
     if (new_index > previous_index) {
 	for (int i = 0; i < how_many_times; i++) {
-	    m_game->redo();
+	    m_game->redo(false);
 	}
     }
     // undo
     else {
 	for (int i = 0; i < how_many_times; i++) {
-	    m_game->undo();
+	    m_game->undo(false);
 	}
     }
+    //m_game->blockSignals(false);
+    updateTable();
+    m_ui->m_gboard->repaint();
 }
 
 void GMainWindow::adviseMove() {
-    if (m_game->getBoard()->getState() != Board::ORDINARY) {
-	QMessageBox::information(this, tr("Best Move Search"), tr("Cannot look for best move because game had ended."));
-    }
-    else if (m_game->getCurrentPlayer().getState() != Player::HUMAN) {
-	QMessageBox::information(this, tr("Best Move Search"), tr("Non-human players cannot search for best move."));
-    }
-    else {
-	Move move = Intelligence::computerMove(m_game->getCurrentPlayer(), *m_game->getBoard());
-	QMessageBox::information(this, tr("Result"), tr("Your move was found successfully.\n"
-							"%1-%2").arg(move.getFrom().toString(),
-								     move.getTo().toString()));
-    }
+    Move move = Intelligence::computerMove(m_game->getCurrentPlayer(), *m_game->getBoard());
+    QMessageBox::information(this, tr("Result"), tr("Your move was found successfully.\n"
+						    "%1-%2").arg(move.getFrom().toString(),
+								 move.getTo().toString()));
 }
 
 void GMainWindow::moveStart() {
@@ -274,11 +271,11 @@ void GMainWindow::moveStart() {
     switch (m_game->getCurrentPlayer().getColor()) {
 	case Figure::WHITE:
 	    m_labelStatusTurn->setText(tr("White player is seeking the move."));
-	    m_labelStatusTurn->setToolTip(tr("White player is searching for move. If game pauses now, then this search is completed before."));
+	    m_labelStatusTurn->setToolTip(tr("White player is searching for move. If game pauses now, then this search is completed additionally."));
 	    break;
 	case Figure::BLACK:
 	    m_labelStatusTurn->setText(tr("Black player is seeking the move."));
-	    m_labelStatusTurn->setToolTip(tr("Black player is searching for move. If game pauses now, then this search is completed before."));
+	    m_labelStatusTurn->setToolTip(tr("Black player is searching for move. If game pauses now, then this search is completed additionally."));
 	    break;
 	default:
 	    break;
@@ -289,7 +286,11 @@ void GMainWindow::moveStart() {
     m_ui->m_buttonRedo->setEnabled(false);
     m_ui->m_buttonUndo->setEnabled(false);
     m_ui->m_historyView->setEnabled(false);
-    //m_bar->m_ui->m_labelPlaying->setText("Computer is looking for move.");
+
+    m_ui->m_actionLoad->setEnabled(false);
+    m_ui->m_actionNew->setEnabled(false);
+    m_ui->m_actionSettings->setEnabled(false);
+    m_ui->m_actionSave->setEnabled(false);
 }
 
 void GMainWindow::moveEnd() {
@@ -300,6 +301,11 @@ void GMainWindow::moveEnd() {
     m_ui->m_buttonRedo->setEnabled(true);
     m_ui->m_buttonUndo->setEnabled(true);
     m_ui->m_historyView->setEnabled(true);
+
+    m_ui->m_actionLoad->setEnabled(true);
+    m_ui->m_actionNew->setEnabled(true);
+    m_ui->m_actionSettings->setEnabled(true);
+    m_ui->m_actionSave->setEnabled(true);
 }
 
 void GMainWindow::continueGame() {
@@ -329,8 +335,10 @@ void GMainWindow::controlGame(bool running) {
     repaint();
 }
 
-void GMainWindow::updateTable(bool just_turning) {    
-    if (m_game->getBoard()->getState() == Board::ORDINARY) {
+void GMainWindow::updateTable(bool just_turning) {
+    Board::State board_state = m_game->getBoard()->getState();
+
+    if (board_state == Board::ORDINARY) {
 	switch (m_game->getCurrentPlayer().getColor()) {
 	    case Figure::BLACK:
 		m_ui->m_labelWhiteTurns->setText("");
@@ -362,7 +370,10 @@ void GMainWindow::updateTable(bool just_turning) {
 	m_ui->m_buttonPlayPause->setEnabled(false);
     }
 
-    switch (m_game->getBoard()->getState()) {
+    m_ui->m_actionBestMove->setEnabled(m_game->getCurrentPlayer().getState() == Player::HUMAN &&
+				       board_state == Board::ORDINARY);
+
+    switch (board_state) {
 	case Board::ORDINARY:
 	    m_ui->m_labelNoJumpMovesWhite->setText(GAM_PLAY_STYLE.arg("16",
 								      GAM_ORDINARY,
@@ -455,7 +466,7 @@ bool GMainWindow::save() {
     pauseGame();
 
     QString file_name = QFileDialog::getSaveFileName(this, tr("Save Game"),
-						     QDir::homePath(),
+						     QDir::homePath()+QDir::separator()+APP_SAVE_FILENAME,
 						     APP_SAVE_FILTER);
     if (file_name.size() > 0) {
 	if (m_game->saveGame(file_name) == false) {
@@ -481,13 +492,16 @@ void GMainWindow::load() {
 						     APP_SAVE_FILTER);
     if (file_name.size() > 0) {
 	if (m_game->loadGame(file_name) == false) {
-	    QMessageBox::warning(this, WORD_ERROR, tr("Game couldn't be loaded because this file is not in valid format."
+	    QMessageBox::warning(this, WORD_ERROR, tr("Game couldn't be loaded because this file is not in valid format or was saved under another version of this application."
 						      "\n\nFile: %1").arg(file_name));
 	} else {
+	    //m_game->blockSignals(true);
 	    while (m_game->getHistory()->canRedo()) {
-		m_game->redo();
+		m_game->redo(false);
 	    }
+	    //m_game->blockSignals(false);
 	    updateTable(false);
+	    m_ui->m_gboard->repaint();
 	}
     }
 }
@@ -526,10 +540,9 @@ void GMainWindow::quit() {
 void GMainWindow::guideDocumentation() {
     pauseGame();
     GReferenceDocDialog(tr("User Guide"),
-			"qrc:/whatever",
+			"qrc:/support/doc/user-guide.html",
 			this).exec();
 }
-
 
 void GMainWindow::referenceDocumentation() {
     pauseGame();

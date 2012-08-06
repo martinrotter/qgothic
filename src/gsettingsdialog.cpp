@@ -9,9 +9,6 @@ GSettingsDialog::GSettingsDialog(Game *game, GMainWindow *parent) :
     QDialog(parent), m_ui(new Ui::GSettingsDialog), m_game(game), m_gameWindow(parent) {
     m_ui->setupUi(this);
 
-    m_ui->m_whiteHard->setVisible(false);
-    m_ui->m_blackHard->setVisible(false);
-
     // Prepare interface.
     //setFixedSize(sizeHint().width(), sizeHint().height());
     m_ui->m_stackedSections->setCurrentIndex(0);

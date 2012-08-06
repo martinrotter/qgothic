@@ -25,7 +25,7 @@ Move Intelligence::computerMove(Player applicant, Board &board) {
 	case Player::HUMAN:
 	    return minimaxMove(applicant, board, 2, Strategy::simple);
 	case Player::HARD:
-	    return minimaxMove(applicant, board, 3, Strategy::simple);
+	    return minimaxMove(applicant, board, 2, Strategy::advanced);
 	default:
 	    return randomMove(applicant, board);
     }
