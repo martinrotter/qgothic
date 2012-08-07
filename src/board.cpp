@@ -141,13 +141,6 @@ void Board::setInitialPositions() {
 }
 
 void Board::makeMove(const Move &move, bool update_state) {
-    Figure::Type current = operator()(move.getFrom());
-    operator()(move.getFrom()) = Figure::EMPTY;
-
-    foreach (JumpedFigure fig, move.getJumpedFigures()) {
-	operator()(fig.first) = Figure::EMPTY;
-    }
-
     if (move.getJumpedFigures().size() > 0) {
 	m_actualMovesNoJump = 0;
     }
@@ -155,11 +148,20 @@ void Board::makeMove(const Move &move, bool update_state) {
 	m_actualMovesNoJump++;
     }
 
-    if (move.getPromoted()) {
-	operator()(move.getTo()) = Figure::promote(current);
-    }
-    else {
-	operator()(move.getTo()) = current;
+    if (move.isInvalid() == false) {
+	Figure::Type current = operator()(move.getFrom());
+	operator()(move.getFrom()) = Figure::EMPTY;
+
+	foreach (JumpedFigure fig, move.getJumpedFigures()) {
+	    operator()(fig.first) = Figure::EMPTY;
+	}
+
+	if (move.getPromoted()) {
+	    operator()(move.getTo()) = Figure::promote(current);
+	}
+	else {
+	    operator()(move.getTo()) = current;
+	}
     }
 
     if (update_state) {
@@ -168,16 +170,18 @@ void Board::makeMove(const Move &move, bool update_state) {
 }
 
 void Board::makeInverseMove(const Move &move, bool update_state) {
-    if (move.getPromoted()) {
-	operator()(move.getFrom()) = Figure::degrade(operator()(move.getTo()));
-    }
-    else {
-	operator()(move.getFrom()) = operator()(move.getTo());
-    }
-    operator()(move.getTo()) = Figure::EMPTY;
+    if (move.isInvalid() == false) {
+	if (move.getPromoted()) {
+	    operator()(move.getFrom()) = Figure::degrade(operator()(move.getTo()));
+	}
+	else {
+	    operator()(move.getFrom()) = operator()(move.getTo());
+	}
+	operator()(move.getTo()) = Figure::EMPTY;
 
-    foreach (JumpedFigure fig, move.getJumpedFigures()) {
-	operator()(fig.first) = fig.second;
+	foreach (JumpedFigure fig, move.getJumpedFigures()) {
+	    operator()(fig.first) = fig.second;
+	}
     }
 
     if (update_state) {

@@ -59,10 +59,24 @@ QVariant HistoryModel::data(const QModelIndex &index, int role) const {
     }
 
     switch (role) {
-	case Qt::DisplayRole:
-	    return m_history->at(index.row())->getInfo((HistoryItem::Section)index.column());
-	case Qt::ToolTipRole:
-	    return m_history->at(index.row())->getMove()->toFiguresString();
+	case Qt::DisplayRole: {
+	    Move *move = m_history->at(index.row())->getMove();
+	    if (move->isInvalid() == false) {
+		return m_history->at(index.row())->getInfo((HistoryItem::Section)index.column());
+	    }
+	    else {
+		return tr("skipped");
+	    }
+	}
+	case Qt::ToolTipRole: {
+	    Move *move = m_history->at(index.row())->getMove();
+	    if (move->isInvalid() == false) {
+		return m_history->at(index.row())->getMove()->toFiguresString();
+	    }
+	    else {
+		return tr("No move were available for this player in this game phase.");
+	    }
+	}
 	default:
 	    return QVariant();
     }

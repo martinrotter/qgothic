@@ -115,7 +115,7 @@ class Move {
 	int price() const;
 
 	// Move is invalid if its m_from X coord is negative number.
-	bool isValid() const;
+	bool isInvalid() const;
 
 	QString toFiguresString() const;
 	QString toString() const;

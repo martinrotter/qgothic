@@ -48,6 +48,7 @@ class Game : public QObject {
 
 	Player getCurrentPlayer() const;
 	void computerMove();
+	void fakeHumanMove(); // použije se když nejsou žádné tahy
 
 
     public slots:

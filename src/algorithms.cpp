@@ -43,7 +43,7 @@ int Algorithms::minimax(Figure::Color original_color, Figure::Color actual_color
 	Board next(board);
 	price = std::max(price, -minimax(original_color, Figure::negateColor(actual_color),
 					 next, depth-1, eval_function));
-	qDebug() << "NO MOVES AVAILABLE";
+	qDebug() << "NO MOVES AVAILABLE FOR THIS PLAYER" << "\a";
     }
 
     foreach (Move move, moves) {

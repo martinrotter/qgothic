@@ -1,6 +1,7 @@
 #include "game.h"
 #include "historyitem.h"
 #include "gsettings.h"
+#include "referee.h"
 #include "definitions.h"
 #include "simplecrypt.h"
 
@@ -285,6 +286,12 @@ void Game::newGame() {
     emit playersSwapped();
 }
 
+void Game::fakeHumanMove() {
+    if (Referee::getMoves(getCurrentPlayer().getColor(), *m_board).size() == 0) {
+	makeMove(Move::getInvalidMove());
+    }
+}
+
 void Game::computerMove() {
     if (m_board->getState() == Board::ORDINARY) {
 	emit moveSearchStarted();
@@ -435,9 +442,13 @@ void Game::swapPlayer() {
     if (state != Board::ORDINARY) {
 	emit gameFinished(state);
     }
-    if (getCurrentPlayer().getState() != Player::HUMAN &&
-	    m_state == Game::RUNNING) {
-	computerMove();
+    if (m_state == Game::RUNNING) {
+	if (getCurrentPlayer().getState() != Player::HUMAN) {
+	    computerMove();
+	}
+	else {
+	   fakeHumanMove();
+	}
     }
 }
 

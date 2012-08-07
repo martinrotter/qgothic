@@ -70,7 +70,7 @@ int Move::price() const {
     return m_jumpedFigures->size();
 }
 
-bool Move::isValid() const {
+bool Move::isInvalid() const {
     return m_from->getX() < 0;
 }
 

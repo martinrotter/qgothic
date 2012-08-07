@@ -37,7 +37,6 @@ class GMainWindow : public QMainWindow {
     protected slots:
 	void referenceDocumentation();
 	void guideDocumentation();
-	void quit();
 	void about();
 	bool save();
 	void load();

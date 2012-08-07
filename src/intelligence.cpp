@@ -33,7 +33,13 @@ Move Intelligence::computerMove(Player applicant, Board &board) {
 
 Move Intelligence::randomMove(Player applicant, Board &board) {
     QList<Move> moves = Referee::getMoves(applicant.getColor(), board);
-    return moves[rand() % moves.size()];
+    int size = moves.size();
+    if (size == 0) {
+	return Move::getInvalidMove();
+    }
+    else {
+	return moves[rand() % size];
+    }
 }
 
 
@@ -48,7 +54,8 @@ Move Intelligence::minimaxMove(Player applicant, Board &board,
 	Board next(board);
 	actual_price = -Algorithms::minimax(applicant.getColor(), Figure::negateColor(applicant.getColor()),
 					    next, depth-1, eval_function);
-	qDebug() << "NO MOVES AVAILABLE";
+	qDebug() << "NO MOVES AVAILABLE FOR THIS PLAYER" << "\a";
+	return Move::getInvalidMove();
     }
 
     for (int i = 0; i < moves.size(); i++) {

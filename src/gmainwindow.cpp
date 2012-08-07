@@ -89,7 +89,17 @@ void GMainWindow::keyPressEvent(QKeyEvent *e) {
 
 void GMainWindow::closeEvent(QCloseEvent *e) {
     QMainWindow::closeEvent(e);
-    quit();
+
+    pauseGame();
+
+    if (checkIfSaved() == Game::CANCELLED) {
+	e->ignore();
+    }
+    else {
+	GSettings::checkSettings();
+	qDebug() << "exiting";
+	e->accept();
+    }
 }
 
 // Initialises members of this class and prepares main window.
@@ -139,7 +149,7 @@ void GMainWindow::createConnections() {
     connect(m_ui->m_actionNew, SIGNAL(triggered()), this, SLOT(newGame()));
     connect(m_ui->m_actionLoad, SIGNAL(triggered()), this, SLOT(load()));
     connect(m_ui->m_actionSave, SIGNAL(triggered()), this, SLOT(save()));
-    connect(m_ui->m_actionQuit, SIGNAL(triggered()), this, SLOT(quit()));
+    connect(m_ui->m_actionQuit, SIGNAL(triggered()), this, SLOT(close()));
 
     connect(m_ui->m_actionSettings, SIGNAL(triggered()), this, SLOT(configuration()));
     connect(m_ui->m_actionBestMove, SIGNAL(triggered()), this, SLOT(adviseMove()));
@@ -324,6 +334,9 @@ void GMainWindow::controlGame(bool running) {
 	m_labelStatusState->setToolTip(tr("Game is running."));
 	if (m_game->getCurrentPlayer().getState() != Player::HUMAN) {
 	    m_game->computerMove();
+	}
+	else {
+	    m_game->fakeHumanMove();
 	}
     }
     else {
@@ -523,18 +536,6 @@ void GMainWindow::about() {
 		       + tr("Made by %1.").arg(APP_AUTHOR)
 		       + "\n"
 		       + tr("Version %1").arg(APP_VERSION));
-}
-
-void GMainWindow::quit() {
-    pauseGame();
-
-    if (checkIfSaved() == Game::CANCELLED) {
-	return;
-    }
-
-    GSettings::checkSettings();
-    qDebug() << "exiting";
-    QApplication::exit(EXIT_SUCCESS);
 }
 
 void GMainWindow::guideDocumentation() {

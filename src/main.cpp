@@ -6,12 +6,21 @@
 #include <QApplication>
 #include <QTextCodec>
 #include <QSettings>
-
+#include <QThread>
 
 QList<Location> *Referee::s_pawnDirections;
 QList<Location> *Referee::s_queenDirections;
 
 QSettings *GSettings::s_settings;
+/*
+class Sleeper : public QThread
+{
+public:
+    static void usleep(unsigned long usecs){QThread::usleep(usecs);}
+    static void msleep(unsigned long msecs){QThread::msleep(msecs);}
+    static void sleep(unsigned long secs){QThread::sleep(secs);}
+};
+*/
 
 int main(int argc, char *argv[]) {
     // QGothic works in plain UTF-8 encoding.
@@ -28,7 +37,12 @@ int main(int argc, char *argv[]) {
 
     // Setup settings file.
     GSettings::setupSettings();
-
+/*
+    for (int i = 0; i < 10; i++) {
+	Sleeper::sleep(2);
+	qDebug() << "sleep";
+    }
+*/
     // Setup information about application.
     a.setApplicationName(APP_NAME);
     a.setOrganizationName(APP_COPYRIGHT);
