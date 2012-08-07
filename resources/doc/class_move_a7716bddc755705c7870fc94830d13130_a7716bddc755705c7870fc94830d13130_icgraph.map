@@ -1,7 +1,0 @@
-<map id="Move::getFrom" name="Move::getFrom">
-<area shape="rect" id="node3" href="$class_referee_aa34ec5da7bdf189428480fadd6dfdb24.html#aa34ec5da7bdf189428480fadd6dfdb24" title="Finds all posibble jumps for pawn." alt="" coords="166,5,333,32"/>
-<area shape="rect" id="node11" href="$class_referee_a3112eff2c936b13911657e84a8223009.html#a3112eff2c936b13911657e84a8223009" title="Finds all posibble simple moves (without jumps) for pawn." alt="" coords="166,56,333,83"/>
-<area shape="rect" id="node5" href="$class_referee_a3804eb20b0ef173ecb5dc2abeb1b09a2.html#a3804eb20b0ef173ecb5dc2abeb1b09a2" title="Finds both jumps/moves for pawn." alt="" coords="381,31,563,57"/>
-<area shape="rect" id="node7" href="$class_referee_a644d9dc57e2f919dcafe0fd6418c5334.html#a644d9dc57e2f919dcafe0fd6418c5334" title="Finds jumps/moves for any figure on the specified location." alt="" coords="611,31,759,57"/>
-<area shape="rect" id="node9" href="$class_referee_a7b9a5d3b326c1c2cdc78c26a24502ba6.html#a7b9a5d3b326c1c2cdc78c26a24502ba6" title="Gets all available moves for certain Figure::Color." alt="" coords="808,31,941,57"/>
-</map>

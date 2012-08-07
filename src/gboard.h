@@ -7,11 +7,19 @@
 #include <QWidget>
 
 
+/*!
+ * \brief Graphical Board implementation.
+ */
 class GBoard : public QWidget {
 	Q_OBJECT
 
     public:
 	explicit GBoard(QWidget *parent = 0);
+
+	/*!
+	 * \brief Sets Game instance to display.
+	 * \param game Game instance to display.
+	 */
 	void setGame(Game *game);
 
 
@@ -24,6 +32,9 @@ class GBoard : public QWidget {
 	Location locationFromPoint(const QPoint &point) const;
 
     public slots:
+	/*!
+	 * \brief Clears any figure selections from the GBoard.
+	 */
 	void clearSelections();
 
 

@@ -4,6 +4,9 @@
 #include <QList>
 
 
+/*!
+ * \brief Onboard Figure representation.
+ */
 class Figure {
 
     public:
@@ -17,6 +20,9 @@ class Figure {
 	    UNKNOWN = 3
 	};
 
+	/*!
+	 * \brief Type of figures
+	 */
 	enum Type {
 	    WHITE_PAWN	= -10,
 	    WHITE_QUEEN	= -20,
@@ -25,6 +31,9 @@ class Figure {
 	    BLACK_QUEEN	= 20
 	};
 
+	/*!
+	 * \brief Prices of figures.
+	 */
 	enum Price {
 	    PAWN = 1,
 	    QUEEN = 4

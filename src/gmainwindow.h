@@ -14,6 +14,9 @@ namespace Ui {
 class QProgressBar;
 class HistoryModel;
 
+/*!
+ * \brief Main QGothic application window.
+ */
 class GMainWindow : public QMainWindow {
 	Q_OBJECT
 	
@@ -35,7 +38,6 @@ class GMainWindow : public QMainWindow {
 	Game::SaveState checkIfSaved();
 
     protected slots:
-	void referenceDocumentation();
 	void guideDocumentation();
 	void about();
 	bool save();

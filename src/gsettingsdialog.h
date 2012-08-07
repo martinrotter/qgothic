@@ -13,6 +13,9 @@ namespace Ui {
 class Game;
 class GMainWindow;
 
+/*!
+ * \brief Configuration dialog.
+ */
 class GSettingsDialog : public QDialog {
 	Q_OBJECT
 	

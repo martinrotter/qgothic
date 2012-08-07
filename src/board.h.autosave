@@ -52,7 +52,7 @@ class Board {
 	/*!
 	 * \brief Makes Move on this Board.
 	 * \param move Move to make.
-	 * \param update_state If true, then properties of this Board are updated after the Move is taken.
+	 * \param update_state If true, then properties of this Board are updated after the Move is take.
 	 */
 	void makeMove(const Move &move, bool update_state = true);
 

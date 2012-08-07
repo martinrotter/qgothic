@@ -6,6 +6,13 @@
 
 class History;
 
+/*!
+ * \brief Model for abstracting History for MVC architecture.
+ *
+ * This model is used in conjunction with competent View, usually QTreeView or its subclass.
+ *
+ * \note This class is part of MVC.
+ */
 class HistoryModel : public QAbstractItemModel {
 	Q_OBJECT
 

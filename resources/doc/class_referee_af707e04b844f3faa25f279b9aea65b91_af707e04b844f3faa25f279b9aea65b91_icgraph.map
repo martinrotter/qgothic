@@ -1,5 +1,0 @@
-<map id="Referee::getQueenMoves" name="Referee::getQueenMoves">
-<area shape="rect" id="node3" href="$class_referee_ae2620f23d897796ec6b14350146ea4f9.html#ae2620f23d897796ec6b14350146ea4f9" title="Finds both jumps/moves for queen." alt="" coords="224,5,411,32"/>
-<area shape="rect" id="node5" href="$class_referee_a644d9dc57e2f919dcafe0fd6418c5334.html#a644d9dc57e2f919dcafe0fd6418c5334" title="Finds jumps/moves for any figure on the specified location." alt="" coords="459,5,607,32"/>
-<area shape="rect" id="node7" href="$class_referee_a7b9a5d3b326c1c2cdc78c26a24502ba6.html#a7b9a5d3b326c1c2cdc78c26a24502ba6" title="Gets all available moves for certain Figure::Color." alt="" coords="656,5,789,32"/>
-</map>

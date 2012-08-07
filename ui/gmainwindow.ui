@@ -457,7 +457,7 @@ QTreeView::branch:closed:has-children:has-siblings {
      <x>0</x>
      <y>0</y>
      <width>804</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="m_menuGame">
@@ -476,8 +476,6 @@ QTreeView::branch:closed:has-children:has-siblings {
      <string>Help</string>
     </property>
     <addaction name="m_actionBrowseHelp"/>
-    <addaction name="m_actionReferenceDocs"/>
-    <addaction name="m_actionDisplayLog"/>
     <addaction name="separator"/>
     <addaction name="m_actionAboutQGothic"/>
    </widget>
@@ -608,28 +606,6 @@ QTreeView::branch:closed:has-children:has-siblings {
    </property>
    <property name="shortcut">
     <string>Ctrl+C</string>
-   </property>
-   <property name="priority">
-    <enum>QAction::LowPriority</enum>
-   </property>
-  </action>
-  <action name="m_actionDisplayLog">
-   <property name="text">
-    <string>Display &amp;Log</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+G</string>
-   </property>
-   <property name="priority">
-    <enum>QAction::LowPriority</enum>
-   </property>
-  </action>
-  <action name="m_actionReferenceDocs">
-   <property name="text">
-    <string>&amp;Programmer's Docs</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+P</string>
    </property>
    <property name="priority">
     <enum>QAction::LowPriority</enum>

@@ -18,7 +18,6 @@
 
 GMainWindow::GMainWindow(QWidget *parent) : QMainWindow(parent), m_ui(new Ui::GMainWindow) {
     m_ui->setupUi(this);
-    m_ui->m_actionDisplayLog->setVisible(false);
 
     initialiseStatusBar();
 
@@ -154,7 +153,6 @@ void GMainWindow::createConnections() {
     connect(m_ui->m_actionSettings, SIGNAL(triggered()), this, SLOT(configuration()));
     connect(m_ui->m_actionBestMove, SIGNAL(triggered()), this, SLOT(adviseMove()));
 
-    connect(m_ui->m_actionReferenceDocs, SIGNAL(triggered()), this, SLOT(referenceDocumentation()));
     connect(m_ui->m_actionBrowseHelp, SIGNAL(triggered()), this, SLOT(guideDocumentation()));
     connect(m_ui->m_actionAboutQGothic, SIGNAL(triggered()), this, SLOT(about()));
 
@@ -544,11 +542,3 @@ void GMainWindow::guideDocumentation() {
 			"qrc:/support/doc/user-guide.html",
 			this).exec();
 }
-
-void GMainWindow::referenceDocumentation() {
-    pauseGame();
-    GReferenceDocDialog(tr("Programmer's Documentation"),
-			"qrc:/support/doc/index.html",
-			this).exec();
-}
-

@@ -12,7 +12,7 @@ QSettings::Status GSettings::checkSettings() {
     return s_settings->status();
 }
 
-QSettings *GSettings::getSettings() {
+const QSettings *GSettings::getSettings() {
     if (s_settings == NULL) {
 	setupSettings();
     }
