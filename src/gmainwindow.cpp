@@ -269,9 +269,14 @@ void GMainWindow::moveInGame(int new_index, int previous_index) {
 
 void GMainWindow::adviseMove() {
     Move move = Intelligence::computerMove(m_game->getCurrentPlayer(), *m_game->getBoard());
-    QMessageBox::information(this, tr("Result"), tr("Your move was found successfully.\n"
-						    "%1-%2").arg(move.getFrom().toString(),
-								 move.getTo().toString()));
+    if (move.isInvalid() == false) {
+	QMessageBox::information(this, tr("Result"), tr("Your move was found successfully.\n"
+							"%1-%2").arg(move.getFrom().toString(),
+								     move.getTo().toString()));
+    }
+    else {
+	QMessageBox::information(this, tr("Result"), tr("Your move wasn't found because you are not able to make any moves in this game phase."));
+    }
 }
 
 void GMainWindow::moveStart() {
@@ -298,7 +303,7 @@ void GMainWindow::moveStart() {
     m_ui->m_actionLoad->setEnabled(false);
     m_ui->m_actionNew->setEnabled(false);
     m_ui->m_actionSettings->setEnabled(false);
-    m_ui->m_actionSave->setEnabled(false);
+    //m_ui->m_actionSave->setEnabled(false);
 }
 
 void GMainWindow::moveEnd() {
@@ -313,7 +318,7 @@ void GMainWindow::moveEnd() {
     m_ui->m_actionLoad->setEnabled(true);
     m_ui->m_actionNew->setEnabled(true);
     m_ui->m_actionSettings->setEnabled(true);
-    m_ui->m_actionSave->setEnabled(true);
+    //m_ui->m_actionSave->setEnabled(true);
 }
 
 void GMainWindow::continueGame() {
@@ -337,7 +342,13 @@ void GMainWindow::controlGame(bool running) {
 	    m_game->fakeHumanMove();
 	}
     }
-    else {
+    else {/*
+	// AI player is now thinking about moving. Cancel this thinking.
+	if (m_game->getCurrentPlayer().getState() != Player::HUMAN && m_game->getState() == Game::RUNNING) {
+	    m_game->getGenerator()->cancel();
+	    //moveEnd();
+	}*/
+
 	m_labelStatusState->setText(tr("Paused"));
 	m_labelStatusState->setToolTip(tr("Game is paused."));
 	m_game->setState(Game::PAUSED);

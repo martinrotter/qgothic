@@ -66,6 +66,8 @@ class Game : public QObject {
 	Game::State getState() const;
 	History *getHistory() const;
 
+	Generator *getGenerator() const;
+
 	void setStartingPlayer(int starting_player);
 	int getStartingPlayer() const;
 

@@ -21,6 +21,8 @@ Game::Game(QObject *parent) :
 
     qRegisterMetaType<Move>("Move");
     connect(m_generator, SIGNAL(moveGenerated(Move)), this, SLOT(makeMove(Move)));
+    //connect(m_generator, SIGNAL(terminated()), this, SLOT(informAboutHistory()));
+    //connect(m_generator, SIGNAL(terminated()), this, SIGNAL(moveSearchFinished()));
     connect(m_history, SIGNAL(changed(int)), this, SLOT(informAboutHistory()));
 
     int current_player = GSettings::value(SET_GAME, "starting_player", 0).toInt();
@@ -306,20 +308,13 @@ void Game::informAboutHistory() {
     m_isSaved = false;
 
     emit canUndo(m_history->canUndo());
+    qDebug() << "can redo: " << m_history->canRedo();
     emit canRedo(m_history->canRedo());
 }
 
 void Game::makeMove(const Move &move) {
     // zkontroluj stav hry
     emit moveSearchFinished();
-
-    // pokud chce lidský hráč táhnout figurkou opačné barvy, tak to nejde
-    // u počítače tato situace nenastane
-    if (getCurrentPlayer().getState() == Player::HUMAN &&
-	    Figure::getColorByType((*m_board)(move.getFrom())) != getCurrentPlayer().getColor()) {
-	qDebug() << "you are not available to make this move";
-	return;
-    }
 
     // tady to running, táhnutí lidského hráče při pauznutí hry
     // We can make move only if game is running and it is not ended.
@@ -428,6 +423,10 @@ void Game::setStartingPlayer(int starting_player) {
 
 History *Game::getHistory() const {
     return m_history;
+}
+
+Generator *Game::getGenerator() const {
+    return m_generator;
 }
 
 Game::State Game::getState() const {

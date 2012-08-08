@@ -2,10 +2,18 @@
 #include "board.h"
 #include "intelligence.h"
 
+#include <QMutex>
 #include <QDebug>
 
 
 Generator::Generator(QObject *parent) : QThread(parent), m_active(false) {
+}
+
+void Generator::cancel() {
+    terminate();
+    qDebug() << "cancelled";
+    m_active = false;
+    emit cancelled();
 }
 
 void Generator::searchMove(Player applicant, Board *board) {
@@ -24,6 +32,7 @@ void Generator::run() {
 	return;
     }
     else {
+	setPriority(QThread::TimeCriticalPriority);
 	m_active = true;
 	Move move = Intelligence::computerMove(m_applicant, *m_board);
 	emit moveGenerated(move);

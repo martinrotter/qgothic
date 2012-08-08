@@ -132,6 +132,13 @@ void GBoard::mousePressEvent(QMouseEvent *e) {
 	    // ošetřovat, že když je na tahu člověk, tak může táhnout jen svoji barvou
 	    // navíc je zde více možných rovnocenných tahů
 	    if (clicked_location == move.getTo()) {
+		// pokud chce lidský hráč táhnout figurkou opačné barvy, tak to nejde
+		// u počítače tato situace nenastane
+		if (m_game->getCurrentPlayer().getState() == Player::HUMAN &&
+			Figure::getColorByType((*m_game->getBoard())(move.getFrom())) != m_game->getCurrentPlayer().getColor()) {
+		    qDebug() << "you are not available to make this move";
+		    return;
+		}
 		m_game->makeMove(move);
 		m_available_moves.clear();
 		repaint();

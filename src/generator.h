@@ -25,6 +25,7 @@ class Generator : public QThread {
 	 * \note This is the code, that is executed in separated thread.
 	 */
 	void run();
+	void cancel();
 
     signals:
 	/*!
@@ -45,6 +46,9 @@ class Generator : public QThread {
 	bool m_active;
 	Player m_applicant;
 	Board *m_board;
+
+    signals:
+	void cancelled();
 	
 };
 
