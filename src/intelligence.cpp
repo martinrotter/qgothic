@@ -42,6 +42,38 @@ Move Intelligence::randomMove(Player applicant, Board &board) {
     }
 }
 
+Move Intelligence::alfabetaMove(Player applicant, Board &board,
+				int depth, int (*eval_function)(Board &)) {
+    int actual_price;
+    int alfa = Strategy::LOSING;
+    QList<int> best_indices;
+    QList<Move> moves = Referee::getMoves(applicant.getColor(), board);
+
+    // Player can't make any moves.
+    if (moves.size() == 0) {
+	//Board next(board);
+	//actual_price = -Algorithms::alfabeta(applicant.getColor(), Figure::negateColor(applicant.getColor()),
+					    //next, depth-1, eval_function, -);
+	qDebug() << "NO MOVES AVAILABLE FOR THIS PLAYER" << "\a";
+	return Move::getInvalidMove();
+    }
+
+    for (int i = 0; i < moves.size(); i++) {
+	Board next(board);
+	next.makeMove(moves[i]);
+	actual_price = -Algorithms::alfabeta(applicant.getColor(), Figure::negateColor(applicant.getColor()),
+					     next, depth-1, eval_function, INT_MIN, Algorithms::alfabeta_further(-alfa));
+	if (actual_price > alfa) {
+	    alfa = actual_price;
+	    best_indices.clear();
+	    best_indices.append(i);
+	}
+	else if (actual_price == alfa) {
+	    best_indices.append(i);
+	}
+    }
+    return moves[best_indices[rand() % best_indices.size()]];
+}
 
 Move Intelligence::minimaxMove(Player applicant, Board &board,
 			       int depth, int (*eval_function)(Board &)) {
@@ -58,6 +90,7 @@ Move Intelligence::minimaxMove(Player applicant, Board &board,
 	return Move::getInvalidMove();
     }
 
+    qDebug() << "minimax tahy: " << moves.size();
     for (int i = 0; i < moves.size(); i++) {
 	Board next(board);
 	next.makeMove(moves[i]);

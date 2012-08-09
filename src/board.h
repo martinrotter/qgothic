@@ -3,8 +3,10 @@
 
 #include "figure.h"
 #include "location.h"
+#include "definitions.h"
 
 #include <QList>
+#include "gsettings.h"
 
 
 class Move;
@@ -31,7 +33,9 @@ class Board {
 	/*!
 	 * \brief Constructs new Board.
 	 */
-	Board(int max_moves_without_jump = 60, int size = 8);
+	Board(int max_moves_without_jump = GSettings::value(SET_GAME,
+							    "max_moves_without_jump", 60).toInt(),
+	      int size = 8);
 
 	/*!
 	 * \brief Constructs new Board by copying board.
@@ -48,11 +52,12 @@ class Board {
 	int getActualMovesNoJump() const;
 	void setActualMovesNoJump(int moves_without_jump);
 	int getMaxMovesNoJump() const;
+	void setMaxMovesNoJump(int moves_without_jump);
 
 	/*!
 	 * \brief Makes Move on this Board.
 	 * \param move Move to make.
-	 * \param update_state If true, then properties of this Board are updated after the Move is taken.
+	 * \param update_state If true, then properties of this Board are updated after the Move is take.
 	 */
 	void makeMove(const Move &move, bool update_state = true);
 

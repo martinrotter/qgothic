@@ -74,7 +74,7 @@ QVariant HistoryModel::data(const QModelIndex &index, int role) const {
 		return m_history->at(index.row())->getMove()->toFiguresString();
 	    }
 	    else {
-		return tr("No move were available for this player in this game phase.");
+		return tr("No moves were available for this player in this game phase.");
 	    }
 	}
 	default:

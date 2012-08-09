@@ -121,6 +121,56 @@
               <property name="horizontalSpacing">
                <number>6</number>
               </property>
+              <item row="0" column="1">
+               <widget class="QLabel" name="label">
+                <property name="toolTip">
+                 <string>Indicates maximum count of continuously playable non-jumping moves. If this number is reached during the game, then game ends.</string>
+                </property>
+                <property name="text">
+                 <string>Maximum number of moves without jump</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+                <property name="textInteractionFlags">
+                 <set>Qt::NoTextInteraction</set>
+                </property>
+                <property name="buddy">
+                 <cstring>m_spinMoves</cstring>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="GSpinBox" name="m_spinMoves">
+                <property name="wrapping">
+                 <bool>false</bool>
+                </property>
+                <property name="readOnly">
+                 <bool>false</bool>
+                </property>
+                <property name="buttonSymbols">
+                 <enum>QAbstractSpinBox::PlusMinus</enum>
+                </property>
+                <property name="keyboardTracking">
+                 <bool>false</bool>
+                </property>
+                <property name="suffix">
+                 <string> moves</string>
+                </property>
+                <property name="minimum">
+                 <number>30</number>
+                </property>
+                <property name="maximum">
+                 <number>80</number>
+                </property>
+                <property name="singleStep">
+                 <number>2</number>
+                </property>
+                <property name="value">
+                 <number>60</number>
+                </property>
+               </widget>
+              </item>
               <item row="1" column="1" colspan="2">
                <widget class="QGroupBox" name="groupBox_7">
                 <property name="title">
@@ -502,6 +552,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>GSpinBox</class>
+   <extends>QSpinBox</extends>
+   <header>gspinbox.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections>
   <connection>

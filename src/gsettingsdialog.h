@@ -27,8 +27,8 @@ class GSettingsDialog : public QDialog {
 	void createConnections();
 
 	// Players setup.
-	void loadPlayers();
-	void setPlayers();
+	void loadGame();
+	void setGame();
 
 	// Appearance setup.
 	void loadAppearance();

@@ -21,6 +21,12 @@ class Algorithms {
 	static int minimax(Figure::Color original_color, Figure::Color actual_color,
 			   Board &board, int depth, int (*eval_function)(Board &));
 
+	static int alfabeta_closer(int price);
+	static int alfabeta_further(int price);
+	static int alfabeta(Figure::Color original_color, Figure::Color actual_color,
+			    Board &board, int depth, int (*eval_function)(Board &),
+			    int alfa, int beta);
+
     private:
 	Algorithms();
 

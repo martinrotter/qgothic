@@ -78,6 +78,7 @@ bool Game::saveGame(const QString &file_name) {
 	// ještě přidat nastavení hráčů
 	// Write information about game (eg. players, current player).
 	writer.writeStartElement("game");
+	writer.writeTextElement("max-moves-without-jump", QString::number(m_board->getMaxMovesNoJump()));
 	writer.writeTextElement("starting-player", QString::number(m_startingPlayer));
 	writer.writeTextElement("current-player", QString::number(m_currentPlayer));
 	writer.writeTextElement("white-player", QString::number(getPlayer(Figure::WHITE).getState()));
@@ -177,7 +178,7 @@ bool Game::loadGame(const QString &file_name) {
 	    return false;
 	}
 
-	int tmp_starting_player;
+	int tmp_starting_player, max_moves_without_jump;
 	Player::State white_player, black_player;
 
 	QList<QPair<Move, int> > tmp_his_items;
@@ -190,6 +191,9 @@ bool Game::loadGame(const QString &file_name) {
 	if (list_saved.at(0).toElement().attribute("version") != APP_VERSION) {
 	    return false;
 	}
+
+	QDomNodeList list_max = reader.elementsByTagName("max-moves-without-jump");
+	max_moves_without_jump = list_max.at(0).toElement().text().toInt();
 
 	QDomNodeList list_starting = reader.elementsByTagName("starting-player");
 	tmp_starting_player = list_starting.at(0).toElement().text().toInt();
@@ -250,6 +254,9 @@ bool Game::loadGame(const QString &file_name) {
 
 
 	GSettings::setValue(SET_GAME, "starting_player", tmp_starting_player);
+	GSettings::setValue(SET_GAME, "max_moves_without_jump", max_moves_without_jump);
+
+	m_board->setMaxMovesNoJump(max_moves_without_jump);
 	setStartingPlayer(tmp_starting_player);
 	m_currentPlayer = tmp_starting_player;
 	m_history->setIndex(0);
@@ -270,6 +277,7 @@ bool Game::loadGame(const QString &file_name) {
 void Game::newGame() {
     m_board->setInitialPositions();
     m_board->setActualMovesNoJump(0);
+    m_board->setMaxMovesNoJump(GSettings::value(SET_GAME, "max_moves_without_jump", 60).toInt());
     m_board->setState(Board::ORDINARY);
     m_isSaved = false;
     m_history->clear();
@@ -308,7 +316,7 @@ void Game::informAboutHistory() {
     m_isSaved = false;
 
     emit canUndo(m_history->canUndo());
-    qDebug() << "can redo: " << m_history->canRedo();
+    //qDebug() << "can redo: " << m_history->canRedo();
     emit canRedo(m_history->canRedo());
 }
 
@@ -369,8 +377,8 @@ void Game::undo(bool repaint) {
 	m_history->decrement();
 
 	m_currentPlayer = m_currentPlayer == 0 ? 1 : 0;
-	qDebug() << "current player: " << m_currentPlayer;
-	qDebug() << "tahy beze skoku: " << m_board->getActualMovesNoJump();
+	//qDebug() << "current player: " << m_currentPlayer;
+	//qDebug() << "tahy beze skoku: " << m_board->getActualMovesNoJump();
 
 	if (repaint) {
 	    emit boardChanged();
@@ -380,7 +388,7 @@ void Game::undo(bool repaint) {
 	informAboutHistory();
     }
     else {
-	qDebug() << "cannot undo";
+	//qDebug() << "cannot undo";
     }
 }
 
@@ -397,8 +405,8 @@ void Game::redo(bool repaint) {
 	m_board->setActualMovesNoJump(item_to_undo->getMovesWithoutJump());
 
 	m_currentPlayer = m_currentPlayer == 0 ? 1 : 0;
-	qDebug() << "current player: " << m_currentPlayer;
-	qDebug() << "tahy beze skoku: " << m_board->getActualMovesNoJump();
+	//qDebug() << "current player: " << m_currentPlayer;
+	//qDebug() << "tahy beze skoku: " << m_board->getActualMovesNoJump();
 
 	if (repaint) {
 	    emit boardChanged();
@@ -408,7 +416,7 @@ void Game::redo(bool repaint) {
 	informAboutHistory();
     }
     else {
-	qDebug() << "cannot redo";
+	//qDebug() << "cannot redo";
     }
 }
 

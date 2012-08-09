@@ -32,7 +32,7 @@ void Generator::run() {
 	return;
     }
     else {
-	setPriority(QThread::TimeCriticalPriority);
+	//setPriority(QThread::TimeCriticalPriority);
 	m_active = true;
 	Move move = Intelligence::computerMove(m_applicant, *m_board);
 	emit moveGenerated(move);

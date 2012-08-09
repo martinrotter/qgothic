@@ -457,7 +457,7 @@ QTreeView::branch:closed:has-children:has-siblings {
      <x>0</x>
      <y>0</y>
      <width>804</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="m_menuGame">
@@ -527,6 +527,10 @@ QTreeView::branch:closed:has-children:has-siblings {
    </property>
   </action>
   <action name="m_actionBrowseHelp">
+   <property name="icon">
+    <iconset resource="../resources/qgothic.qrc">
+     <normaloff>:/graphics/application-help.png</normaloff>:/graphics/application-help.png</iconset>
+   </property>
    <property name="text">
     <string>&amp;Help</string>
    </property>
@@ -583,6 +587,10 @@ QTreeView::branch:closed:has-children:has-siblings {
    </property>
   </action>
   <action name="m_actionBestMove">
+   <property name="icon">
+    <iconset resource="../resources/qgothic.qrc">
+     <normaloff>:/graphics/game-best-move.png</normaloff>:/graphics/game-best-move.png</iconset>
+   </property>
    <property name="text">
     <string>&amp;Find Best Move</string>
    </property>

@@ -12,12 +12,13 @@ GSettingsDialog::GSettingsDialog(Game *game, GMainWindow *parent) :
     // Prepare interface.
     //setFixedSize(sizeHint().width(), sizeHint().height());
     m_ui->m_stackedSections->setCurrentIndex(0);
+    m_ui->m_spinMoves->setLineEditReadOnly(true);
 
     // Create connections for members.
     createConnections();
 
-    // Load players.
-    loadPlayers();
+    // Load game.
+    loadGame();
     enablePlayerBoxes();
     changePlayerIcons();
     // Load appearance.
@@ -28,7 +29,7 @@ GSettingsDialog::~GSettingsDialog() {
     delete m_ui;
 }
 
-void GSettingsDialog::loadPlayers() {
+void GSettingsDialog::loadGame() {
     int white_dif = GSettings::value(SET_GAME, "white_player_dif", 0).toInt();
     int black_dif = GSettings::value(SET_GAME, "black_player_dif", 2).toInt();
 
@@ -42,6 +43,8 @@ void GSettingsDialog::loadPlayers() {
 
     m_ui->m_comboWhite->setCurrentIndex(white_state == Player::HUMAN ? 0 : 1);
     m_ui->m_comboBlack->setCurrentIndex(black_state == Player::HUMAN ? 0 : 1);
+
+    m_ui->m_spinMoves->setValue(GSettings::value(SET_GAME, "max_moves_without_jump", 60).toInt());
 
     QRadioButton *buttons_white[] = {
 	m_ui->m_whiteEasy, m_ui->m_whiteMedium, m_ui->m_whiteHard
@@ -125,7 +128,7 @@ void GSettingsDialog::createConnections() {
     connect(m_ui->m_radioWhiteStarts, SIGNAL(toggled(bool)), this, SLOT(changePlayerIcons()));
 }
 
-void GSettingsDialog::setPlayers() {
+void GSettingsDialog::setGame() {
     Player white;
     white.setColor(Figure::WHITE);
     Player black;
@@ -164,6 +167,7 @@ void GSettingsDialog::setPlayers() {
     GSettings::setValue(SET_GAME, "white_player_dif", white.getState());
     GSettings::setValue(SET_GAME, "black_player_dif", black.getState());
     GSettings::setValue(SET_GAME, "starting_player", static_cast<int>(m_ui->m_radioBlackStarts->isChecked()));
+    GSettings::setValue(SET_GAME, "max_moves_without_jump", m_ui->m_spinMoves->value());
 }
 
 void GSettingsDialog::loadAppearance() {
@@ -181,7 +185,7 @@ void GSettingsDialog::setAppearance() {
 void GSettingsDialog::applySettings() {
     //GSettings::getSettings()->beginGroup("Players");
     // Apply players setup.
-    setPlayers();
+    setGame();
     // GSettings::getSettings()->endGroup();
 
     //GSettings::getSettings()->beginGroup("Appearance");

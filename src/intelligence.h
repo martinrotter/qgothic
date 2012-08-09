@@ -37,6 +37,9 @@ class Intelligence {
 	static Move minimaxMove(Player applicant, Board &board,
 				int depth, int (*eval_function)(Board &));
 
+	static Move alfabetaMove(Player applicant, Board &board,
+				 int depth, int (*eval_function)(Board &));
+
     private:
 	Intelligence();
 

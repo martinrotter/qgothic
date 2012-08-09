@@ -27,6 +27,8 @@
         <file>graphics/status-winner.png</file>
         <file>graphics/game-jumps.png</file>
         <file>graphics/game-pawns.png</file>
+        <file>graphics/application-help.png</file>
+        <file>graphics/game-best-move.png</file>
     </qresource>
     <qresource prefix="/support">
         <file>doc/doxygen.css</file>

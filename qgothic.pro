@@ -45,7 +45,8 @@ SOURCES += src/main.cpp \
     src/historymodel.cpp \
     src/gtreeview.cpp \
     src/gsettings.cpp \
-    src/3rd-party/simplecrypt.cpp
+    src/3rd-party/simplecrypt.cpp \
+    src/gspinbox.cpp
 
 HEADERS += \
     src/location.h \
@@ -71,7 +72,8 @@ HEADERS += \
     src/gtreeview.h \
     src/gsettings.h \
     src/3rd-party/simplecrypt.h \
-    src/documentation.h
+    src/documentation.h \
+    src/gspinbox.h
 
 FORMS += \
     ui/gmainwindow.ui \

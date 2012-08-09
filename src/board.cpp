@@ -116,6 +116,10 @@ void Board::setActualMovesNoJump(int moves_without_jump) {
     m_actualMovesNoJump = moves_without_jump;
 }
 
+void Board::setMaxMovesNoJump(int moves_without_jump) {
+    m_maxMovesNoJump = moves_without_jump;
+}
+
 int Board::getMaxMovesNoJump() const {
     return m_maxMovesNoJump;
 }
