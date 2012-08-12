@@ -88,8 +88,13 @@ QList<Move> Referee::getQueenJumps(const Location &location, Board &board) {
     foreach (Location dir, getQueenDirections()) {
 	//qDebug() << dir.toString();
 	Location current_location(location);
-
+	int count = 0;	// oddělat
 	do {
+	    // odděla větvení
+	    // nebo filtrovat tahy, které skáčou stejné figurky, ale v jiném pořadí
+	    if (count++ > 100) {
+		break;
+	    }
 	    current_location += dir;
 	    // posunuli jsme se na další pozici a kontrolujeme zda na ní je protihráč
 	    // pokud ano tak skáčeme na libovolnou VOLNOU pozici za tímto kamenem

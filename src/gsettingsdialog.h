@@ -30,6 +30,10 @@ class GSettingsDialog : public QDialog {
 	void loadGame();
 	void setGame();
 
+	// Language setup.
+	void loadLanguages();
+	void setLanguages();
+
 	// Appearance setup.
 	void loadAppearance();
 	void setAppearance();
@@ -46,6 +50,8 @@ class GSettingsDialog : public QDialog {
 	Ui::GSettingsDialog *m_ui;
 	Game *m_game;
 	GMainWindow *m_gameWindow;
+
+	QString m_currentLanguage;
 
 };
 

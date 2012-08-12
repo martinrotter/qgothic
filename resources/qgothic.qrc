@@ -29,8 +29,6 @@
         <file>graphics/game-pawns.png</file>
         <file>graphics/application-help.png</file>
         <file>graphics/game-best-move.png</file>
-    </qresource>
-    <qresource prefix="/support">
         <file>doc/doxygen.css</file>
         <file>doc/tab_a.png</file>
         <file>doc/tab_b.png</file>
@@ -38,5 +36,8 @@
         <file>doc/tab_s.png</file>
         <file>doc/tabs.css</file>
         <file>doc/user-guide.html</file>
+        <file>translations/Cestina (cs).qm</file>
+        <file>translations/English (en).qm</file>
+        <file>translations/qt/qt_cs.qm</file>
     </qresource>
 </RCC>

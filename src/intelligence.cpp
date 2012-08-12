@@ -19,12 +19,25 @@ Move Intelligence::computerMove(Player applicant, Board &board) {
     srand((unsigned int)time(0));
 
     switch (applicant.getState()) {
+	case Player::HUMAN: {
+	    switch (GSettings::value(SET_GAME, "strategy-best-move", 0).toInt()) {
+		case 1:
+		    qDebug() << "advanced strategy";
+		    return minimaxMove(applicant, board, 2, Strategy::advanced);
+		case 0:
+		default:
+		    qDebug() << "defauult strategy";
+		    return minimaxMove(applicant, board, 2, Strategy::simple);
+	    }
+	}
 	case Player::EASY:
 	    return randomMove(applicant, board);
 	case Player::MEDIUM:
-	case Player::HUMAN:
 	    return minimaxMove(applicant, board, 2, Strategy::simple);
 	case Player::HARD:
+	    // sem dát 2
+	    // minimaxMove
+	    // alfabetaMove
 	    return minimaxMove(applicant, board, 2, Strategy::advanced);
 	default:
 	    return randomMove(applicant, board);
@@ -53,7 +66,7 @@ Move Intelligence::alfabetaMove(Player applicant, Board &board,
     if (moves.size() == 0) {
 	//Board next(board);
 	//actual_price = -Algorithms::alfabeta(applicant.getColor(), Figure::negateColor(applicant.getColor()),
-					    //next, depth-1, eval_function, -);
+	//next, depth-1, eval_function, -);
 	qDebug() << "NO MOVES AVAILABLE FOR THIS PLAYER" << "\a";
 	return Move::getInvalidMove();
     }
@@ -68,9 +81,9 @@ Move Intelligence::alfabetaMove(Player applicant, Board &board,
 	    best_indices.clear();
 	    best_indices.append(i);
 	}
-	else if (actual_price == alfa) {
+	/*else if (actual_price == alfa) {
 	    best_indices.append(i);
-	}
+	}*/
     }
     return moves[best_indices[rand() % best_indices.size()]];
 }

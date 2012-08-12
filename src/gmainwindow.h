@@ -24,7 +24,12 @@ class GMainWindow : public QMainWindow {
 	explicit GMainWindow(QWidget *parent = 0);
 	~GMainWindow();
 
+	// We need this to be public because of "opening" *.qgo files from OS.
+	void loadFromFile(const QString &file_name);
+
     protected:
+	void dragEnterEvent(QDragEnterEvent *e);
+	void dropEvent(QDropEvent *e);
 	void closeEvent(QCloseEvent *e);
 	void keyPressEvent(QKeyEvent *e);
 

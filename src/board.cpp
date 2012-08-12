@@ -175,13 +175,13 @@ void Board::makeMove(const Move &move, bool update_state) {
 
 void Board::makeInverseMove(const Move &move, bool update_state) {
     if (move.isInvalid() == false) {
+	operator()(move.getTo()) = Figure::EMPTY;
 	if (move.getPromoted()) {
-	    operator()(move.getFrom()) = Figure::degrade(operator()(move.getTo()));
+	    operator()(move.getFrom()) = Figure::degrade(move.getFigureType());
 	}
 	else {
-	    operator()(move.getFrom()) = operator()(move.getTo());
+	    operator()(move.getFrom()) = move.getFigureType();
 	}
-	operator()(move.getTo()) = Figure::EMPTY;
 
 	foreach (JumpedFigure fig, move.getJumpedFigures()) {
 	    operator()(fig.first) = fig.second;

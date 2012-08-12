@@ -86,6 +86,17 @@ void GMainWindow::keyPressEvent(QKeyEvent *e) {
 
 }
 
+void GMainWindow::dragEnterEvent(QDragEnterEvent *e) {
+    e->acceptProposedAction();
+}
+
+void GMainWindow::dropEvent(QDropEvent *e) {
+    if (e->mimeData()->hasUrls() == true) {
+	e->acceptProposedAction();
+	loadFromFile(e->mimeData()->urls().at(0).toString().split("///").at(1));
+    }
+}
+
 void GMainWindow::closeEvent(QCloseEvent *e) {
     QMainWindow::closeEvent(e);
 
@@ -502,16 +513,7 @@ bool GMainWindow::save() {
     return false;
 }
 
-void GMainWindow::load() {
-    pauseGame();
-
-    if (checkIfSaved() == Game::CANCELLED) {
-	return;
-    }
-
-    QString file_name = QFileDialog::getOpenFileName(this, tr("Load Game"),
-						     QDir::homePath(),
-						     APP_SAVE_FILTER);
+void GMainWindow::loadFromFile(const QString &file_name) {
     if (file_name.size() > 0) {
 	if (m_game->loadGame(file_name) == false) {
 	    QMessageBox::warning(this, WORD_ERROR, tr("Game couldn't be loaded because this file is not in valid format or was saved under another version of this application."
@@ -526,6 +528,19 @@ void GMainWindow::load() {
 	    m_ui->m_gboard->repaint();
 	}
     }
+}
+
+void GMainWindow::load() {
+    pauseGame();
+
+    if (checkIfSaved() == Game::CANCELLED) {
+	return;
+    }
+
+    QString file_name = QFileDialog::getOpenFileName(this, tr("Load Game"),
+						     QDir::homePath(),
+						     APP_SAVE_FILTER);
+    loadFromFile(file_name);
 }
 
 void GMainWindow::newGame() {
@@ -550,6 +565,6 @@ void GMainWindow::about() {
 void GMainWindow::guideDocumentation() {
     pauseGame();
     GReferenceDocDialog(tr("User Guide"),
-			"qrc:/support/doc/user-guide.html",
+			"qrc:/doc/user-guide.html",
 			this).exec();
 }

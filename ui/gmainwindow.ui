@@ -28,6 +28,9 @@
     <height>5370</height>
    </size>
   </property>
+  <property name="acceptDrops">
+   <bool>true</bool>
+  </property>
   <property name="windowTitle">
    <string>QGothic</string>
   </property>
@@ -72,7 +75,7 @@
           <item row="0" column="0">
            <widget class="QLabel" name="m_labelWhiteType">
             <property name="text">
-             <string notr="true">s</string>
+             <string notr="true"/>
             </property>
             <property name="textFormat">
              <enum>Qt::RichText</enum>
@@ -88,7 +91,7 @@
           <item row="0" column="2">
            <widget class="QLabel" name="m_labelNoJumpMovesWhite">
             <property name="text">
-             <string>s</string>
+             <string/>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -107,7 +110,7 @@
              </size>
             </property>
             <property name="text">
-             <string notr="true">s</string>
+             <string notr="true"/>
             </property>
             <property name="textFormat">
              <enum>Qt::RichText</enum>
@@ -123,7 +126,7 @@
           <item row="0" column="1">
            <widget class="QLabel" name="m_labelWhiteNumber">
             <property name="text">
-             <string>s</string>
+             <string/>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -179,7 +182,7 @@
             <string>Play previous move.</string>
            </property>
            <property name="text">
-            <string>Zpět</string>
+            <string>Undo</string>
            </property>
            <property name="icon">
             <iconset resource="../resources/qgothic.qrc">
@@ -247,7 +250,7 @@
             <string>Play next move.</string>
            </property>
            <property name="text">
-            <string>Vpřed</string>
+            <string>Redo</string>
            </property>
            <property name="icon">
             <iconset resource="../resources/qgothic.qrc">
@@ -329,7 +332,7 @@ QTreeView::branch:closed:has-children:has-siblings {
           <item row="0" column="0">
            <widget class="QLabel" name="m_labelBlackType">
             <property name="text">
-             <string notr="true">s</string>
+             <string notr="true"/>
             </property>
             <property name="textFormat">
              <enum>Qt::RichText</enum>
@@ -345,7 +348,7 @@ QTreeView::branch:closed:has-children:has-siblings {
           <item row="0" column="1">
            <widget class="QLabel" name="m_labelBlackNumber">
             <property name="text">
-             <string>s</string>
+             <string/>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -364,7 +367,7 @@ QTreeView::branch:closed:has-children:has-siblings {
              </size>
             </property>
             <property name="text">
-             <string notr="true">s</string>
+             <string notr="true"/>
             </property>
             <property name="textFormat">
              <enum>Qt::RichText</enum>
@@ -380,7 +383,7 @@ QTreeView::branch:closed:has-children:has-siblings {
           <item row="0" column="2">
            <widget class="QLabel" name="m_labelNoJumpMovesBlack">
             <property name="text">
-             <string>s</string>
+             <string/>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -408,7 +411,7 @@ QTreeView::branch:closed:has-children:has-siblings {
              </size>
             </property>
             <property name="text">
-             <string>s</string>
+             <string/>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -505,7 +508,7 @@ QTreeView::branch:closed:has-children:has-siblings {
     <string>&amp;Quit</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Q</string>
+    <string notr="true">Ctrl+Q</string>
    </property>
    <property name="priority">
     <enum>QAction::LowPriority</enum>
@@ -520,7 +523,7 @@ QTreeView::branch:closed:has-children:has-siblings {
     <string>&amp;About QGothic</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+A</string>
+    <string notr="true">Ctrl+A</string>
    </property>
    <property name="priority">
     <enum>QAction::LowPriority</enum>
@@ -535,7 +538,7 @@ QTreeView::branch:closed:has-children:has-siblings {
     <string>&amp;Help</string>
    </property>
    <property name="shortcut">
-    <string>F1</string>
+    <string notr="true">F1</string>
    </property>
    <property name="priority">
     <enum>QAction::LowPriority</enum>
@@ -550,7 +553,7 @@ QTreeView::branch:closed:has-children:has-siblings {
     <string>&amp;New</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+N</string>
+    <string notr="true">Ctrl+N</string>
    </property>
    <property name="priority">
     <enum>QAction::LowPriority</enum>
@@ -565,7 +568,7 @@ QTreeView::branch:closed:has-children:has-siblings {
     <string>&amp;Load</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+L</string>
+    <string notr="true">Ctrl+L</string>
    </property>
    <property name="priority">
     <enum>QAction::LowPriority</enum>
@@ -580,7 +583,7 @@ QTreeView::branch:closed:has-children:has-siblings {
     <string>&amp;Save</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+S</string>
+    <string notr="true">Ctrl+S</string>
    </property>
    <property name="priority">
     <enum>QAction::LowPriority</enum>
@@ -595,7 +598,7 @@ QTreeView::branch:closed:has-children:has-siblings {
     <string>&amp;Find Best Move</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+B</string>
+    <string notr="true">Ctrl+B</string>
    </property>
    <property name="priority">
     <enum>QAction::HighPriority</enum>
@@ -613,7 +616,7 @@ QTreeView::branch:closed:has-children:has-siblings {
     <string>Configuration</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+C</string>
+    <string notr="true">Ctrl+C</string>
    </property>
    <property name="priority">
     <enum>QAction::LowPriority</enum>

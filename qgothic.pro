@@ -83,7 +83,14 @@ FORMS += \
 RESOURCES += \
     resources/qgothic.qrc \
 
+TRANSLATIONS    = "resources/translations/English (en).ts" \
+    "resources/translations/Cestina (cs).ts"
+
 # OS dependent settings
 win32 {
     win32:RC_FILE = resources/windows/qgothic.rc
 }
+
+OTHER_FILES += \
+    "resources/translations/English (en).ts" \
+    "resources/translations/Cestina (cs).ts"

@@ -4,6 +4,9 @@
 #include "game.h"
 #include "definitions.h"
 
+#include <QMessageBox>
+#include <QProcess>
+
 
 GSettingsDialog::GSettingsDialog(Game *game, GMainWindow *parent) :
     QDialog(parent), m_ui(new Ui::GSettingsDialog), m_game(game), m_gameWindow(parent) {
@@ -21,12 +24,45 @@ GSettingsDialog::GSettingsDialog(Game *game, GMainWindow *parent) :
     loadGame();
     enablePlayerBoxes();
     changePlayerIcons();
+
     // Load appearance.
     loadAppearance();
+    loadLanguages();
 }
 
 GSettingsDialog::~GSettingsDialog() {
     delete m_ui;
+}
+
+void GSettingsDialog::loadLanguages() {
+    m_ui->m_listLanguages->addItems(QDir(LANG_BASE).entryList(QStringList() << "*.qm"));
+    QList<QListWidgetItem*> list = m_ui->m_listLanguages->findItems(GSettings::value(SET_APPEAR, "language",
+										    "English (en).qm").toString(),
+								   Qt::MatchExactly);
+    if (list.size() > 0) {
+	m_ui->m_listLanguages->setCurrentItem(list.at(0));
+	m_currentLanguage = list.at(0)->text();
+    }
+}
+
+void GSettingsDialog::setLanguages() {
+    GSettings::setValue(SET_APPEAR, "language", m_ui->m_listLanguages->currentItem()->text());
+
+    if (m_ui->m_listLanguages->currentItem()->text() != m_currentLanguage) {
+	QMessageBox msg_box(this);
+	msg_box.setWindowTitle(tr("Language Changed"));
+	msg_box.setIcon(QMessageBox::Information);
+	msg_box.setText(tr("Language of QGothic has been changed. zChanges will take effect when application gets restarted."));
+	msg_box.setInformativeText(tr("Do you want to restart now?"));
+	msg_box.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+	msg_box.setDefaultButton(QMessageBox::Save);
+	int restart_p = msg_box.exec();
+
+	if (restart_p == QMessageBox::Yes) {
+	    QProcess::startDetached(QApplication::applicationFilePath());
+	    qApp->exit();
+	}
+    }
 }
 
 void GSettingsDialog::loadGame() {
@@ -45,6 +81,8 @@ void GSettingsDialog::loadGame() {
     m_ui->m_comboBlack->setCurrentIndex(black_state == Player::HUMAN ? 0 : 1);
 
     m_ui->m_spinMoves->setValue(GSettings::value(SET_GAME, "max_moves_without_jump", 60).toInt());
+    m_ui->m_comboStrategy->setCurrentIndex(GSettings::value(SET_GAME, "strategy-best-move", 0).toInt());
+
 
     QRadioButton *buttons_white[] = {
 	m_ui->m_whiteEasy, m_ui->m_whiteMedium, m_ui->m_whiteHard
@@ -111,7 +149,8 @@ void GSettingsDialog::changePlayerIcons() {
 }
 
 void GSettingsDialog::createConnections() {
-    connect(m_ui->m_buttonOk, SIGNAL(clicked()), this, SLOT(applySettings()));
+    // Apply settings when OK button triggered.
+    connect(m_ui->m_buttonBox, SIGNAL(accepted()), this, SLOT(applySettings()));
 
     // Player setup connections.
     connect(m_ui->m_comboWhite, SIGNAL(currentIndexChanged(int)), this, SLOT(enablePlayerBoxes()));
@@ -168,6 +207,7 @@ void GSettingsDialog::setGame() {
     GSettings::setValue(SET_GAME, "black_player_dif", black.getState());
     GSettings::setValue(SET_GAME, "starting_player", static_cast<int>(m_ui->m_radioBlackStarts->isChecked()));
     GSettings::setValue(SET_GAME, "max_moves_without_jump", m_ui->m_spinMoves->value());
+    GSettings::setValue(SET_GAME, "strategy-best-move", m_ui->m_comboStrategy->currentIndex());
 }
 
 void GSettingsDialog::loadAppearance() {
@@ -183,15 +223,12 @@ void GSettingsDialog::setAppearance() {
 }
 
 void GSettingsDialog::applySettings() {
-    //GSettings::getSettings()->beginGroup("Players");
     // Apply players setup.
     setGame();
-    // GSettings::getSettings()->endGroup();
 
-    //GSettings::getSettings()->beginGroup("Appearance");
-    // Apply appearance setup.
+    // Apply appearance setup. Set languages at last.
     setAppearance();
-    //GSettings::getSettings()->endGroup();
+    setLanguages();
 
     accept();
 }

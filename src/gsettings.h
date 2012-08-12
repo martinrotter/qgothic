@@ -23,6 +23,8 @@ class GSettings {
 	 */
 	static QSettings *s_settings;
 
+	static QByteArray *s_array;
+
 	/*!
 	 * \brief Sets up applications-wide settings.
 	 * \return Method returns status of settings.

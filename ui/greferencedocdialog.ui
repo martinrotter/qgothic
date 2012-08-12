@@ -19,6 +19,9 @@
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0" colspan="2">
     <widget class="QWebView" name="m_webDocs">
+     <property name="contextMenuPolicy">
+      <enum>Qt::NoContextMenu</enum>
+     </property>
      <property name="url">
       <url>
        <string>about:blank</string>
