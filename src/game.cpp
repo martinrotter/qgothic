@@ -34,10 +34,6 @@ Game::Game(QObject *parent) :
 
     int white_dif = GSettings::value(SET_GAME, "white_player_dif", 0).toInt();
     int black_dif = GSettings::value(SET_GAME, "black_player_dif", 2).toInt();
-
-    /*
-     * disable hard dif for now -> use < instead of  <=
-     */
     m_players << Player(white_dif <= Player::HARD && white_dif >= Player::HUMAN ?
 			    static_cast<Player::State>(white_dif) :
 			    Player::HUMAN,
@@ -154,11 +150,6 @@ bool Game::isSaved() const {
 }
 
 bool Game::loadGame(const QString &file_name) {
-    // načte data ze souboru xml do QByteArray
-    // dešifruje data
-    // z posledního řádku veme MD5 Sum a odstraní z dat
-    // ověří MD5 sum a načte historii a další nastavení z dat
-
     // Open file with saved game.
     QFile file(file_name);
     if (file.open(QIODevice::ReadOnly | QIODevice::Text) == true) {
@@ -211,16 +202,12 @@ bool Game::loadGame(const QString &file_name) {
 	    // Set moves without jumps for this move.
 	    new_move.second = list_items.at(i).toElement().attribute("moves-without-jumps").toInt();
 
-	    // načti zbytek tahu, odkud, kam, jaka figurka
-	    // a preskocene figurky
-
 	    QDomElement move = list_items.at(i).childNodes().at(0).toElement();
 	    new_move.first.setFrom(Location::fromString(move.attribute("from")));
 	    new_move.first.setTo(Location::fromString(move.attribute("to")));
 	    new_move.first.setFigureType(static_cast<Figure::Type>(move.attribute("type-of-figure").toInt()));
 	    new_move.first.setPromoted(static_cast<bool>(move.attribute("promoted").toInt()));
 
-	    // projdi skočené figurky
 	    QDomNodeList list_jumped_figures = move.elementsByTagName("figure");
 	    for (int i = 0; i < list_jumped_figures.size(); i++) {
 		QDomElement new_figure = list_jumped_figures.at(i).toElement();
@@ -230,13 +217,6 @@ bool Game::loadGame(const QString &file_name) {
 	    }
 	    tmp_his_items.append(new_move);
 	}
-
-	// checking loaded data
-	/*
-	foreach (Item move, tmp_his_items) {
-	    qDebug() << move.first;
-	}
-	*/
 
 	// Set data into game and start new game.
 	newGame();
@@ -260,13 +240,6 @@ bool Game::loadGame(const QString &file_name) {
 	setStartingPlayer(tmp_starting_player);
 	m_currentPlayer = tmp_starting_player;
 	m_history->setIndex(0);
-
-	//informAboutHistory();
-
-	//emit initialPlayerChanged(tmp);
-	//emit playersSwapped();
-	//emit boardChanged();
-
 	return true;
     }
     else {
@@ -282,9 +255,7 @@ void Game::newGame() {
     m_isSaved = false;
     m_history->clear();
 
-    //informAboutHistory();
     setState(Game::PAUSED);
-
     int current_player = GSettings::value(SET_GAME, "starting_player", 0).toInt();
     m_currentPlayer = current_player == 0 || current_player == 1 ?
 			  current_player :
@@ -307,41 +278,25 @@ void Game::computerMove() {
 	emit moveSearchStarted();
 	m_generator->searchMove(getCurrentPlayer(), m_board);
     }
-    // kontroluj stav hry
-    // proveď pc tah zavoláním generátoru, poté generátor vrátí signál
-    // a na ten signál se provede makeMove
 }
 
 void Game::informAboutHistory() {
     m_isSaved = false;
 
     emit canUndo(m_history->canUndo());
-    //qDebug() << "can redo: " << m_history->canRedo();
     emit canRedo(m_history->canRedo());
 }
 
 void Game::makeMove(const Move &move) {
-    // zkontroluj stav hry
     emit moveSearchFinished();
 
-    // tady to running, táhnutí lidského hráče při pauznutí hry
-    // We can make move only if game is running and it is not ended.
     if ((m_state == Game::RUNNING && getCurrentPlayer().getState() == Player::HUMAN) || m_board->getState() == Board::ORDINARY) {
 	m_isSaved = false;
 
 	m_board->makeMove(move);
 	m_history->addMove(move, m_board->getActualMovesNoJump());
     }
-    //qDebug() << "stav desky " << m_board->getState();
-    qDebug() << "pocet tahu beze skoku " << m_board->getActualMovesNoJump();
-    /*
-    if (getCurrentPlayer().getState() == Player::HUMAN && m_state == Game::PAUSED) {
-	emit humanTurnsWhenPaused();
-    }
-*/
-    // aktualizuj historii
-    // aktualizuj stav hry
-    // prohoď hráče na tahu a volej computerMove když je na tahu PC
+
     emit boardChanged();
     swapPlayer();
 }
@@ -361,63 +316,37 @@ Player Game::getCurrentPlayer() const {
 
 void Game::undo(bool repaint) {
     if (m_history->canUndo()) {
-
-	// nastavit pocet tahu beze skoku
-	// vratit o jeden tah
-	// to znamena vratit posledni tah v historii
-	// pak dekrementovat historii
 	HistoryItem *item_to_undo = m_history->at(m_history->getIndex());
 
-	//qDebug() << "undo item: pocet skoku " << item_to_undo->getMovesWithoutJump();
-
-	// tady jsem prohodil radky dva a dal -1 k preskocenym
-	// tahum, protoze vychazelo vyssi cislo
 	m_board->setActualMovesNoJump(m_history->at(m_history->getIndex()-1)->getMovesWithoutJump());
 	m_board->makeInverseMove(*item_to_undo->getMove());
 	m_history->decrement();
 
 	m_currentPlayer = m_currentPlayer == 0 ? 1 : 0;
-	//qDebug() << "current player: " << m_currentPlayer;
-	//qDebug() << "tahy beze skoku: " << m_board->getActualMovesNoJump();
-
 	if (repaint) {
 	    emit boardChanged();
 	    emit playersSwapped();
 	}
-
 	informAboutHistory();
     }
-    else {
-	//qDebug() << "cannot undo";
-    }
+    qDebug() << "Is undo available?" << m_history->canUndo();
 }
 
 void Game::redo(bool repaint) {
     if (m_history->canRedo()) {
-
-	// nastavit pocet tahu beze skoku
-	// vratit o jeden tah
-	// to znamena vratit posledni tah v historii
-	// pak dekrementovat historii
 	m_history->increment();
 	HistoryItem *item_to_undo = m_history->at(m_history->getIndex());
 	m_board->makeMove(*item_to_undo->getMove());
 	m_board->setActualMovesNoJump(item_to_undo->getMovesWithoutJump());
 
 	m_currentPlayer = m_currentPlayer == 0 ? 1 : 0;
-	//qDebug() << "current player: " << m_currentPlayer;
-	//qDebug() << "tahy beze skoku: " << m_board->getActualMovesNoJump();
-
 	if (repaint) {
 	    emit boardChanged();
 	    emit playersSwapped();
 	}
-
 	informAboutHistory();
     }
-    else {
-	//qDebug() << "cannot redo";
-    }
+    qDebug() << "Is redo available?" << m_history->canRedo();
 }
 
 int Game::getStartingPlayer() const {
@@ -443,7 +372,7 @@ Game::State Game::getState() const {
 
 void Game::swapPlayer() {
     m_currentPlayer = m_currentPlayer == 0 ? 1 : 0;
-    qDebug() << "current player: " << m_currentPlayer;
+    qDebug() << "Current player: " << m_currentPlayer;
     Board::State state =  m_board->getState();
     emit playersSwapped();
     if (state != Board::ORDINARY) {
@@ -454,7 +383,7 @@ void Game::swapPlayer() {
 	    computerMove();
 	}
 	else {
-	   fakeHumanMove();
+	    fakeHumanMove();
 	}
     }
 }

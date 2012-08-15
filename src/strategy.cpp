@@ -31,14 +31,14 @@ int Strategy::advanced(Board &board) {
 
     foreach (Location loc, loc_white) {
 	if (loc.getX() == 0 || loc.getX() == 7) {
-	    value += 2;
+	    value += 1;
 	}
 	value += board(loc) == Figure::WHITE_QUEEN ? 2*Figure::QUEEN : Figure::PAWN;
     }
 
     foreach (Location loc, loc_black) {
 	if (loc.getX() == 0 || loc.getX() == 7) {
-	    value -= 2;
+	    value -= 1;
 	}
 	value -= board(loc) == Figure::BLACK_QUEEN ? 2*Figure::QUEEN : Figure::PAWN;
     }

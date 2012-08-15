@@ -2,12 +2,14 @@
 #include "definitions.h"
 
 #include <QApplication>
+#include <QDebug>
 
 
 GSettings::GSettings() {
 }
 
 QSettings::Status GSettings::checkSettings() {
+    qDebug() << "Syncing settings.";
     s_settings->sync();
     return s_settings->status();
 }
@@ -39,8 +41,10 @@ QSettings::Status GSettings::setupSettings() {
 
     if (QFile(appPath).exists() == true) {
 	s_settings = new QSettings(appPath, QSettings::IniFormat);
+	qDebug().nospace() << "Initializing settings in " << appPath << ".";
     }
     else {
+	qDebug().nospace() << "Initializing settings in " << defaultPath << ".";
 	s_settings = new QSettings(defaultPath, QSettings::IniFormat);
     }
     return checkSettings();

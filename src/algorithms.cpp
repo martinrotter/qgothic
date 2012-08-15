@@ -65,7 +65,7 @@ int Algorithms::alfabeta(Figure::Color original_color, Figure::Color actual_colo
 	price = -alfabeta(original_color, Figure::negateColor(actual_color),
 			  next, depth-1, eval_function,
 			  alfabeta_further(-beta), alfabeta_further(-alfa));
-	qDebug() << "NO MOVES AVAILABLE FOR THIS PLAYER" << "\a";
+	qDebug() << QString("No moves available in recursive search in level %1.").arg(QString::number(depth));
     }
 
     foreach (Move move, moves) {
@@ -120,12 +120,13 @@ int Algorithms::minimax(Figure::Color original_color, Figure::Color actual_color
     if (moves.size() == 0) {
 	Board next(board);
 	next.makeMove(Move::getInvalidMove());
+
+	qDebug() << QString("No moves available in recursive search in level %1.").arg(QString::number(depth));
 	price = std::max(price, -minimax(original_color, Figure::negateColor(actual_color),
 					 next, depth-1, eval_function));
-	qDebug() << "NO MOVES AVAILABLE FOR THIS PLAYER" << "\a";
     }
 
-    qDebug() << "minimax recursive tahy: " << moves.size();
+    qDebug() << "Count of recursive moves is" << moves.size();
     foreach (Move move, moves) {
 	Board next(board);
 	next.makeMove(move);

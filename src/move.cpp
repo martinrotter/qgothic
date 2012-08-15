@@ -119,7 +119,7 @@ QString Move::toFiguresString() const {
 	return QObject::tr("no jumped figures in this move");
     }
     else {
-	QString jumped_figures("jumped figures in this move:");
+	QString jumped_figures = QObject::tr("jumped figures in this move:");
 	int counter = 1;
 	foreach (JumpedFigure fig, *m_jumpedFigures) {
 	    jumped_figures.append(QObject::tr("\n %1. %2 at location %3").arg(QString::number(counter++),

@@ -70,7 +70,6 @@ QList<Location> Board::getLocations(Figure::Color color) {
 
 void Board::updateState() {
     if (m_actualMovesNoJump >= m_maxMovesNoJump) {
-	//qDebug() << "max_jumps exceeded";
 	int black_count = Board::getLocations(Figure::BLACK).size();
 	int white_count = Board::getLocations(Figure::WHITE).size();
 	if (black_count > white_count) {
@@ -85,11 +84,9 @@ void Board::updateState() {
     }
     else if (Board::getLocations(Figure::BLACK).size() == 0) {
 	m_state = Board::WHITE_WON;
-	//qDebug() << "black_count: 0";
     }
     else if (Board::getLocations(Figure::WHITE).size() == 0) {
 	m_state = Board::BLACK_WON;
-	//qDebug() << "white_count: 0";
     }
     else {
 	m_state = Board::ORDINARY;

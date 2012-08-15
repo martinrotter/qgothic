@@ -3,6 +3,7 @@
 #include "gsettings.h"
 #include "greferencedocdialog.h"
 #include "ginterface.h"
+#include "gaboutdialog.h"
 #include "move.h"
 #include "intelligence.h"
 #include "definitions.h"
@@ -99,7 +100,6 @@ void GMainWindow::dropEvent(QDropEvent *e) {
 
 void GMainWindow::closeEvent(QCloseEvent *e) {
     QMainWindow::closeEvent(e);
-
     pauseGame();
 
     if (checkIfSaved() == Game::CANCELLED) {
@@ -107,7 +107,8 @@ void GMainWindow::closeEvent(QCloseEvent *e) {
     }
     else {
 	GSettings::checkSettings();
-	qDebug() << "exiting";
+	qDebug() << "QGothic is exiting.";
+
 	e->accept();
     }
 }
@@ -410,34 +411,34 @@ void GMainWindow::updateTable(bool just_turning) {
 	case Board::ORDINARY:
 	    m_ui->m_labelNoJumpMovesWhite->setText(GAM_PLAY_STYLE.arg("16",
 								      GAM_ORDINARY,
-								      GAM_ORD));
+								      tr("in action")));
 	    m_ui->m_labelNoJumpMovesBlack->setText(GAM_PLAY_STYLE.arg("16",
 								      GAM_ORDINARY,
-								      GAM_ORD));
+								      tr("in action")));
 	    break;
 	case Board::DRAW:
 	    m_ui->m_labelNoJumpMovesWhite->setText(GAM_PLAY_STYLE.arg("16",
 								      GAM_DRAW,
-								      GAM_DRAWING));
+								      tr("tiing")));
 	    m_ui->m_labelNoJumpMovesBlack->setText(GAM_PLAY_STYLE.arg("16",
 								      GAM_DRAW,
-								      GAM_DRAWING));
+								      tr("tiing")));
 	    break;
 	case Board::WHITE_WON:
 	    m_ui->m_labelNoJumpMovesWhite->setText(GAM_PLAY_STYLE.arg("16",
 								      GAM_WON,
-								      GAM_WINNING));
+								      tr("winning")));
 	    m_ui->m_labelNoJumpMovesBlack->setText(GAM_PLAY_STYLE.arg("16",
 								      GAM_LOST,
-								      GAM_LOSING));
+								      tr("losing")));
 	    break;
 	case Board::BLACK_WON:
 	    m_ui->m_labelNoJumpMovesWhite->setText(GAM_PLAY_STYLE.arg("16",
 								      GAM_LOST,
-								      GAM_LOSING));
+								      tr("losing")));
 	    m_ui->m_labelNoJumpMovesBlack->setText(GAM_PLAY_STYLE.arg("16",
 								      GAM_WON,
-								      GAM_WINNING));
+								      tr("winning")));
 	    break;
 	default:
 	    break;
@@ -454,33 +455,18 @@ void GMainWindow::updateTable(bool just_turning) {
 
     int white_count = m_game->getBoard()->getLocations(Figure::WHITE).size();
     int black_count = m_game->getBoard()->getLocations(Figure::BLACK).size();
-    white_count == 1
-	    ? m_ui->m_labelWhiteNumber->setText(GAM_PLAY_STYLE.arg("16",
-								   GAM_PAWNS,
-								   tr("%1 figure").arg(QString::number(white_count))))
-	    : m_ui->m_labelWhiteNumber->setText(GAM_PLAY_STYLE.arg("16",
-								   GAM_PAWNS,
-								   tr("%1 figures").arg(QString::number(white_count))));
-    black_count == 1
-	    ? m_ui->m_labelBlackNumber->setText(GAM_PLAY_STYLE.arg("16",
-								   GAM_PAWNS,
-								   tr("%1 figure").arg(QString::number(black_count))))
-	    : m_ui->m_labelBlackNumber->setText(GAM_PLAY_STYLE.arg("16",
-								   GAM_PAWNS,
-								   tr("%1 figures").arg(QString::number(black_count))));
-
-    /*
-    // Reset history view, so that all changes are reflected.
-    m_ui->m_historyView->reset();
-    m_ui->m_historyView->scrollToBottom();
-    */
-
+    m_ui->m_labelWhiteNumber->setText(GAM_PLAY_STYLE.arg("16",
+							 GAM_PAWNS,
+							 tr("%n figure(s)", "", white_count)));
+    m_ui->m_labelBlackNumber->setText(GAM_PLAY_STYLE.arg("16",
+							 GAM_PAWNS,
+							 tr("%n figure(s)", "", black_count)));
     if (just_turning) {
 	return;
     }
 
     QString states_texts[] = {
-	GAM_HUMAN, GAM_EASY, GAM_MEDIUM, GAM_HARD
+	tr("human"), tr("easy"), tr("medium"), tr("hard")
     };
     QString states_images[] = {
 	GAM_HUMAN_IMG, GAM_EASY_IMG, GAM_MEDIUM_IMG, GAM_HARD_IMG
@@ -499,12 +485,12 @@ bool GMainWindow::save() {
     pauseGame();
 
     QString file_name = QFileDialog::getSaveFileName(this, tr("Save Game"),
-						     QDir::homePath()+QDir::separator()+APP_SAVE_FILENAME,
-						     APP_SAVE_FILTER);
+						     QDir::homePath()+QDir::separator()+tr("my-saved-game.qgo"),
+						     tr("QGothic Game File (*.qgo);;All Files (*.*)"));
     if (file_name.size() > 0) {
 	if (m_game->saveGame(file_name) == false) {
-	    QMessageBox::warning(this, WORD_ERROR, tr("Game couldn't be saved because target file is not writable or some kind of other error occured."
-						      "\n\nFile: %1").arg(file_name));
+	    QMessageBox::warning(this, tr("Error"), tr("Game couldn't be saved because target file is not writable or some kind of other error occured."
+						       "\n\nFile: %1").arg(file_name));
 	}
 	else {
 	    return true;
@@ -516,8 +502,8 @@ bool GMainWindow::save() {
 void GMainWindow::loadFromFile(const QString &file_name) {
     if (file_name.size() > 0) {
 	if (m_game->loadGame(file_name) == false) {
-	    QMessageBox::warning(this, WORD_ERROR, tr("Game couldn't be loaded because this file is not in valid format or was saved under another version of this application."
-						      "\n\nFile: %1").arg(file_name));
+	    QMessageBox::warning(this, "Error", tr("Game couldn't be loaded because this file is not in valid format or was saved under another version of this application."
+						   "\n\nFile: %1").arg(file_name));
 	} else {
 	    //m_game->blockSignals(true);
 	    while (m_game->getHistory()->canRedo()) {
@@ -539,7 +525,7 @@ void GMainWindow::load() {
 
     QString file_name = QFileDialog::getOpenFileName(this, tr("Load Game"),
 						     QDir::homePath(),
-						     APP_SAVE_FILTER);
+						     tr("QGothic Game File (*.qgo);;All Files (*.*)"));
     loadFromFile(file_name);
 }
 
@@ -555,11 +541,7 @@ void GMainWindow::newGame() {
 
 void GMainWindow::about() {
     pauseGame();
-    QMessageBox::about(this, APP_NAME,
-		       APP_DESC + "\n\n"
-		       + tr("Made by %1.").arg(APP_AUTHOR)
-		       + "\n"
-		       + tr("Version %1").arg(APP_VERSION));
+    GAboutDialog(this).exec();
 }
 
 void GMainWindow::guideDocumentation() {

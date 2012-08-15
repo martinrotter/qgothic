@@ -46,7 +46,9 @@ SOURCES += src/main.cpp \
     src/gtreeview.cpp \
     src/gsettings.cpp \
     src/3rd-party/simplecrypt.cpp \
-    src/gspinbox.cpp
+    src/gspinbox.cpp \
+    src/gaboutdialog.cpp \
+    src/debug.cpp
 
 HEADERS += \
     src/location.h \
@@ -73,15 +75,18 @@ HEADERS += \
     src/gsettings.h \
     src/3rd-party/simplecrypt.h \
     src/documentation.h \
-    src/gspinbox.h
+    src/gspinbox.h \
+    src/gaboutdialog.h \
+    src/debug.h
 
 FORMS += \
     ui/gmainwindow.ui \
     ui/gsettingsdialog.ui \
-    ui/greferencedocdialog.ui
+    ui/greferencedocdialog.ui \
+    ui/gaboutdialog.ui
 
 RESOURCES += \
-    resources/qgothic.qrc \
+    resources/qgothic.qrc
 
 TRANSLATIONS    = "resources/translations/English (en).ts" \
     "resources/translations/Cestina (cs).ts"
