@@ -166,7 +166,7 @@ void GBoard::paintEvent(QPaintEvent *e) {
     // Count all necessary variables.
     int size = m_game->getBoard()->getSize();
     int block_size = (width()-2*m_offset)/size;
-    int x = m_offset + block_size*0.4, y = height() - m_offset*0.9;
+    int x = m_offset + block_size*0.45, y = height() - m_offset*0.8;
 
     // Draw border.
     p.fillRect(0, 0, width(), height(), Qt::transparent);
@@ -182,7 +182,7 @@ void GBoard::paintEvent(QPaintEvent *e) {
 	x += block_size;
     }
 
-    x = block_size*0.2; y = height() - m_offset*2.3;
+    x = block_size*0.15; y = height() - m_offset*2.45;
     for (int i = 0; i < size; i++) {
 	p.drawText(x, y, 10, 15, Qt::AlignCenter, QString::number(i+1));
 	y -= block_size;

@@ -1,6 +1,9 @@
 #include "gaboutdialog.h"
 #include "definitions.h"
 
+#include <QDate>
+#include <QDebug>
+
 
 GAboutDialog::GAboutDialog(QWidget *parent) : QDialog(parent), m_ui(new Ui::GAboutDialog) {
     m_ui->setupUi(this);
@@ -14,7 +17,10 @@ GAboutDialog::GAboutDialog(QWidget *parent) : QDialog(parent), m_ui(new Ui::GAbo
 				       "<b>Website:</b> %5<br>"
 				       "<b>Author:</b> %7 &lt;%8&gt;<br>"
 				       "<b>Qt Version:</b> %9 (compiled against %10)").arg(APP_NAME, APP_VERSION,
-											   __DATE__, __TIME__,
+											   QLocale(QLocale::C).toDate(QString(__DATE__).simplified(),
+														      QLatin1String("MMM d yyyy")).toString(Qt::DefaultLocaleLongDate),
+											   QLocale(QLocale::C).toTime(QString(__TIME__).simplified(),
+														      QLatin1String("hh:mm:ss")).toString(Qt::DefaultLocaleShortDate),
 											   APP_URL,
 											   APP_AUTHOR,
 											   APP_EMAIL,

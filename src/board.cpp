@@ -84,9 +84,11 @@ void Board::updateState() {
     }
     else if (Board::getLocations(Figure::BLACK).size() == 0) {
 	m_state = Board::WHITE_WON;
+	qDebug() << "black_count: 0";
     }
     else if (Board::getLocations(Figure::WHITE).size() == 0) {
 	m_state = Board::BLACK_WON;
+	qDebug() << "white_count: 0";
     }
     else {
 	m_state = Board::ORDINARY;

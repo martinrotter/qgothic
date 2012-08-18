@@ -56,10 +56,8 @@ bool Referee::isInQueenArea(const Location &location, const Figure::Color &color
 
     switch (color_of_figure) {
 	case Figure::WHITE:
-	    // bile figurky se stavaji kralovnami v rade cislo 7
 	    return location.getY() == board.getSize()-1;
 	case Figure::BLACK:
-	    // cerne figurky se stavaji kralovnami v rade cislo 0
 	    return location.getY() == 0;
 	default:
 	    return false;

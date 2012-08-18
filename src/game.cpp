@@ -269,6 +269,7 @@ void Game::newGame() {
 
 void Game::fakeHumanMove() {
     if (Referee::getMoves(getCurrentPlayer().getColor(), *m_board).size() == 0) {
+	qDebug() << "Faking move.";
 	makeMove(Move::getInvalidMove());
     }
 }
@@ -379,12 +380,16 @@ void Game::swapPlayer() {
 	emit gameFinished(state);
     }
     if (m_state == Game::RUNNING) {
+	qDebug() << "Player is turning.";
 	if (getCurrentPlayer().getState() != Player::HUMAN) {
 	    computerMove();
 	}
 	else {
 	    fakeHumanMove();
 	}
+    }
+    else {
+	qDebug() << "Game is not running.";
     }
 }
 

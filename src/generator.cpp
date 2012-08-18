@@ -17,7 +17,10 @@ void Generator::cancel() {
 }
 
 void Generator::searchMove(Player applicant, Board *board) {
+    // Problem s generatorem. Končil na použití generátoru, které nedávalo smysl.
+    qDebug() << "Starting move search. Thread is running:" << isRunning();
     if (m_active) {
+	qWarning() << "Generator is currently in use.";
 	return;
     }
     else {
@@ -28,15 +31,18 @@ void Generator::searchMove(Player applicant, Board *board) {
 }
 
 void Generator::run() {
-    if (m_active) {
-	return;
-    }
-    else {
-	//setPriority(QThread::TimeCriticalPriority);
-	m_active = true;
-	Move move = Intelligence::computerMove(m_applicant, *m_board);
-	emit moveGenerated(move);
-	//qDebug() << move.toString();
-	m_active = false;
-    }
+    //setPriority(QThread::TimeCriticalPriority);
+    m_active = true;
+    Move move = Intelligence::computerMove(m_applicant, *m_board);
+    //qDebug() << move.toString();
+    m_active = false;
+
+    emit moveGenerated(move);
+    //terminate();
+    //wait();
+
+    // Patrně je třeba nejdříve nastavit stav generátoru na false a až pak generovat signál,
+    // protože podle dokumentace není v nefrontovém S/S spojení definováno pořadí vykonání
+    // listenerů a aktuálního kódu v této metodě.
+
 }

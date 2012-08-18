@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>705</width>
-    <height>412</height>
+    <width>693</width>
+    <height>409</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -87,8 +87,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>529</width>
-            <height>361</height>
+            <width>525</width>
+            <height>364</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_2">
@@ -107,6 +107,165 @@
               <string>Game Configuration</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_9">
+              <item row="3" column="0">
+               <widget class="QGroupBox" name="groupBox_4">
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="title">
+                 <string>White Player</string>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_5">
+                 <item row="1" column="0">
+                  <widget class="QGroupBox" name="m_groupWhite">
+                   <property name="title">
+                    <string>Difficulty</string>
+                   </property>
+                   <layout class="QGridLayout" name="gridLayout_6">
+                    <item row="0" column="0">
+                     <widget class="QRadioButton" name="m_whiteEasy">
+                      <property name="text">
+                       <string>Easy</string>
+                      </property>
+                      <property name="checked">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="0">
+                     <widget class="QRadioButton" name="m_whiteMedium">
+                      <property name="text">
+                       <string>Medium</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="2" column="0">
+                     <widget class="QRadioButton" name="m_whiteHard">
+                      <property name="text">
+                       <string>Hard</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="1" rowspan="3">
+                     <widget class="QLabel" name="m_labelWhite">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>34</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string notr="true"/>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignCenter</set>
+                      </property>
+                      <property name="textInteractionFlags">
+                       <set>Qt::NoTextInteraction</set>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item row="0" column="0">
+                  <widget class="QComboBox" name="m_comboWhite">
+                   <item>
+                    <property name="text">
+                     <string>Human</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Computer</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item row="3" column="1" colspan="2">
+               <widget class="QGroupBox" name="groupBox_5">
+                <property name="title">
+                 <string>Black Player</string>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_7">
+                 <item row="1" column="0">
+                  <widget class="QGroupBox" name="m_groupBlack">
+                   <property name="title">
+                    <string>Difficulty</string>
+                   </property>
+                   <layout class="QGridLayout" name="gridLayout_8">
+                    <item row="0" column="0">
+                     <widget class="QRadioButton" name="m_blackEasy">
+                      <property name="text">
+                       <string>Easy</string>
+                      </property>
+                      <property name="checked">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="0">
+                     <widget class="QRadioButton" name="m_blackMedium">
+                      <property name="text">
+                       <string>Medium</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="2" column="0">
+                     <widget class="QRadioButton" name="m_blackHard">
+                      <property name="enabled">
+                       <bool>true</bool>
+                      </property>
+                      <property name="text">
+                       <string>Hard</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="1" rowspan="3">
+                     <widget class="QLabel" name="m_labelBlack">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>34</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignCenter</set>
+                      </property>
+                      <property name="textInteractionFlags">
+                       <set>Qt::NoTextInteraction</set>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item row="0" column="0">
+                  <widget class="QComboBox" name="m_comboBlack">
+                   <item>
+                    <property name="text">
+                     <string>Human</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Computer</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
               <item row="4" column="0" colspan="3">
                <spacer name="verticalSpacer">
                 <property name="orientation">
@@ -194,165 +353,6 @@
                 </property>
                </widget>
               </item>
-              <item row="3" column="1" colspan="2">
-               <widget class="QGroupBox" name="groupBox_5">
-                <property name="title">
-                 <string>Black Player</string>
-                </property>
-                <layout class="QGridLayout" name="gridLayout_7">
-                 <item row="1" column="0">
-                  <widget class="QGroupBox" name="m_groupBlack">
-                   <property name="title">
-                    <string>Difficulty</string>
-                   </property>
-                   <layout class="QGridLayout" name="gridLayout_8">
-                    <item row="0" column="0">
-                     <widget class="QRadioButton" name="m_blackEasy">
-                      <property name="text">
-                       <string>Easy</string>
-                      </property>
-                      <property name="checked">
-                       <bool>true</bool>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="0">
-                     <widget class="QRadioButton" name="m_blackMedium">
-                      <property name="text">
-                       <string>Medium</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="2" column="0">
-                     <widget class="QRadioButton" name="m_blackHard">
-                      <property name="enabled">
-                       <bool>true</bool>
-                      </property>
-                      <property name="text">
-                       <string>Hard</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="1" rowspan="3">
-                     <widget class="QLabel" name="m_labelBlack">
-                      <property name="minimumSize">
-                       <size>
-                        <width>0</width>
-                        <height>34</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignCenter</set>
-                      </property>
-                      <property name="textInteractionFlags">
-                       <set>Qt::NoTextInteraction</set>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                 </item>
-                 <item row="0" column="0">
-                  <widget class="QComboBox" name="m_comboBlack">
-                   <item>
-                    <property name="text">
-                     <string>Human</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Computer</string>
-                    </property>
-                   </item>
-                  </widget>
-                 </item>
-                </layout>
-               </widget>
-              </item>
-              <item row="3" column="0">
-               <widget class="QGroupBox" name="groupBox_4">
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="title">
-                 <string>White Player</string>
-                </property>
-                <layout class="QGridLayout" name="gridLayout_5">
-                 <item row="1" column="0">
-                  <widget class="QGroupBox" name="m_groupWhite">
-                   <property name="title">
-                    <string>Difficulty</string>
-                   </property>
-                   <layout class="QGridLayout" name="gridLayout_6">
-                    <item row="0" column="0">
-                     <widget class="QRadioButton" name="m_whiteEasy">
-                      <property name="text">
-                       <string>Easy</string>
-                      </property>
-                      <property name="checked">
-                       <bool>true</bool>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="0">
-                     <widget class="QRadioButton" name="m_whiteMedium">
-                      <property name="text">
-                       <string>Medium</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="2" column="0">
-                     <widget class="QRadioButton" name="m_whiteHard">
-                      <property name="text">
-                       <string>Hard</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="1" rowspan="3">
-                     <widget class="QLabel" name="m_labelWhite">
-                      <property name="minimumSize">
-                       <size>
-                        <width>0</width>
-                        <height>34</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string notr="true"/>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignCenter</set>
-                      </property>
-                      <property name="textInteractionFlags">
-                       <set>Qt::NoTextInteraction</set>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                 </item>
-                 <item row="0" column="0">
-                  <widget class="QComboBox" name="m_comboWhite">
-                   <item>
-                    <property name="text">
-                     <string>Human</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Computer</string>
-                    </property>
-                   </item>
-                  </widget>
-                 </item>
-                </layout>
-               </widget>
-              </item>
               <item row="2" column="0" colspan="3">
                <widget class="QGroupBox" name="groupBox_7">
                 <property name="title">
@@ -392,19 +392,6 @@
                 </layout>
                </widget>
               </item>
-              <item row="0" column="3" rowspan="5">
-               <spacer name="horizontalSpacer">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
              </layout>
             </widget>
            </item>
@@ -432,8 +419,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>529</width>
-            <height>361</height>
+            <width>184</width>
+            <height>213</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_3">
@@ -541,8 +528,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>115</width>
-            <height>28</height>
+            <width>143</width>
+            <height>16</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_4">
