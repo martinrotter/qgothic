@@ -15,6 +15,7 @@ class GMainWindow;
 
 /*!
  * \brief Configuration dialog.
+ * \ingroup Gui
  */
 class GSettingsDialog : public QDialog {
 	Q_OBJECT

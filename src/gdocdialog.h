@@ -1,7 +1,7 @@
 #ifndef GREFERENCEDOCDIALOG_H
 #define GREFERENCEDOCDIALOG_H
 
-#include "ui_greferencedocdialog.h"
+#include "ui_gdocdialog.h"
 
 #include <QDialog>
 
@@ -11,20 +11,19 @@ namespace Ui {
 }
 
 /*!
- * \brief Dialog containing reference documentation for programmers.
- *
+ * \brief Dialog containing documentation for QGothic.
  * \ingroup Gui
  */
-class GReferenceDocDialog : public QDialog {
+class GDocDialog : public QDialog {
 	Q_OBJECT
 	
     public:
-	explicit GReferenceDocDialog(const QString &title,
+	explicit GDocDialog(const QString &title,
 				     const QString &url, QWidget *parent = 0);
-	~GReferenceDocDialog();
+	~GDocDialog();
 
     private:
-	Ui::GReferenceDocDialog *m_ui;
+	Ui::GDocDialog *m_ui;
 
 };
 

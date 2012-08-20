@@ -25,11 +25,12 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 #include "simplecrypt.h"
-#include <QByteArray>
+
 #include <QDebug>
-//#include <QtGlobal>
+#include <QByteArray>
 #include <QDateTime>
 #include <QCryptographicHash>
+
 
 SimpleCrypt::SimpleCrypt():
     m_key(0),

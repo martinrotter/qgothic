@@ -2,7 +2,6 @@
 #include "board.h"
 
 #include <cstdlib>
-#include <QDebug>
 
 
 Referee::Referee() {
@@ -84,33 +83,23 @@ QList<Move> Referee::getQueenJumps(const Location &location, Board &board) {
     QList<Move> moves;
 
     foreach (Location dir, getQueenDirections()) {
-	//qDebug() << dir.toString();
 	Location current_location(location);
-	int count = 0;	// oddělat
+	int count = 0;
 	do {
-	    // odděla větvení
-	    // nebo filtrovat tahy, které skáčou stejné figurky, ale v jiném pořadí
 	    if (count++ > 100) {
 		break;
 	    }
 	    current_location += dir;
-	    // posunuli jsme se na další pozici a kontrolujeme zda na ní je protihráč
-	    // pokud ano tak skáčeme na libovolnou VOLNOU pozici za tímto kamenem
 	    if (current_location.isOnBoard(board) && Figure::getColorByType(board(current_location)) == Figure::negateColor(Figure::getColorByType(board(location)))) {
-		// posunuli jsme se tedy na prvni pozici za protihráčův kámen
-		//qDebug() << board(current_location);
 		Location next_location = current_location + dir;
-		// dokud je tato pozice volná
 		while (next_location.isOnBoard(board) && next_location.isFree(board)) {
 		    Move move;
 		    move.setFigureType(board(location));
 		    move.setFrom(Location(location));
 		    move.setTo(Location(next_location));
 		    move.addJumpedFigure(current_location, board(current_location));
-		    // delame tah a na teto upravene desce hledame dalsi meziskoky z daneho mista
 		    board.makeMove(move, false);
 		    QList<Move> next_moves = getQueenJumps(next_location, board);
-		    // jsou k dispozici dalsi skoky
 		    if (next_moves.size() > 0) {
 			foreach (Move next_move, next_moves) {
 			    Move final_move(move);
@@ -137,19 +126,12 @@ QList<Move> Referee::getPawnJumps(const Location &location, Board &board) {
     QList<Move> moves;
 
     foreach (Location dir, getPawnDirections()) {
-	//qDebug() << dir.toString();
 	Location current_location(location);
 	current_location += Figure::getColorByType(board(location)) == Figure::WHITE ? dir : !dir;
 
 	if (current_location.isOnBoard(board) && current_location.isFree(board) == false) {
-	    // musíme jít nahoru nebo dolu po desce podle barvy
-	    // posunuli jsme se na další pozici a kontrolujeme zda na ní je protihráč
-	    // pokud ano tak skáčeme na libovolnou VOLNOU pozici za tímto kamenem
 	    if (Figure::getColorByType(board(current_location)) == Figure::negateColor(Figure::getColorByType(board(location)))) {
-		// posunuli jsme se tedy na prvni pozici za protihráčův kámen
-		//qDebug() << board(current_location);
 		Location next_location = current_location + (Figure::getColorByType(board(location)) == Figure::WHITE ? dir : !dir);
-		// dokud je tato pozice volná
 		if (next_location.isOnBoard(board) && next_location.isFree(board)) {
 		    Move move;
 		    move.setFigureType(board(location));
@@ -157,22 +139,15 @@ QList<Move> Referee::getPawnJumps(const Location &location, Board &board) {
 		    move.setTo(Location(next_location));
 		    move.addJumpedFigure(current_location, board(current_location));
 
-		    // figurka doskakala na pozici damy a predtim nebyla v pozici damy
 		    if (isInQueenArea(move.getTo(), Figure::getColorByType(board(move.getFrom())), board) && !isInQueenArea(move.getFrom(), Figure::getColorByType(board(move.getFrom())), board)) {
 			move.setPromoted(true);
-			// pokud by měl tah pokračovat po přeměně v dámu, pak následující tři řádky
-			// odstraním, a pak pokud je protomoted true
-			// tak nevolám QList<Move> next_moves = getPawnJumps(next_location, board);
-			// ale volím QList<Move> next_moves = getQueenJumps(next_location, board);
 			moves.append(move);
 			next_location += Figure::getColorByType(board(location)) == Figure::WHITE ? dir : !dir;
 			continue;
 		    }
 
-		    // delame tah a na teto upravene desce hledame dalsi meziskoky z daneho mista
 		    board.makeMove(move, false);
 		    QList<Move> next_moves = getPawnJumps(next_location, board);
-		    // jsou k dispozici dalsi skoky
 		    if (next_moves.size() > 0) {
 			foreach (Move next_move, next_moves) {
 			    Move final_move(move);

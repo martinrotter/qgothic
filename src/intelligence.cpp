@@ -12,50 +12,57 @@
 #include <QDebug>
 
 
-Intelligence::Intelligence() {
+Intelligence::Intelligence(QObject *parent) : QObject(parent) {
 }
 
-Move Intelligence::computerMove(Player applicant, Board &board) {
+void Intelligence::computerMove(Player applicant, Board &board) {
     srand((unsigned int)time(0));
 
     switch (applicant.getState()) {
 	case Player::HUMAN: {
 	    switch (GSettings::value(SET_GAME, "strategy-best-move", 0).toInt()) {
 		case 1:
-		    qDebug() << "advanced strategy";
-		    return minimaxMove(applicant, board, 2, Strategy::advanced);
+		    qDebug() << "Advising move with advanced strategy.";
+		    minimaxMove(applicant, board, 2, Strategy::advanced);
+		    break;
 		case 0:
 		default:
-		    qDebug() << "defauult strategy";
-		    return minimaxMove(applicant, board, 2, Strategy::simple);
+		    qDebug() << "Advising move with default strategy.";
+		    minimaxMove(applicant, board, 2, Strategy::simple);
+		    break;
 	    }
+	    break;
 	}
 	case Player::EASY:
-	    return randomMove(applicant, board);
+	    randomMove(applicant, board);
+	    break;
 	case Player::MEDIUM:
-	    return minimaxMove(applicant, board, 2, Strategy::simple);
+	    minimaxMove(applicant, board, 2, Strategy::simple);
+	    break;
 	case Player::HARD:
 	    // sem dát 2
 	    // minimaxMove
 	    // alfabetaMove
-	    return minimaxMove(applicant, board, 2, Strategy::advanced);
+	    minimaxMove(applicant, board, 2, Strategy::advanced);
+	    break;
 	default:
-	    return randomMove(applicant, board);
+	    randomMove(applicant, board);
+	    break;
     }
 }
 
-Move Intelligence::randomMove(Player applicant, Board &board) {
+void Intelligence::randomMove(Player applicant, Board &board) {
     QList<Move> moves = Referee::getMoves(applicant.getColor(), board);
     int size = moves.size();
     if (size == 0) {
-	return Move::getInvalidMove();
+	emit moveFound(Move::getInvalidMove());
     }
     else {
-	return moves[rand() % size];
+	emit moveFound(moves[rand() % size]);
     }
 }
 
-Move Intelligence::alfabetaMove(Player applicant, Board &board,
+void Intelligence::alfabetaMove(Player applicant, Board &board,
 				int depth, int (*eval_function)(Board &)) {
     int actual_price;
     int alfa = Strategy::LOSING;
@@ -68,7 +75,7 @@ Move Intelligence::alfabetaMove(Player applicant, Board &board,
 	//actual_price = -Algorithms::alfabeta(applicant.getColor(), Figure::negateColor(applicant.getColor()),
 	//next, depth-1, eval_function, -);
 	qDebug() << "NO MOVES AVAILABLE FOR THIS PLAYER" << "\a";
-	return Move::getInvalidMove();
+	emit moveFound(Move::getInvalidMove());
     }
 
     for (int i = 0; i < moves.size(); i++) {
@@ -85,10 +92,10 @@ Move Intelligence::alfabetaMove(Player applicant, Board &board,
 	    best_indices.append(i);
 	}*/
     }
-    return moves[best_indices[rand() % best_indices.size()]];
+    emit moveFound(moves[best_indices[rand() % best_indices.size()]]);
 }
 
-Move Intelligence::minimaxMove(Player applicant, Board &board,
+void Intelligence::minimaxMove(Player applicant, Board &board,
 			       int depth, int (*eval_function)(Board &)) {
     int actual_price, best_price = Strategy::LOSING;
     QList<int> best_indices;
@@ -100,11 +107,20 @@ Move Intelligence::minimaxMove(Player applicant, Board &board,
 	actual_price = -Algorithms::minimax(applicant.getColor(), Figure::negateColor(applicant.getColor()),
 					    next, depth-1, eval_function);
 	qDebug() << "NO MOVES AVAILABLE FOR THIS PLAYER" << "\a";
-	return Move::getInvalidMove();
+	emit moveFound(Move::getInvalidMove());
     }
 
-    qDebug() << "minimax tahy: " << moves.size();
+    qDebug("Moves for minimax: %d", moves.size());
+    emit countOfCalls(moves.size());
+
     for (int i = 0; i < moves.size(); i++) {
+	if (Intelligence::isCancelling() == true) {
+	    qDebug() << "Move search cancelled.";
+	    Intelligence::cancel(false);
+	    emit cancelled();
+	    return;
+	}
+
 	Board next(board);
 	next.makeMove(moves[i]);
 	actual_price = -Algorithms::minimax(applicant.getColor(), Figure::negateColor(applicant.getColor()),
@@ -117,6 +133,15 @@ Move Intelligence::minimaxMove(Player applicant, Board &board,
 	else if (actual_price == best_price) {
 	    best_indices.append(i);
 	}
+
+	emit rankOfCall(i+1);
     }
-    return moves[best_indices[rand() % best_indices.size()]];
+
+    if (applicant.getState() == Player::HUMAN) {
+	qDebug("Returning advised move for human player.");
+	emit moveForHumanFound(moves[best_indices[rand() % best_indices.size()]]);
+    }
+    else {
+	emit moveFound(moves[best_indices[rand() % best_indices.size()]]);
+    }
 }

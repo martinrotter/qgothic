@@ -80,12 +80,4 @@ void History::addMove(Move move, int moves_without_jumps) {
     m_index = m_history->size()-1;
 
     emit changed(m_index);
-
-    /*
-    qDebug() << m_history->size();
-    foreach (HistoryItem *item, *m_history) {
-	qDebug() << "historie " << item->getMove()->toString();
-    }
-    */
-
 }

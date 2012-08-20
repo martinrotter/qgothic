@@ -7,16 +7,17 @@
 #include "generator.h"
 
 #include <QList>
-#include <QDebug>
 
 
 /*!
  * \brief QGothic Game top-level representation.
+ * \ingroup Core
  */
 class Game : public QObject {
 	Q_OBJECT
 
     public:
+
 	/*!
 	 * \brief Holds all possible States of the Game.
 	 */
@@ -156,6 +157,8 @@ class Game : public QObject {
 	int m_currentPlayer;
 	int m_startingPlayer;
 	bool m_isSaved;
+
+
 
     signals:
 	/*!

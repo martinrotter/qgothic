@@ -6,6 +6,7 @@
 
 /*!
  * \brief Item of History representation.
+ * \ingroup Core
  */
 class HistoryItem {
 

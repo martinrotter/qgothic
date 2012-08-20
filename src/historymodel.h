@@ -12,6 +12,7 @@ class History;
  * This model is used in conjunction with competent View, usually QTreeView or its subclass.
  *
  * \note This class is part of MVC.
+ * \ingroup Core
  */
 class HistoryModel : public QAbstractItemModel {
 	Q_OBJECT

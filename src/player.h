@@ -11,6 +11,7 @@ class QString;
  *
  * Player class represents each player of QGothic board game. Player can be human or cpu-controlled
  * entity.
+ * \ingroup Core
  */
 class Player {
 

@@ -38,7 +38,6 @@ SOURCES += src/main.cpp \
     src/gboard.cpp \
     src/gmainwindow.cpp \
     src/gsettingsdialog.cpp \
-    src/greferencedocdialog.cpp \
     src/ginterface.cpp \
     src/history.cpp \
     src/historyitem.cpp \
@@ -48,7 +47,8 @@ SOURCES += src/main.cpp \
     src/3rd-party/simplecrypt.cpp \
     src/gspinbox.cpp \
     src/gaboutdialog.cpp \
-    src/debug.cpp
+    src/debug.cpp \
+    src/gdocdialog.cpp
 
 HEADERS += \
     src/location.h \
@@ -66,7 +66,6 @@ HEADERS += \
     src/definitions.h \
     src/gmainwindow.h \
     src/gsettingsdialog.h \
-    src/greferencedocdialog.h \
     src/ginterface.h \
     src/history.h \
     src/historyitem.h \
@@ -77,13 +76,14 @@ HEADERS += \
     src/documentation.h \
     src/gspinbox.h \
     src/gaboutdialog.h \
-    src/debug.h
+    src/debug.h \
+    src/gdocdialog.h
 
 FORMS += \
     ui/gmainwindow.ui \
     ui/gsettingsdialog.ui \
-    ui/greferencedocdialog.ui \
-    ui/gaboutdialog.ui
+    ui/gaboutdialog.ui \
+    ui/gdocdialog.ui
 
 RESOURCES += \
     resources/qgothic.qrc

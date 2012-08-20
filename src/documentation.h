@@ -29,7 +29,7 @@
  *  + CPU: single-core pentium os more than enough (x86 or x86-64 architecture)
  *  + HDD: 60 MB of free space (for executable and extra Qt .dll files on Windows, much less free
  *  space needed on Linux)
- *  + RAM: 6-25 MB (QGothic process takes up to 25 MB of memory, tested on GNU/Linux and Windows 7)
+ *  + RAM: 6-45 MB (QGothic process takes up to 25 MB of memory, tested on GNU/Linux and Windows 7)
  *  + VGA: OpenGL support required (with recompilation there is "graphicssystem raster" possibility
  */
 

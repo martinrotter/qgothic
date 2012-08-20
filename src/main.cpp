@@ -8,13 +8,16 @@
 #include <QTextCodec>
 #include <QSettings>
 #include <QThread>
+#include <QSplashScreen>
+#include <QTime>
 #include <QTranslator>
+#include <QDebug>
+
 
 QList<Location> *Referee::s_pawnDirections;
 QList<Location> *Referee::s_queenDirections;
-
 QSettings *GSettings::s_settings;
-
+bool Intelligence::m_cancelling;
 
 int main(int argc, char *argv[]) {
     // QGothic works in plain UTF-8 encoding.
@@ -31,6 +34,11 @@ int main(int argc, char *argv[]) {
 
     // Setup debug output system.
     qInstallMsgHandler(Debug::debugHandler);
+
+    // Display main thread id.
+    qDebug() << "Entering thread with"
+	     << Q_FUNC_INFO << "and code"
+	     << QThread::currentThreadId() << ".";
 
     // Setup settings file.
     GSettings::setupSettings();
@@ -51,27 +59,27 @@ int main(int argc, char *argv[]) {
 
     // Try to load selected language file.
     if (app_translator.load(lang, LANG_BASE) == false) {
-	qDebug() << QString("Language \'%1\' wasn't loaded successfully.").arg(lang);
+	qDebug("Language \'%s\' wasn't loaded successfully.", lang.toAscii().constData());
     }
     // If file is loaded, then install it.
     else {
 	a.installTranslator(&app_translator);
-	qDebug() << QString("Language \'%1\' was loaded successfully.").arg(lang);
+	qDebug("Language \'%s\' was loaded successfully.", lang.toAscii().constData());
     }
 
     // Setup translation for Qt itself.
     // Try to load selected language file.
     if (qt_translator.load(QString("qt_%1.qm").arg(locale_name), QString("%1/qt").arg(LANG_BASE)) == false) {
-	qDebug() << QString("Language for Qt \'%1\' wasn't loaded successfully.").arg(locale_name);
+	qDebug("Language for Qt \'%s\' wasn't loaded successfully.", locale_name.toAscii().constData());
     }
     // If file is loaded, then install it.
     else {
 	a.installTranslator(&qt_translator);
-	qDebug() << QString("Language for Qt \'%1\' was loaded successfully.").arg(locale_name);
+	qDebug("Language for Qt \'%s\' was loaded successfully.", locale_name.toAscii().constData());
     }
 
     // Set up locale.
-    qDebug() << QString("Setting up '%1' locale.").arg(locale_name);
+    qDebug("Setting up '%s' locale.", locale_name.toAscii().constData());
     QLocale locale(locale_name);
     QLocale::setDefault(locale);
 
@@ -87,5 +95,6 @@ int main(int argc, char *argv[]) {
     }
 
     w.show();
+
     return a.exec();
 }

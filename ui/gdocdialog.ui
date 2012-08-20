@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>GReferenceDocDialog</class>
- <widget class="QDialog" name="GReferenceDocDialog">
+ <class>GDocDialog</class>
+ <widget class="QDialog" name="GDocDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -66,7 +66,7 @@
   <connection>
    <sender>m_buttonOk</sender>
    <signal>clicked()</signal>
-   <receiver>GReferenceDocDialog</receiver>
+   <receiver>GDocDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">

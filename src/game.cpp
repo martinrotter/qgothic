@@ -15,14 +15,16 @@
 
 typedef QPair<Move, int> Item;
 
+
 Game::Game(QObject *parent) :
     QObject(parent), m_board(new Board()), m_history(new History(this)),
-    m_generator(new Generator()), m_state(Game::PAUSED), m_isSaved(false) {
+    m_state(Game::PAUSED), m_isSaved(false) {
 
-    qRegisterMetaType<Move>("Move");
-    connect(m_generator, SIGNAL(moveGenerated(Move)), this, SLOT(makeMove(Move)));
-    //connect(m_generator, SIGNAL(terminated()), this, SLOT(informAboutHistory()));
-    //connect(m_generator, SIGNAL(terminated()), this, SIGNAL(moveSearchFinished()));
+    m_generator = new Generator();
+
+    connect(m_generator, SIGNAL(moveFound(Move)), this, SLOT(makeMove(Move)));
+    connect(m_generator, SIGNAL(cancelled()), this, SIGNAL(moveSearchFinished()));
+    connect(m_generator, SIGNAL(cancelled()), this, SLOT(informAboutHistory()));
     connect(m_history, SIGNAL(changed(int)), this, SLOT(informAboutHistory()));
 
     int current_player = GSettings::value(SET_GAME, "starting_player", 0).toInt();
@@ -47,14 +49,10 @@ Game::Game(QObject *parent) :
 Game::~Game() {
     delete m_board;
     delete m_generator;
+    delete m_history;
 }
 
 bool Game::saveGame(const QString &file_name) {
-    // vytvoří xml strukturu s historií a potřebnými daty
-    // na konec qbytearray přidá MD5 checksum
-    // zašifruje QByteArray
-    // uloži do souboru
-
     QFile file(file_name);
     if (file.open(QIODevice::WriteOnly | QIODevice::Text) == true) {
 	QString array;
@@ -71,7 +69,6 @@ bool Game::saveGame(const QString &file_name) {
 	writer.writeAttribute("version", APP_VERSION);
 	writer.writeAttribute("date", QDateTime::currentDateTime().toString(Qt::ISODate));
 
-	// ještě přidat nastavení hráčů
 	// Write information about game (eg. players, current player).
 	writer.writeStartElement("game");
 	writer.writeTextElement("max-moves-without-jump", QString::number(m_board->getMaxMovesNoJump()));
@@ -115,9 +112,6 @@ bool Game::saveGame(const QString &file_name) {
 	writer.writeEndElement();
 	writer.writeEndDocument();
 
-	// Append MD5 checksum as the last line of the xml structure.
-	//array.append(QCryptographicHash::hash(QByteArray().append(array), QCryptographicHash::Md5).toHex());
-
 	// Write encrypted snapshot of actual game into file.
 	QTextStream out(&file);
 	// Hash for encrypting game files.
@@ -127,22 +121,14 @@ bool Game::saveGame(const QString &file_name) {
 	crypto.setIntegrityProtectionMode(SimpleCrypt::ProtectionHash);
 
 	out << crypto.encryptToString(array);
-	//out << array;
 	out.flush();
 	file.close();
-	//qDebug() << array;
 	m_isSaved = true;
 	return true;
     }
     else {
 	return false;
     }
-    /*
-    QByteArray result = crypto.encryptToByteArray(array);
-    QByteArray decrypted = crypto.decryptToByteArray(result);
-    qDebug() << result;
-    qDebug() << decrypted;
-    */
 }
 
 bool Game::isSaved() const {
@@ -255,6 +241,8 @@ void Game::newGame() {
     m_isSaved = false;
     m_history->clear();
 
+    Intelligence::cancel(false);
+
     setState(Game::PAUSED);
     int current_player = GSettings::value(SET_GAME, "starting_player", 0).toInt();
     m_currentPlayer = current_player == 0 || current_player == 1 ?
@@ -277,7 +265,10 @@ void Game::fakeHumanMove() {
 void Game::computerMove() {
     if (m_board->getState() == Board::ORDINARY) {
 	emit moveSearchStarted();
-	m_generator->searchMove(getCurrentPlayer(), m_board);
+
+	m_generator->searchMove(getCurrentPlayer(), *m_board);
+
+	//m_generator->searchMove(getCurrentPlayer(), m_board);
     }
 }
 
@@ -290,7 +281,10 @@ void Game::informAboutHistory() {
 
 void Game::makeMove(const Move &move) {
     emit moveSearchFinished();
-
+/*
+    m_generator->terminate();
+    m_generator->wait();
+*/
     if ((m_state == Game::RUNNING && getCurrentPlayer().getState() == Player::HUMAN) || m_board->getState() == Board::ORDINARY) {
 	m_isSaved = false;
 

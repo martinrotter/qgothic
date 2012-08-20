@@ -5,10 +5,12 @@
 #include <QString>
 #include <QVariant>
 
+
 /*!
  * \brief Application-wide settings provider.
  *
  * \warning This is entirely static class.
+ * \ingroup Core
  */
 class GSettings {
 
@@ -22,8 +24,6 @@ class GSettings {
 	 * \warning DO NOT use this pointer for accessing settings, use getSettings instead.
 	 */
 	static QSettings *s_settings;
-
-	static QByteArray *s_array;
 
 	/*!
 	 * \brief Sets up applications-wide settings.

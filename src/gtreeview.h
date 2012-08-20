@@ -10,6 +10,8 @@ class HistoryModel;
  * \brief Viewer for History.
  *
  * \note This class is part of MVC.
+ *
+ * \ingroup Gui
  */
 class GTreeView : public QTreeView {
 	Q_OBJECT

@@ -9,6 +9,7 @@
 
 /*!
  * \brief Graphical Board implementation.
+ * \ingroup Gui
  */
 class GBoard : public QWidget {
 	Q_OBJECT

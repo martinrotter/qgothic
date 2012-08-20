@@ -19,14 +19,10 @@ void GTreeView::setCurrentModel(HistoryModel *model) {
 
 void GTreeView::setCurrentRow(int index) {
     reset();
-    //qDebug() << "index v historii " << index;
     QModelIndex index_in_view = m_model->index(index, 0, QModelIndex());
-    //scrollTo(index_in_view);
-    //qDebug() << "validni index " << index_in_view.isValid();
-    //if (index_in_view.isValid()) {
+
     m_programmaticalChange = true;
     setCurrentIndex(index_in_view);
-    //}
     selectionModel()->clearSelection();
     selectionModel()->select(index_in_view,
 			     QItemSelectionModel::Select | QItemSelectionModel::Rows);
@@ -36,7 +32,6 @@ void GTreeView::setCurrentRow(int index) {
 void GTreeView::currentChanged(const QModelIndex &current, const QModelIndex &previous) {
     QTreeView::currentChanged(current, previous);
     if (m_programmaticalChange == false && current.row() != previous.row()) {
-	//qDebug() << "zmenena polozka - soucasna: " << current.row() << " minula: " << previous.row();
 	emit currentRowChanged(current.row(), previous.row());
     }
 }

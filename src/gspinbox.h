@@ -4,6 +4,13 @@
 #include <QSpinBox>
 
 
+/*!
+ * \brief Custom QSpinBox subclass.
+ *
+ * Subclass of QSpinBox, which allows user to set text part of control to be read-only.
+ *
+ * \ingroup Gui
+ */
 class GSpinBox : public QSpinBox{
 	Q_OBJECT
 

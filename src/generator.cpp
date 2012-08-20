@@ -1,48 +1,47 @@
 #include "generator.h"
-#include "board.h"
-#include "intelligence.h"
 
-#include <QMutex>
 #include <QDebug>
+#include <QMetaType>
 
 
-Generator::Generator(QObject *parent) : QThread(parent), m_active(false) {
+Generator::Generator(QObject *parent) : QThread(parent), m_ready(false) {
+    // Start the worker thread
+    start();
+
+    // Wait for the worker thread to be ready;
+    while(!m_ready) {
+	msleep(50);
+    }
 }
 
-void Generator::cancel() {
-    terminate();
-    qDebug() << "cancelled";
-    m_active = false;
-    emit cancelled();
-}
-
-void Generator::searchMove(Player applicant, Board *board) {
-    // Problem s generatorem. Končil na použití generátoru, které nedávalo smysl.
-    qDebug() << "Starting move search. Thread is running:" << isRunning();
-    if (m_active) {
-	qWarning() << "Generator is currently in use.";
-	return;
-    }
-    else {
-	m_applicant = applicant;
-	m_board = board;
-	start();
-    }
+void Generator::searchMove(Player applicant, Board &board) {
+    emit searchRequested(applicant, board);
 }
 
 void Generator::run() {
-    //setPriority(QThread::TimeCriticalPriority);
-    m_active = true;
-    Move move = Intelligence::computerMove(m_applicant, *m_board);
-    //qDebug() << move.toString();
-    m_active = false;
+    qDebug() << "Entering thread with"
+	     << Q_FUNC_INFO << "and code"
+	     << QThread::currentThreadId() << ".";
 
-    emit moveGenerated(move);
-    //terminate();
-    //wait();
+    Intelligence worker;
 
-    // Patrně je třeba nejdříve nastavit stav generátoru na false a až pak generovat signál,
-    // protože podle dokumentace není v nefrontovém S/S spojení definováno pořadí vykonání
-    // listenerů a aktuálního kódu v této metodě.
+    qRegisterMetaType<Move>("Move");
+    qRegisterMetaType<Player>("Player");
+    qRegisterMetaType<Board>("Board&");
 
+    // Pass sorting requests to SorterWorker in the worker thread
+    connect(this, SIGNAL(searchRequested(Player,Board&)),
+	    &worker, SLOT(computerMove(Player,Board&)));
+    connect(&worker, SIGNAL(moveFound(Move)),
+	    this, SIGNAL(moveFound(Move)));
+    connect(&worker, SIGNAL(cancelled()), this, SIGNAL(cancelled()));
+    connect(&worker, SIGNAL(countOfCalls(int)), this, SIGNAL(countOfCalls(int)));
+    connect(&worker, SIGNAL(rankOfCall(int)), this, SIGNAL(rankOfCall(int)));
+    connect(&worker, SIGNAL(moveForHumanFound(Move)), this, SIGNAL(moveForHumanFound(Move)));
+
+    // Mark the worker thread as ready
+    m_ready = true;
+
+    // Event loop (necessary to process signals)
+    exec();
 }

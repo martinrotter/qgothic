@@ -10,6 +10,10 @@ namespace Ui {
     class DialogAbout;
 }
 
+/*!
+ * \brief The GAboutDialog class
+ * \ingroup Gui
+ */
 class GAboutDialog : public QDialog {
 	Q_OBJECT
 	

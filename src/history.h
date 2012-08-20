@@ -3,8 +3,6 @@
 
 #include "move.h"
 
-#include <QDebug>
-
 
 class HistoryItem;
 
@@ -12,6 +10,7 @@ class HistoryItem;
  * \brief History container.
  *
  * This class contains entire History needed to saving/loading of games.
+ * \ingroup Core
  */
 class History : public QObject {
 	Q_OBJECT
@@ -92,10 +91,6 @@ class History : public QObject {
 
     private:
 	QList<HistoryItem*> *m_history;
-	// označuje poslední provedený tah v historii
-	// při přidání tahu do historie se nastaví na index právě přidaného prvku
-	// je-li index 0-tak nelze už UNDO
-	// je-li index roven poslednímu indexu z m_history tak nelze REDO
 	int m_index;
 
     signals:

@@ -2,7 +2,6 @@
 #include "definitions.h"
 
 #include <QDate>
-#include <QDebug>
 
 
 GAboutDialog::GAboutDialog(QWidget *parent) : QDialog(parent), m_ui(new Ui::GAboutDialog) {

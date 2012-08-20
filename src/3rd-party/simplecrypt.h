@@ -56,6 +56,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   algorithm is changed in a later version, by prepending a version identifier to the cypertext.
 
   \author Andre Somers
+  \ingroup Core
   */
 class SimpleCrypt {
 

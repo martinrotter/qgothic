@@ -16,6 +16,8 @@ class HistoryModel;
 
 /*!
  * \brief Main QGothic application window.
+ *
+ * \ingroup Gui
  */
 class GMainWindow : public QMainWindow {
 	Q_OBJECT
@@ -57,6 +59,7 @@ class GMainWindow : public QMainWindow {
 	void moveStart();
 	void moveEnd();
 	void adviseMove();
+	void adviseMoveResult(Move move);
 	void moveInGame(int new_index, int previous_index);
 	
     private:

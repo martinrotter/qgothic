@@ -12,6 +12,8 @@
  *
  * This class has one top-level method called getMoves which should be used primarily for obtaining
  * available moves for Figure::Color in argument.
+ *
+ * \ingroup Core
  */
 class Referee {
 

@@ -3,53 +3,82 @@
 
 #include "move.h"
 #include "player.h"
+#include "board.h"
+#include "intelligence.h"
+#include "referee.h"
+#include "algorithms.h"
+#include "strategy.h"
+
+#include <ctime>
 
 #include <QThread>
 
-
-class Board;
 
 /*!
  * \brief Thread-separated Move Generator.
  *
  * This class subclasses QThread and is able to generate Moves.
+ * \ingroup Core
  */
 class Generator : public QThread {
 	Q_OBJECT
 
     public:
-	explicit Generator(QObject *parent = 0);
-	/*!
-	 * \brief Main code generator container.
-	 *
-	 * \note This is the code, that is executed in separated thread.
-	 */
-	void run();
-	void cancel();
+	Generator(QObject *parent = 0);
 
-    signals:
-	/*!
-	 * \brief Emitted when Move is found.
-	 * \param move Generated Move.
-	 */
-	void moveGenerated(Move move);
-	
-    public slots:
 	/*!
 	 * \brief Top-level method for finding Moves.
 	 * \param applicant Player, which is looking for Move.
 	 * \param board Board to look for the Move on.
 	 */
-	void searchMove(Player applicant, Board *board);
-
-    private:
-	bool m_active;
-	Player m_applicant;
-	Board *m_board;
+	void searchMove(Player applicant, Board &board);
 
     signals:
+	/*!
+	 * \brief Emitted when Move search should be started.
+	 *
+	 * This is forwarded signal to the Intelligence worker.
+	 * \param applicant Player, which is looking for Move.
+	 * \param board Board to look for the Move on.
+	 */
+	void searchRequested(const Player &applicant, Board &board);
+
+	/*!
+	 * \brief Emitted when Move is found.
+	 *
+	 * This is forwarded signal from the Intelligence worker.
+	 * \param move Generated Move.
+	 */
+	void moveFound(Move move);
+
+	/*!
+	 * \brief Emitted when Move search is cancelled.
+	 *
+	 * This is forwarded signal from the Intelligence worker.
+	 */
 	void cancelled();
-	
+
+	void countOfCalls(int count);
+	void rankOfCall(int rank);
+	void moveForHumanFound(Move move);
+
+    public slots:
+	void cancel() {
+	    Intelligence::cancel(true);
+	}
+
+    protected:
+	/*!
+	 * \brief Main code generator container.
+	 *
+	 * Event loop is started for this thread and passing of signals is therefore enabled.
+	 * \note This is the code, that is executed in separated thread.
+	 */
+	void run();
+
+    private:
+	bool m_ready;
+
 };
 
 #endif // GENERATOR_H

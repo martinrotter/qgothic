@@ -6,6 +6,7 @@
 
 /*!
  * \brief Algorithms used for AI to generate moves.
+ * \ingroup Core
  */
 class Algorithms {
 

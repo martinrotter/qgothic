@@ -6,6 +6,7 @@ class QWidget;
 
 /*!
  * \brief Various methods for working with GUI.
+ * \ingroup Gui
  */
 class GInterface {
 

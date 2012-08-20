@@ -6,6 +6,7 @@
 
 /*!
  * \brief Onboard Figure representation.
+ * \ingroup Core
  */
 class Figure {
 

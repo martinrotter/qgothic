@@ -4,6 +4,10 @@
 #include <QtGlobal>
 
 
+/*!
+ * \brief Debug output provider.
+ * \ingroup Core
+ */
 class Debug {
 
     public:

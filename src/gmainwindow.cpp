@@ -1,7 +1,7 @@
 #include "gmainwindow.h"
 #include "gsettingsdialog.h"
 #include "gsettings.h"
-#include "greferencedocdialog.h"
+#include "gdocdialog.h"
 #include "ginterface.h"
 #include "gaboutdialog.h"
 #include "move.h"
@@ -13,6 +13,7 @@
 #include <QDebug>
 #include <QMessageBox>
 #include <QProgressBar>
+#include <QProgressDialog>
 #include <QMouseEvent>
 #include <QFileDialog>
 
@@ -25,7 +26,6 @@ GMainWindow::GMainWindow(QWidget *parent) : QMainWindow(parent), m_ui(new Ui::GM
     initialiseMembers();
     initialiseHistoryView();
     createConnections();
-
     setupWindow();
 
     updateTable(false);
@@ -59,7 +59,7 @@ void GMainWindow::initialiseStatusBar() {
 
     m_barStatusTurn->setMinimum(0);
     m_barStatusTurn->setMaximum(0);
-    m_barStatusTurn->setValue(-1);
+    m_barStatusTurn->setValue(0);
     m_barStatusTurn->setVisible(false);
     m_barStatusTurn->setTextVisible(false);
 
@@ -113,11 +113,9 @@ void GMainWindow::closeEvent(QCloseEvent *e) {
     }
 }
 
-// Initialises members of this class and prepares main window.
 void GMainWindow::initialiseMembers() {
     setFixedSize(width(), height());
     GInterface::centerWidgetOnScreen(this);
-    //setFixedSize(sizeHint().width(), sizeHint().height());
 
     m_game = new Game(this);
 
@@ -176,6 +174,9 @@ void GMainWindow::createConnections() {
 
     connect(m_ui->m_historyView, SIGNAL(currentRowChanged(int,int)),
 	    this, SLOT(moveInGame(int,int)));
+
+    connect(m_game->getGenerator(), SIGNAL(countOfCalls(int)), m_barStatusTurn, SLOT(setMaximum(int)));
+    connect(m_game->getGenerator(), SIGNAL(rankOfCall(int)), m_barStatusTurn, SLOT(setValue(int)));;
 
     connect(m_game, SIGNAL(gameFinished(Board::State)), this, SLOT(noticeAboutFinish(Board::State)));
     connect(m_game, SIGNAL(initialPlayerChanged(int)),
@@ -279,20 +280,34 @@ void GMainWindow::moveInGame(int new_index, int previous_index) {
     m_ui->m_gboard->repaint();
 }
 
-void GMainWindow::adviseMove() {
-    Move move = Intelligence::computerMove(m_game->getCurrentPlayer(), *m_game->getBoard());
-    if (move.isInvalid() == false) {
-	QMessageBox::information(this, tr("Result"), tr("Your move was found successfully.\n"
-							"%1-%2").arg(move.getFrom().toString(),
-								     move.getTo().toString()));
+void GMainWindow::adviseMoveResult(Move move) {
+    if (move.isInvalid() == true) {
+	QMessageBox::warning(this, tr("No Move Found"),
+			     tr("There were found no available move for you at this phase of game."));
     }
     else {
-	QMessageBox::information(this, tr("Result"), tr("Your move wasn't found because you are not able to make any moves in this game phase."));
+	QMessageBox::information(this, tr("Move found"),
+				 tr("Best move was found.\n\n%1").arg(move.toString()));
     }
+	disconnect(m_game->getGenerator(), SIGNAL(moveForHumanFound(Move)), this, SLOT(adviseMoveResult(Move)));
+}
+
+void GMainWindow::adviseMove() {
+    QProgressDialog dialog(tr("Looking for best available move..."), tr("Cancel"), 0, 100, this);
+
+    connect(m_game->getGenerator(), SIGNAL(countOfCalls(int)), &dialog, SLOT(setMaximum(int)));
+    connect(m_game->getGenerator(), SIGNAL(rankOfCall(int)), &dialog, SLOT(setValue(int)));
+    connect(&dialog, SIGNAL(canceled()), m_game->getGenerator(), SLOT(cancel()));
+    connect(m_game->getGenerator(), SIGNAL(moveForHumanFound(Move)), this, SLOT(adviseMoveResult(Move)));
+    m_game->getGenerator()->searchMove(m_game->getCurrentPlayer(), *m_game->getBoard());
+    qApp->processEvents();
+
+    dialog.setWindowTitle(tr("Best Move Search"));
+    dialog.setWindowModality(Qt::WindowModal);
+    dialog.exec();
 }
 
 void GMainWindow::moveStart() {
-    //qDebug() << "move start";
     switch (m_game->getCurrentPlayer().getColor()) {
 	case Figure::WHITE:
 	    m_labelStatusTurn->setText(tr("White player is seeking the move."));
@@ -315,14 +330,13 @@ void GMainWindow::moveStart() {
     m_ui->m_actionLoad->setEnabled(false);
     m_ui->m_actionNew->setEnabled(false);
     m_ui->m_actionSettings->setEnabled(false);
-    //m_ui->m_actionSave->setEnabled(false);
 }
 
 void GMainWindow::moveEnd() {
-    //qDebug() << "move end";
     m_barStatusTurn->setVisible(false);
     m_labelStatusTurn->setVisible(false);
 
+    m_ui->m_buttonPlayPause->setEnabled(true);
     m_ui->m_buttonRedo->setEnabled(true);
     m_ui->m_buttonUndo->setEnabled(true);
     m_ui->m_historyView->setEnabled(true);
@@ -343,6 +357,8 @@ void GMainWindow::pauseGame() {
 
 void GMainWindow::controlGame(bool running) {
     if (running) {
+	Intelligence::cancel(false);
+
 	m_game->setState(Game::RUNNING);
 	m_game->getHistory()->consolidate();
 	m_labelStatusState->setText(tr("Running"));
@@ -354,13 +370,16 @@ void GMainWindow::controlGame(bool running) {
 	    m_game->fakeHumanMove();
 	}
     }
-    else {/*
+    else {
 	// AI player is now thinking about moving. Cancel this thinking.
 	if (m_game->getCurrentPlayer().getState() != Player::HUMAN && m_game->getState() == Game::RUNNING) {
-	    m_game->getGenerator()->cancel();
-	    //moveEnd();
-	}*/
+	    //m_game->m_gen->cancel();
+	    m_ui->m_buttonPlayPause->setEnabled(false);
 
+	    Intelligence::cancel(true);
+	    //m_game->getGenerator()->cancel();
+	    //moveEnd();
+	}
 	m_labelStatusState->setText(tr("Paused"));
 	m_labelStatusState->setToolTip(tr("Game is paused."));
 	m_game->setState(Game::PAUSED);
@@ -444,11 +463,12 @@ void GMainWindow::updateTable(bool just_turning) {
 	    break;
     }
 
-    int how_many_jumps = m_game->getBoard()->getActualMovesNoJump();
-    QString how_many_string = how_many_jumps == 1 ?
-				  tr(" 1/%1 move without jump").arg(m_game->getBoard()->getMaxMovesNoJump()) :
-				  tr(" %1/%2 moves without jump").arg(QString::number(how_many_jumps),
-								      QString::number(m_game->getBoard()->getMaxMovesNoJump()));
+    QString how_many_string = tr(" %n/%1 move(s) without jump",
+				 "",
+				 m_game->getBoard()->getActualMovesNoJump());
+    how_many_string = how_many_string.arg(QString::number(m_game->getBoard()->getMaxMovesNoJump()));
+
+
     m_ui->m_labelJumps->setText(GAM_PLAY_STYLE.arg("16",
 						   GAM_JUMPS,
 						   how_many_string));
@@ -546,7 +566,7 @@ void GMainWindow::about() {
 
 void GMainWindow::guideDocumentation() {
     pauseGame();
-    GReferenceDocDialog(tr("User Guide"),
-			"qrc:/doc/user-guide.html",
-			this).exec();
+    GDocDialog(tr("User Guide"),
+	       "qrc:/doc/user-guide.html",
+	       this).exec();
 }

@@ -12,6 +12,7 @@ typedef QPair<Location, Figure::Type> JumpedFigure;
 
 /*!
  * \brief Move representation.
+ * \ingroup Core
  */
 class Move {
 

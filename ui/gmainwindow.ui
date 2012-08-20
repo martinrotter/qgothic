@@ -204,6 +204,9 @@
              <height>60</height>
             </size>
            </property>
+           <property name="focusPolicy">
+            <enum>Qt::StrongFocus</enum>
+           </property>
            <property name="toolTip">
             <string>Continue or pause game.</string>
            </property>
@@ -535,7 +538,7 @@ QTreeView::branch:closed:has-children:has-siblings {
      <normaloff>:/graphics/application-help.png</normaloff>:/graphics/application-help.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Help</string>
+    <string>&amp;Help (English Only)</string>
    </property>
    <property name="shortcut">
     <string notr="true">F1</string>

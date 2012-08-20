@@ -16,6 +16,7 @@ class QString;
  * \brief Internal Board implementation.
  *
  * Not a graphical Board.
+ * \ingroup Core
  */
 class Board {
 

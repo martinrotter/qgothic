@@ -8,6 +8,8 @@ class Board;
  * \brief Artificial intelligence strategy container.
  *
  * This class holds all prearranged strategies. Strategy is defined by board-evaluating function.
+ *
+ * \ingroup Core
  */
 class Strategy {
 
