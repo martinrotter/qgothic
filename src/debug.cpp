@@ -11,6 +11,7 @@ Debug::Debug() {
 }
 
 void Debug::debugHandler(QtMsgType type, const char *msg) {
+#ifdef ENABLE_DEBUG_OUTPUTS
     switch (type) {
 	case QtDebugMsg:
 	    fprintf(stderr, "%s (normal): %s\n", APP_DEBUG.toAscii().constData(), msg);
@@ -26,4 +27,5 @@ void Debug::debugHandler(QtMsgType type, const char *msg) {
 		    APP_DEBUG.toAscii().constData(), msg);
 	    qApp->exit(EXIT_FAILURE);
     }
+#endif
 }

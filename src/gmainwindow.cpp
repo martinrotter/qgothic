@@ -106,8 +106,12 @@ void GMainWindow::closeEvent(QCloseEvent *e) {
 	e->ignore();
     }
     else {
+	m_game->getGenerator()->exit(EXIT_SUCCESS);
 	GSettings::checkSettings();
 	qDebug() << "QGothic is exiting.";
+	qDebug() << "Leaving thread with"
+		 << Q_FUNC_INFO << "and code"
+		 << QThread::currentThreadId() << ".";
 
 	e->accept();
     }
@@ -289,7 +293,7 @@ void GMainWindow::adviseMoveResult(Move move) {
 	QMessageBox::information(this, tr("Move found"),
 				 tr("Best move was found.\n\n%1").arg(move.toString()));
     }
-	disconnect(m_game->getGenerator(), SIGNAL(moveForHumanFound(Move)), this, SLOT(adviseMoveResult(Move)));
+    disconnect(m_game->getGenerator(), SIGNAL(moveForHumanFound(Move)), this, SLOT(adviseMoveResult(Move)));
 }
 
 void GMainWindow::adviseMove() {
@@ -299,6 +303,8 @@ void GMainWindow::adviseMove() {
     connect(m_game->getGenerator(), SIGNAL(rankOfCall(int)), &dialog, SLOT(setValue(int)));
     connect(&dialog, SIGNAL(canceled()), m_game->getGenerator(), SLOT(cancel()));
     connect(m_game->getGenerator(), SIGNAL(moveForHumanFound(Move)), this, SLOT(adviseMoveResult(Move)));
+
+    Intelligence::cancel(false);
     m_game->getGenerator()->searchMove(m_game->getCurrentPlayer(), *m_game->getBoard());
     qApp->processEvents();
 
@@ -311,11 +317,11 @@ void GMainWindow::moveStart() {
     switch (m_game->getCurrentPlayer().getColor()) {
 	case Figure::WHITE:
 	    m_labelStatusTurn->setText(tr("White player is seeking the move."));
-	    m_labelStatusTurn->setToolTip(tr("White player is searching for move. If game pauses now, then this search is completed additionally."));
+	    m_labelStatusTurn->setToolTip(tr("White player is searching for move. If game pauses now, it may take few seconds to abort current move search."));
 	    break;
 	case Figure::BLACK:
 	    m_labelStatusTurn->setText(tr("Black player is seeking the move."));
-	    m_labelStatusTurn->setToolTip(tr("Black player is searching for move. If game pauses now, then this search is completed additionally."));
+	    m_labelStatusTurn->setToolTip(tr("Black player is searching for move. If game pauses now, it may take few seconds to abort current move search."));
 	    break;
 	default:
 	    break;
@@ -373,12 +379,8 @@ void GMainWindow::controlGame(bool running) {
     else {
 	// AI player is now thinking about moving. Cancel this thinking.
 	if (m_game->getCurrentPlayer().getState() != Player::HUMAN && m_game->getState() == Game::RUNNING) {
-	    //m_game->m_gen->cancel();
 	    m_ui->m_buttonPlayPause->setEnabled(false);
-
 	    Intelligence::cancel(true);
-	    //m_game->getGenerator()->cancel();
-	    //moveEnd();
 	}
 	m_labelStatusState->setText(tr("Paused"));
 	m_labelStatusState->setToolTip(tr("Game is paused."));

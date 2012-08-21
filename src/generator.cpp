@@ -5,10 +5,10 @@
 
 
 Generator::Generator(QObject *parent) : QThread(parent), m_ready(false) {
-    // Start the worker thread
+    // Start the worker thread.
     start();
 
-    // Wait for the worker thread to be ready;
+    // Wait for the worker thread to be ready.
     while(!m_ready) {
 	msleep(50);
     }
@@ -29,7 +29,7 @@ void Generator::run() {
     qRegisterMetaType<Player>("Player");
     qRegisterMetaType<Board>("Board&");
 
-    // Pass sorting requests to SorterWorker in the worker thread
+    // Pass sorting requests to SorterWorker in the worker thread.
     connect(this, SIGNAL(searchRequested(Player,Board&)),
 	    &worker, SLOT(computerMove(Player,Board&)));
     connect(&worker, SIGNAL(moveFound(Move)),
@@ -39,9 +39,12 @@ void Generator::run() {
     connect(&worker, SIGNAL(rankOfCall(int)), this, SIGNAL(rankOfCall(int)));
     connect(&worker, SIGNAL(moveForHumanFound(Move)), this, SIGNAL(moveForHumanFound(Move)));
 
-    // Mark the worker thread as ready
+    // Mark the worker thread as ready.
     m_ready = true;
 
-    // Event loop (necessary to process signals)
+    // Event loop (necessary to process signals).
     exec();
+    qDebug() << "Leaving thread with"
+	     << Q_FUNC_INFO << "and code"
+	     << QThread::currentThreadId() << ".";
 }

@@ -25,7 +25,7 @@
         <translation>Licence</translation>
     </message>
     <message>
-        <location filename="../../src/gaboutdialog.cpp" line="14"/>
+        <location filename="../../src/gaboutdialog.cpp" line="17"/>
         <source>%1 %2&lt;br&gt;&lt;br&gt;&lt;b&gt;Compilation date:&lt;/b&gt; %3 (%4)&lt;br&gt;&lt;b&gt;Website:&lt;/b&gt; %5&lt;br&gt;&lt;b&gt;Author:&lt;/b&gt; %7 &amp;lt;%8&amp;gt;&lt;br&gt;&lt;b&gt;Qt Version:&lt;/b&gt; %9 (compiled against %10)</source>
         <translation>%1 %2&lt;br&gt;&lt;br&gt;&lt;b&gt;Datum sestavení:&lt;/b&gt; %3 (%4)&lt;br&gt;&lt;b&gt;Web:&lt;/b&gt; %5&lt;br&gt;&lt;b&gt;Autor:&lt;/b&gt; %7 &amp;lt;%8&amp;gt;&lt;br&gt;&lt;b&gt;Verze Qt:&lt;/b&gt; %9 (sestaveno s verzí %10)</translation>
     </message>
@@ -147,59 +147,59 @@
         <translation>Nastavení</translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="212"/>
+        <location filename="../../src/gmainwindow.cpp" line="216"/>
         <source>Save Your Game</source>
         <translation>Uložit hru</translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="214"/>
+        <location filename="../../src/gmainwindow.cpp" line="218"/>
         <source>This game has not been saved.</source>
         <translation>Tato hra nebyla uložena.</translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="215"/>
+        <location filename="../../src/gmainwindow.cpp" line="219"/>
         <source>Do you want to save or discard your game?</source>
         <translation>Chcete hru uložit nebo její uložení odmítnout?</translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="245"/>
         <location filename="../../src/gmainwindow.cpp" line="249"/>
         <location filename="../../src/gmainwindow.cpp" line="253"/>
+        <location filename="../../src/gmainwindow.cpp" line="257"/>
         <source>Game Has Ended</source>
         <translation>Konec hry</translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="246"/>
+        <location filename="../../src/gmainwindow.cpp" line="250"/>
         <source>Game has ended in a draw.</source>
         <translation>Hra skončila remízou.</translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="250"/>
+        <location filename="../../src/gmainwindow.cpp" line="254"/>
         <source>Black player has won this game.</source>
         <translation>Černý hráč zvítězil.</translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="254"/>
+        <location filename="../../src/gmainwindow.cpp" line="258"/>
         <source>White player has won this game.</source>
         <translation>Bílý hráč zvítězil.</translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="285"/>
+        <location filename="../../src/gmainwindow.cpp" line="289"/>
         <source>No Move Found</source>
         <translation>Nenalezen žádný tah</translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="286"/>
+        <location filename="../../src/gmainwindow.cpp" line="290"/>
         <source>There were found no available move for you at this phase of game.</source>
         <translation>V součásné fázi hry pro tohoto hráče bohužel nebyl nalezen žádný tah.</translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="289"/>
+        <location filename="../../src/gmainwindow.cpp" line="293"/>
         <source>Move found</source>
         <translation>Tah nelezen</translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="290"/>
+        <location filename="../../src/gmainwindow.cpp" line="294"/>
         <source>Best move was found.
 
 %1</source>
@@ -208,96 +208,96 @@
 %1</translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="295"/>
+        <location filename="../../src/gmainwindow.cpp" line="300"/>
         <source>Looking for best available move...</source>
         <translation>Hledání nejlepšího možného tahu...</translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="295"/>
+        <location filename="../../src/gmainwindow.cpp" line="300"/>
         <source>Cancel</source>
         <translation>Zrušit</translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="304"/>
+        <location filename="../../src/gmainwindow.cpp" line="311"/>
         <source>Best Move Search</source>
         <translation>Hledání nejlepšího tahu</translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="314"/>
+        <location filename="../../src/gmainwindow.cpp" line="319"/>
         <source>White player is seeking the move.</source>
         <translation>Bílý hráč hledá tah.</translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="315"/>
-        <source>White player is searching for move. If game pauses now, then this search is completed additionally.</source>
-        <translation>Bílý hráč hledá tah. Bude-li hra nyní pozastavena, tak bude toto hledání nejdříve dokončeno.</translation>
-    </message>
-    <message>
-        <location filename="../../src/gmainwindow.cpp" line="318"/>
+        <location filename="../../src/gmainwindow.cpp" line="323"/>
         <source>Black player is seeking the move.</source>
         <translation>Černý hráč hledá tah.</translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="319"/>
-        <source>Black player is searching for move. If game pauses now, then this search is completed additionally.</source>
-        <translation>Černý hráč hledá tah. Bude-li hra nyní pozastavena, tak bude toto hledání nejdříve dokončeno.</translation>
+        <location filename="../../src/gmainwindow.cpp" line="320"/>
+        <source>White player is searching for move. If game pauses now, it may take few seconds to abort current move search.</source>
+        <translation>Bilý hráč hledá tah. Bude-li hra nyní pozastavena, tak může trvat několik vteřin, než bude hledání tahu přerušeno.</translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="365"/>
+        <location filename="../../src/gmainwindow.cpp" line="324"/>
+        <source>Black player is searching for move. If game pauses now, it may take few seconds to abort current move search.</source>
+        <translation>Černý hráč hledá tah. Bude-li hra nyní pozastavena, tak může trvat několik vteřin, než bude hledání tahu přerušeno.</translation>
+    </message>
+    <message>
+        <location filename="../../src/gmainwindow.cpp" line="370"/>
         <source>Running</source>
         <translation>Hra běží</translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="366"/>
+        <location filename="../../src/gmainwindow.cpp" line="371"/>
         <source>Game is running.</source>
         <translation>Hra právě běží.</translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="384"/>
+        <location filename="../../src/gmainwindow.cpp" line="385"/>
         <source>Paused</source>
         <translation>Hra je pozastavena</translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="385"/>
+        <location filename="../../src/gmainwindow.cpp" line="386"/>
         <source>Game is paused.</source>
         <translation>Hra je právě pozastavena.</translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="400"/>
+        <location filename="../../src/gmainwindow.cpp" line="401"/>
         <source>Black player has his turn.</source>
         <translation>Černý hráč je právě na tahu.</translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="405"/>
+        <location filename="../../src/gmainwindow.cpp" line="406"/>
         <source>White player has his turn.</source>
         <translation>Bílý hráč je právě na tahu.</translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="434"/>
-        <location filename="../../src/gmainwindow.cpp" line="437"/>
+        <location filename="../../src/gmainwindow.cpp" line="435"/>
+        <location filename="../../src/gmainwindow.cpp" line="438"/>
         <source>in action</source>
         <translation>v plné síle</translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="442"/>
-        <location filename="../../src/gmainwindow.cpp" line="445"/>
+        <location filename="../../src/gmainwindow.cpp" line="443"/>
+        <location filename="../../src/gmainwindow.cpp" line="446"/>
         <source>tiing</source>
         <translation>remizuje</translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="450"/>
-        <location filename="../../src/gmainwindow.cpp" line="461"/>
+        <location filename="../../src/gmainwindow.cpp" line="451"/>
+        <location filename="../../src/gmainwindow.cpp" line="462"/>
         <source>winning</source>
         <translation>vyhrává</translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="453"/>
-        <location filename="../../src/gmainwindow.cpp" line="458"/>
+        <location filename="../../src/gmainwindow.cpp" line="454"/>
+        <location filename="../../src/gmainwindow.cpp" line="459"/>
         <source>losing</source>
         <translation>prohrává</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/gmainwindow.cpp" line="467"/>
+        <location filename="../../src/gmainwindow.cpp" line="468"/>
         <source> %n/%1 move(s) without jump</source>
         <translation>
             <numerusform> %n/%1 tah beze skoku</numerusform>
@@ -306,8 +306,8 @@
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/gmainwindow.cpp" line="481"/>
-        <location filename="../../src/gmainwindow.cpp" line="484"/>
+        <location filename="../../src/gmainwindow.cpp" line="482"/>
+        <location filename="../../src/gmainwindow.cpp" line="485"/>
         <source>%n figure(s)</source>
         <translation>
             <numerusform>%n figurka</numerusform>
@@ -316,43 +316,43 @@
         </translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="490"/>
+        <location filename="../../src/gmainwindow.cpp" line="491"/>
         <source>human</source>
         <translation>člověk</translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="490"/>
+        <location filename="../../src/gmainwindow.cpp" line="491"/>
         <source>easy</source>
         <translation>lehký</translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="490"/>
+        <location filename="../../src/gmainwindow.cpp" line="491"/>
         <source>medium</source>
         <translation>střední</translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="490"/>
+        <location filename="../../src/gmainwindow.cpp" line="491"/>
         <source>hard</source>
         <translation>těžký</translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="508"/>
+        <location filename="../../src/gmainwindow.cpp" line="509"/>
         <source>Save Game</source>
         <translation>Uloži hru</translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="509"/>
+        <location filename="../../src/gmainwindow.cpp" line="510"/>
         <source>my-saved-game.qgo</source>
         <translation>moje-ulozena-hra.qgo</translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="510"/>
-        <location filename="../../src/gmainwindow.cpp" line="549"/>
+        <location filename="../../src/gmainwindow.cpp" line="511"/>
+        <location filename="../../src/gmainwindow.cpp" line="550"/>
         <source>QGothic Game File (*.qgo);;All Files (*.*)</source>
         <translation>QGothic uložené hry (*.qgo);;Všechny soubory (*.*)</translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="513"/>
+        <location filename="../../src/gmainwindow.cpp" line="514"/>
         <source>Game couldn&apos;t be saved because target file is not writable or some kind of other error occured.
 
 File: %1</source>
@@ -361,12 +361,12 @@ File: %1</source>
 Soubor: %1</translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="513"/>
+        <location filename="../../src/gmainwindow.cpp" line="514"/>
         <source>Error</source>
         <translation>Chyba</translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="526"/>
+        <location filename="../../src/gmainwindow.cpp" line="527"/>
         <source>Game couldn&apos;t be loaded because this file is not in valid format or was saved under another version of this application.
 
 File: %1</source>
@@ -375,14 +375,37 @@ File: %1</source>
 Soubor: %1</translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="547"/>
+        <location filename="../../src/gmainwindow.cpp" line="548"/>
         <source>Load Game</source>
         <translation>Uložit hru</translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="570"/>
+        <location filename="../../src/gmainwindow.cpp" line="571"/>
         <source>User Guide</source>
         <translation>Uživatelská příručka</translation>
+    </message>
+</context>
+<context>
+    <name>GMoveDialog</name>
+    <message>
+        <location filename="../../ui/gmovedialog.ui" line="14"/>
+        <source>Ambiguous Moves Available</source>
+        <translation>Dostupné nejednoznačné tahy</translation>
+    </message>
+    <message>
+        <location filename="../../ui/gmovedialog.ui" line="20"/>
+        <source>There are two or more ambiguous moves available for this player. Please, select your move.</source>
+        <translation>Jsou k dispozici minimálně dva nejednoznačné tahy pro tohoto hráče. Prosím, vyberte Váš následující tah.</translation>
+    </message>
+    <message>
+        <location filename="../../ui/gmovedialog.ui" line="46"/>
+        <source>Move</source>
+        <translation>Tah</translation>
+    </message>
+    <message>
+        <location filename="../../ui/gmovedialog.ui" line="51"/>
+        <source>Jumped Figures At</source>
+        <translation>Přeskočené figurky na pozicích</translation>
     </message>
 </context>
 <context>
@@ -408,115 +431,115 @@ Soubor: %1</translation>
         <translation>Nastavení hry</translation>
     </message>
     <message>
-        <location filename="../../ui/gsettingsdialog.ui" line="295"/>
+        <location filename="../../ui/gsettingsdialog.ui" line="113"/>
         <source>Indicates maximum count of continuously playable non-jumping moves. If this number is reached during the game, then game ends.</source>
         <translation>Indikuje maxímální počet tahů zahraných po sobě, ve kterých nebyl přeskočena figurka. Je-li tento počet dosažen ve hře, tak hra končí.</translation>
     </message>
     <message>
-        <location filename="../../ui/gsettingsdialog.ui" line="298"/>
+        <location filename="../../ui/gsettingsdialog.ui" line="116"/>
         <source>Maximum number of moves without jump</source>
         <translation>Moximální počet tahů beze skoku</translation>
     </message>
     <message>
-        <location filename="../../ui/gsettingsdialog.ui" line="340"/>
+        <location filename="../../ui/gsettingsdialog.ui" line="144"/>
         <source> moves</source>
         <translation> tahů</translation>
     </message>
     <message>
-        <location filename="../../ui/gsettingsdialog.ui" line="359"/>
+        <location filename="../../ui/gsettingsdialog.ui" line="187"/>
         <source>Starting Player</source>
         <translation>Začínající hráč</translation>
     </message>
     <message>
-        <location filename="../../ui/gsettingsdialog.ui" line="119"/>
-        <location filename="../../ui/gsettingsdialog.ui" line="365"/>
+        <location filename="../../ui/gsettingsdialog.ui" line="193"/>
+        <location filename="../../ui/gsettingsdialog.ui" line="234"/>
         <source>White Player</source>
         <translation>Bílý hráč</translation>
     </message>
     <message>
-        <location filename="../../ui/gsettingsdialog.ui" line="194"/>
-        <location filename="../../ui/gsettingsdialog.ui" line="375"/>
+        <location filename="../../ui/gsettingsdialog.ui" line="203"/>
+        <location filename="../../ui/gsettingsdialog.ui" line="309"/>
         <source>Black Player</source>
         <translation>Černý hráč</translation>
     </message>
     <message>
-        <location filename="../../ui/gsettingsdialog.ui" line="125"/>
-        <location filename="../../ui/gsettingsdialog.ui" line="200"/>
+        <location filename="../../ui/gsettingsdialog.ui" line="240"/>
+        <location filename="../../ui/gsettingsdialog.ui" line="315"/>
         <source>Difficulty</source>
         <translation>Obtížnost</translation>
     </message>
     <message>
-        <location filename="../../ui/gsettingsdialog.ui" line="131"/>
-        <location filename="../../ui/gsettingsdialog.ui" line="206"/>
+        <location filename="../../ui/gsettingsdialog.ui" line="246"/>
+        <location filename="../../ui/gsettingsdialog.ui" line="321"/>
         <source>Easy</source>
         <translation>Lehká</translation>
     </message>
     <message>
-        <location filename="../../ui/gsettingsdialog.ui" line="141"/>
-        <location filename="../../ui/gsettingsdialog.ui" line="216"/>
+        <location filename="../../ui/gsettingsdialog.ui" line="256"/>
+        <location filename="../../ui/gsettingsdialog.ui" line="331"/>
         <source>Medium</source>
         <translation>Střední</translation>
     </message>
     <message>
-        <location filename="../../ui/gsettingsdialog.ui" line="148"/>
-        <location filename="../../ui/gsettingsdialog.ui" line="226"/>
+        <location filename="../../ui/gsettingsdialog.ui" line="263"/>
+        <location filename="../../ui/gsettingsdialog.ui" line="341"/>
         <source>Hard</source>
         <translation>Těžká</translation>
     </message>
     <message>
-        <location filename="../../ui/gsettingsdialog.ui" line="178"/>
-        <location filename="../../ui/gsettingsdialog.ui" line="256"/>
+        <location filename="../../ui/gsettingsdialog.ui" line="293"/>
+        <location filename="../../ui/gsettingsdialog.ui" line="371"/>
         <source>Human</source>
         <translation>Člověk</translation>
     </message>
     <message>
-        <location filename="../../ui/gsettingsdialog.ui" line="183"/>
-        <location filename="../../ui/gsettingsdialog.ui" line="261"/>
+        <location filename="../../ui/gsettingsdialog.ui" line="298"/>
+        <location filename="../../ui/gsettingsdialog.ui" line="376"/>
         <source>Computer</source>
         <translation>Počítač</translation>
     </message>
     <message>
-        <location filename="../../ui/gsettingsdialog.ui" line="315"/>
+        <location filename="../../ui/gsettingsdialog.ui" line="174"/>
         <source>Standard</source>
         <translation>Standardní</translation>
     </message>
     <message>
-        <location filename="../../ui/gsettingsdialog.ui" line="320"/>
+        <location filename="../../ui/gsettingsdialog.ui" line="179"/>
         <source>Advanced</source>
         <translation>Pokročilá</translation>
     </message>
     <message>
-        <location filename="../../ui/gsettingsdialog.ui" line="285"/>
+        <location filename="../../ui/gsettingsdialog.ui" line="163"/>
         <source>Strategy for &quot;Find Best Move&quot; function</source>
         <translation>Strategie pro funkci &quot;Hledat nejlepší tah&quot;</translation>
     </message>
     <message>
-        <location filename="../../ui/gsettingsdialog.ui" line="433"/>
+        <location filename="../../ui/gsettingsdialog.ui" line="437"/>
         <source>Appearance Configuration</source>
         <translation>Nastavení vzhledu</translation>
     </message>
     <message>
-        <location filename="../../ui/gsettingsdialog.ui" line="439"/>
+        <location filename="../../ui/gsettingsdialog.ui" line="443"/>
         <source>Control Box Alignment</source>
         <translation>Umístění kontrolního panelu</translation>
     </message>
     <message>
-        <location filename="../../ui/gsettingsdialog.ui" line="445"/>
+        <location filename="../../ui/gsettingsdialog.ui" line="449"/>
         <source>Left</source>
         <translation>Vlevo</translation>
     </message>
     <message>
-        <location filename="../../ui/gsettingsdialog.ui" line="455"/>
+        <location filename="../../ui/gsettingsdialog.ui" line="459"/>
         <source>Right</source>
         <translation>Vpravo</translation>
     </message>
     <message>
-        <location filename="../../ui/gsettingsdialog.ui" line="491"/>
+        <location filename="../../ui/gsettingsdialog.ui" line="495"/>
         <source>Application Language</source>
         <translation>Jazyk aplikace</translation>
     </message>
     <message>
-        <location filename="../../ui/gsettingsdialog.ui" line="542"/>
+        <location filename="../../ui/gsettingsdialog.ui" line="546"/>
         <source>Other Configuration</source>
         <translation>Další nastavení</translation>
     </message>
@@ -527,7 +550,7 @@ Soubor: %1</translation>
     </message>
     <message>
         <location filename="../../src/gsettingsdialog.cpp" line="55"/>
-        <source>Language of QGothic has been changed. zChanges will take effect when application gets restarted.</source>
+        <source>Language of QGothic has been changed. Changes will take effect when application gets restarted.</source>
         <translation>Jazyk aplikace QGothic byl změněn. Změny se projeví až po restartu.</translation>
     </message>
     <message>

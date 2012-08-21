@@ -86,7 +86,6 @@ int Algorithms::alfabeta(Figure::Color original_color, Figure::Color actual_colo
     return alfa;
 }
 
-
 int Algorithms::minimax(Figure::Color original_color, Figure::Color actual_color,
 			Board &board, int depth, int (*eval_function)(Board &)) {
 

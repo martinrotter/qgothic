@@ -1,5 +1,6 @@
 #include "gboard.h"
 #include "referee.h"
+#include "gmovedialog.h"
 
 #include <QDebug>
 #include <QStyleOption>
@@ -75,9 +76,6 @@ void GBoard::mousePressEvent(QMouseEvent *e) {
 	    m_available_pieces.append(move.getFrom());
 	}
 
-	//QList<Move> available_moves = Referee::getBestMoves(Referee::getAllMoves(m_selected_piece, *m_game->getBoard()));
-
-
 	// do m_available_moves dej tahy ktere jdou udělat z vybranou figurkou
 	foreach (Move move, available_moves) {
 	    if (move.getFrom() != clicked_location) {
@@ -113,19 +111,11 @@ void GBoard::mousePressEvent(QMouseEvent *e) {
 		return;
 	    }
 	}
-/*
-	QList<Move> available_moves = Referee::getBestMoves(Referee::getAllMoves(m_selected_piece, *m_game->getBoard()));
-	foreach (Move move, available_moves) {
-	    if (m_available_pieces.contains(move.getFrom()) == false) {
-		available_moves.removeOne(move);
-	    }
-	}
-*/
-
 
 	m_available_pieces.clear();
 	m_is_piece_selected = false;
 
+	QList<Move> ambiguous_moves;
 
 	//qDebug() << "pocet moznych tahu: " << available_moves.size();
 	foreach (Move move, m_available_moves) {	    // našli jsme vhodný tah
@@ -136,18 +126,32 @@ void GBoard::mousePressEvent(QMouseEvent *e) {
 		// u počítače tato situace nenastane
 		if (m_game->getCurrentPlayer().getState() == Player::HUMAN &&
 			Figure::getColorByType((*m_game->getBoard())(move.getFrom())) != m_game->getCurrentPlayer().getColor()) {
-		    qDebug() << "you are not available to make this move";
+		    qDebug() << "You are not available to make this move";
 		    return;
 		}
-		m_game->makeMove(move);
-		m_available_moves.clear();
-		repaint();
-		return;
+		ambiguous_moves.append(move);
 	    }
 	}
 
-	m_available_moves.clear();
-	mousePressEvent(e);
+	if (ambiguous_moves.size() == 0) {
+	    m_available_moves.clear();
+	    mousePressEvent(e);
+	}
+
+	else if (ambiguous_moves.size() == 1) {
+	    m_game->makeMove(ambiguous_moves.at(0));
+	    m_available_moves.clear();
+	}
+	else {
+	    qDebug("Ambiguous moves for this phase of game. Count of moves is: %d.",
+		   ambiguous_moves.size());
+	    int which_move_index;
+	    int result = GMoveDialog(ambiguous_moves).exec(&which_move_index);
+	    if (result == QDialog::Accepted && which_move_index >= 0) {
+		m_game->makeMove(ambiguous_moves.at(which_move_index));
+	    }
+	    m_available_moves.clear();
+	}
     }
     repaint();
 }
@@ -176,7 +180,6 @@ void GBoard::paintEvent(QPaintEvent *e) {
     p.drawRect(m_offset, m_offset, size*block_size, size*block_size);
 
     // Draw labels.
-
     for (int i = 0; i < size; i++) {
 	p.drawText(x, y, 10, 15, Qt::AlignCenter, QString(i+'A'));
 	x += block_size;
@@ -239,61 +242,35 @@ void GBoard::paintEvent(QPaintEvent *e) {
     for (int i = 0; i < size; i++) {
 	for (int j = 0; j < size; j++) {
 	    switch((*m_game->getBoard())(j, i)) {
-		/*
-		    p.drawImage(QRect(x, y, block_size, block_size),
-				QImage(":/graphics/black-queen.png"));*/
 		case Figure::BLACK_PAWN:
-		    //p.set
-		    p.setPen(QPen(Qt::black, 3.0));
+		    p.setPen(QPen(Qt::black, 4.0));
 		    p.setBrush(QBrush(Qt::black));
 		    p.drawEllipse(x+block_size*0.1, y+block_size*0.1,
-						      block_size*0.8, block_size*0.8);
+				  block_size*0.8, block_size*0.8);
 		    break;
 		case Figure::WHITE_PAWN:
-		    //p.set
-		    p.setPen(QPen(Qt::black, 3.0));
+		    p.setPen(QPen(Qt::black, 4.0));
 		    p.setBrush(QBrush(Qt::white));
 		    p.drawEllipse(x+block_size*0.1, y+block_size*0.1,
 				  block_size*0.8, block_size*0.8);
 		    break;
 		case Figure::BLACK_QUEEN:
-		    //p.set
-/*
-		    p.setPen(QPen(Qt::black, 3.0));
-		    p.setBrush(QBrush(Qt::black));
-		    p.drawEllipse(x+block_size*0.1, y+block_size*0.1,
-				  block_size*0.8, block_size*0.8);
-		    p.setPen(QPen(Qt::white, 3.0));
-		    p.drawEllipse(x+block_size*0.3, y+block_size*0.3,
-				  block_size*0.4, block_size*0.4);
-*/
-
 		    p.drawImage(QRect(x, y, block_size, block_size),
 				QImage(":/graphics/black-queen.png"));
 		    break;
 		case Figure::WHITE_QUEEN:
-		    //p.set
-/*
-		    p.setPen(QPen(Qt::black, 3.0));
-		    p.setBrush(QBrush(Qt::white));
-		    p.drawEllipse(x+block_size*0.1, y+block_size*0.1,
-				  block_size*0.8, block_size*0.8);
-		    p.drawEllipse(x+block_size*0.3, y+block_size*0.3,
-				  block_size*0.4, block_size*0.4);
-			*/
 		    p.drawImage(QRect(x, y, block_size, block_size),
 				QImage(":/graphics/white-queen.png"));
 		    break;
 		default:
 		    break;
 	    }
-
-	    //qDebug() << x << " " << y;
 	    x += block_size;
 	}
 	y -= block_size;
 	x = m_offset;
     }
+
     /*
     if (m_game->getState() == Game::PAUSED) {
 	// Make board darker.
@@ -314,7 +291,6 @@ void GBoard::paintEvent(QPaintEvent *e) {
 }
 
 void GBoard::resizeEvent(QResizeEvent *e) {
-    //qDebug() << "resize";
     int new_size = qMin(e->size().width(), e->size().height());
     resize(new_size, new_size);
 }

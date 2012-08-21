@@ -7,6 +7,9 @@
 GAboutDialog::GAboutDialog(QWidget *parent) : QDialog(parent), m_ui(new Ui::GAboutDialog) {
     m_ui->setupUi(this);
 
+    // Prepare dialog.
+    setFixedSize(width(), height());
+
     // Setup connections.
     connect(m_ui->m_buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
 

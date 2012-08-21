@@ -48,7 +48,8 @@ SOURCES += src/main.cpp \
     src/gspinbox.cpp \
     src/gaboutdialog.cpp \
     src/debug.cpp \
-    src/gdocdialog.cpp
+    src/gdocdialog.cpp \
+    src/gmovedialog.cpp
 
 HEADERS += \
     src/location.h \
@@ -77,13 +78,15 @@ HEADERS += \
     src/gspinbox.h \
     src/gaboutdialog.h \
     src/debug.h \
-    src/gdocdialog.h
+    src/gdocdialog.h \
+    src/gmovedialog.h
 
 FORMS += \
     ui/gmainwindow.ui \
     ui/gsettingsdialog.ui \
     ui/gaboutdialog.ui \
-    ui/gdocdialog.ui
+    ui/gdocdialog.ui \
+    ui/gmovedialog.ui
 
 RESOURCES += \
     resources/qgothic.qrc

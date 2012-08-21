@@ -281,7 +281,7 @@ void Game::informAboutHistory() {
 
 void Game::makeMove(const Move &move) {
     emit moveSearchFinished();
-/*
+    /*
     m_generator->terminate();
     m_generator->wait();
 */

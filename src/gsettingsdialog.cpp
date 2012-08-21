@@ -13,7 +13,7 @@ GSettingsDialog::GSettingsDialog(Game *game, GMainWindow *parent) :
     m_ui->setupUi(this);
 
     // Prepare interface.
-    //setFixedSize(sizeHint().width(), sizeHint().height());
+    setFixedSize(sizeHint().width(), sizeHint().height());
     m_ui->m_stackedSections->setCurrentIndex(0);
     m_ui->m_spinMoves->setLineEditReadOnly(true);
 
@@ -52,7 +52,7 @@ void GSettingsDialog::setLanguages() {
 	QMessageBox msg_box(this);
 	msg_box.setWindowTitle(tr("Language Changed"));
 	msg_box.setIcon(QMessageBox::Information);
-	msg_box.setText(tr("Language of QGothic has been changed. zChanges will take effect when application gets restarted."));
+	msg_box.setText(tr("Language of QGothic has been changed. Changes will take effect when application gets restarted."));
 	msg_box.setInformativeText(tr("Do you want to restart now?"));
 	msg_box.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
 	msg_box.setDefaultButton(QMessageBox::Save);
