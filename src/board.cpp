@@ -84,11 +84,11 @@ void Board::updateState() {
     }
     else if (Board::getLocations(Figure::BLACK).size() == 0) {
 	m_state = Board::WHITE_WON;
-	qDebug() << "Count of black figures is 0.";
+	//qDebug() << "Count of black figures is 0.";
     }
     else if (Board::getLocations(Figure::WHITE).size() == 0) {
 	m_state = Board::BLACK_WON;
-	qDebug() << "Count of white figures is 0.";
+	//qDebug() << "Count of white figures is 0.";
     }
     else {
 	m_state = Board::ORDINARY;
@@ -123,22 +123,43 @@ int Board::getMaxMovesNoJump() const {
     return m_maxMovesNoJump;
 }
 
-void Board::setInitialPositions() {    
+void Board::setInitialPositions() {
     for (int i = 0; i < m_size; i++) {
 	for (int j = 0; j < m_size; j++) {
+	    if (!((i+j%2)%2)) {
+		if (i <=1) {
+		    m_field[i][j] = Figure::WHITE_PAWN;
+		}
+		else if (i >= 6) {
+		    m_field[i][j] = Figure::BLACK_PAWN;
+		}
+		else {
+		    m_field[i][j] = Figure::EMPTY;
+		}
+	    }
+
+	    /*
 	    switch (i) {
 		case 0:
+		    if (double(i)/2 == 0) {
+			m_field[i][j] = Figure::WHITE_PAWN;
+		    }
+		    break;
 		case 1:
-		    m_field[i][j] = Figure::WHITE_PAWN;
+		    if (double(++counter)/2 != 0) {
+			m_field[i][j] = Figure::WHITE_PAWN;
+		    }
 		    break;
 		case 6:
 		case 7:
-		    m_field[i][j] = Figure::BLACK_PAWN;
+		    if (double(++counter)/2 != 0) {
+			m_field[i][j] = Figure::BLACK_PAWN;
+		    }
 		    break;
 		default:
 		    m_field[i][j] = Figure::EMPTY;
 		    break;
-	    }
+	    }*/
 	}
     }
 }

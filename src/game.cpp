@@ -281,10 +281,7 @@ void Game::informAboutHistory() {
 
 void Game::makeMove(const Move &move) {
     emit moveSearchFinished();
-    /*
-    m_generator->terminate();
-    m_generator->wait();
-*/
+
     if ((m_state == Game::RUNNING && getCurrentPlayer().getState() == Player::HUMAN) || m_board->getState() == Board::ORDINARY) {
 	m_isSaved = false;
 

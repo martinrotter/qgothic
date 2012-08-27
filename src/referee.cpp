@@ -220,11 +220,11 @@ QList<Move> Referee::getQueenMoves(const Location &location, Board &board) {
 const QList<Location> &Referee::getPawnDirections() {
     if (s_pawnDirections == NULL) {
 	s_pawnDirections = new QList<Location>();
-	*s_pawnDirections << Location(1, 0);
+	//*s_pawnDirections << Location(1, 0);
 	*s_pawnDirections << Location(1, 1);
-	*s_pawnDirections << Location(0, 1);
+	//*s_pawnDirections << Location(0, 1);
 	*s_pawnDirections << Location(-1, 1);
-	*s_pawnDirections << Location(-1, 0);
+	//*s_pawnDirections << Location(-1, 0);
     }
     return *s_pawnDirections;
 }
@@ -232,13 +232,13 @@ const QList<Location> &Referee::getPawnDirections() {
 const QList<Location> &Referee::getQueenDirections() {
     if (s_queenDirections == NULL) {
 	s_queenDirections = new QList<Location>();
-	*s_queenDirections << Location(1, 0);
+	//*s_queenDirections << Location(1, 0);
 	*s_queenDirections << Location(1, 1);
-	*s_queenDirections << Location(0, 1);
+	//*s_queenDirections << Location(0, 1);
 	*s_queenDirections << Location(-1, 1);
-	*s_queenDirections << Location(-1, 0);
+	//*s_queenDirections << Location(-1, 0);
 	*s_queenDirections << Location(-1, -1);
-	*s_queenDirections << Location(0, -1);
+	//*s_queenDirections << Location(0, -1);
 	*s_queenDirections << Location(1, -1);
     }
     return *s_queenDirections;

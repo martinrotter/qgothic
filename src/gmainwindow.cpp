@@ -7,8 +7,9 @@
 #include "move.h"
 #include "intelligence.h"
 #include "definitions.h"
-
 #include "historymodel.h"
+
+#include <cmath>
 
 #include <QDebug>
 #include <QMessageBox>
@@ -118,7 +119,7 @@ void GMainWindow::closeEvent(QCloseEvent *e) {
 }
 
 void GMainWindow::initialiseMembers() {
-    setFixedSize(width(), height());
+    //setFixedSize(width(), height());
     GInterface::centerWidgetOnScreen(this);
 
     m_game = new Game(this);

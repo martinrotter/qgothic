@@ -131,13 +131,12 @@ int Algorithms::minimax(Figure::Color original_color, Figure::Color actual_color
 	next.makeMove(move);
 	price = std::max(price, -minimax(original_color, Figure::negateColor(actual_color),
 					 next, depth-1, eval_function));
-    }
-
+    }/*
     if (price > Strategy::ALMOST_WINNING) {
 	price--;
     }
     if (price < Strategy::ALMOST_LOSING) {
 	price++;
-    }
+    }*/
     return price;
 }
