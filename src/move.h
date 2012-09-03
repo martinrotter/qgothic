@@ -131,7 +131,7 @@ class Move {
 	 * \note Invalid moves are used to indicate that current player cannot
 	 * make any move on the Board.
 	 */
-	static Move getInvalidMove();
+	static Move getInvalidMove(Figure::Type type = Figure::WHITE_PAWN);
 
     private:
 	Location *m_from;

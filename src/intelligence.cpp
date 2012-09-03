@@ -121,7 +121,8 @@ void Intelligence::minimaxMove(Player applicant, Board &board,
     // Player can't make any moves.
     if (moves.size() == 0) {
 	qDebug() << "NO MOVES AVAILABLE FOR THIS PLAYER" << "\a";
-	emit moveFound(Move::getInvalidMove());
+	Move invalid_move = Move::getInvalidMove(Figure::getTypeByColor(applicant.getColor()).at(0));
+	emit moveFound(invalid_move);
 	return;
     }
 

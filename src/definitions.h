@@ -15,8 +15,7 @@ const QString CONFIG_NAME	= "qgothic.ini";
 const QString LANG_BASE		= ":/translations";
 
 const QString APP_NAME		= "QGothic";
-const int APP_SAVE_LIMIT	= 30;
-const QString APP_VERSION	= "0.3.6";
+const QString APP_VERSION	= "0.3.7";
 const QString APP_AUTHOR	= "Martin Rotter";
 const QString APP_COPYRIGHT	= "Copyright (C) 2011-2012 Martin Rotter";
 const QString APP_URL		= "http://code.google.com/p/qgothic/";

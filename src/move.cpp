@@ -74,10 +74,11 @@ bool Move::isInvalid() const {
     return m_from->getX() < 0;
 }
 
-Move Move::getInvalidMove() {
+Move Move::getInvalidMove(Figure::Type type) {
     Move move;
     Location invalid_from(-1, -1);
     move.setFrom(invalid_from);
+    move.setFigureType(type);
     return move;
 }
 

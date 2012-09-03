@@ -333,10 +333,7 @@ void GMainWindow::moveStart() {
     m_ui->m_buttonRedo->setEnabled(false);
     m_ui->m_buttonUndo->setEnabled(false);
     m_ui->m_historyView->setEnabled(false);
-
-    m_ui->m_actionLoad->setEnabled(false);
-    m_ui->m_actionNew->setEnabled(false);
-    m_ui->m_actionSettings->setEnabled(false);
+    m_ui->m_menuBar->setEnabled(false);
 }
 
 void GMainWindow::moveEnd() {
@@ -347,11 +344,7 @@ void GMainWindow::moveEnd() {
     m_ui->m_buttonRedo->setEnabled(true);
     m_ui->m_buttonUndo->setEnabled(true);
     m_ui->m_historyView->setEnabled(true);
-
-    m_ui->m_actionLoad->setEnabled(true);
-    m_ui->m_actionNew->setEnabled(true);
-    m_ui->m_actionSettings->setEnabled(true);
-    //m_ui->m_actionSave->setEnabled(true);
+    m_ui->m_menuBar->setEnabled(true);
 }
 
 void GMainWindow::continueGame() {

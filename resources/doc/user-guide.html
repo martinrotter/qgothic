@@ -57,7 +57,7 @@
 				<p>QGothic is simple board game developed using Qt framework. It is based on a well-known Altdeutsche Dame.</p>
 				
 				<h1><a name="general">General</a></h1>
-				<p>QGothic is simple checkers-like board game. It can be played in a very similar way to traditional chess, despite little different <a href="#rules">game rules</a>. This game is also known as Altdeutsche Dame or Damn-Spel. It has been inferred because of the similarities between south German and Turkish checker rules that Altdeutsche Dame may have influenced Turkish Checkers, invented around 1683.</p>
+				<p>QGothic is simple checkers-like board game. It can be played in a very similar way to traditional chess, despite little different <a href="#rules">game rules</a>. This game is based on Damn-Spel and Czech Checkers. Altdeutsche Dame has been inferred because of the similarities between south German and Turkish checker rules that Altdeutsche Dame may have influenced Turkish Checkers, invented around 1683.</p>
 				
 				<h1><a name="rules">Game Rules</a></h1>
 				<p>Note that QGothic's rules are different from traditional checkers.</p>
@@ -72,15 +72,16 @@
 				<li>Game is played on rectangular board of 8x8 size.</li>
 				<li>Number of player is strictly limited to 2 players.</li>
 				<li>Players change in their turns regularly, one move is made during one turn.</li>
-				<li>Each player starts with 16 pawns located in 2 southest rows from view of that respective player.</li>
-				<li>Pawn can move ortogonally or diagonally by one field forward or to flanks. Moving backwards is not allowed.</li>
+				<li>Each player starts with 12 pawns located in 2 southest rows from view of that respective player.</li>
+				<li>Pawn can move diagonally by one field forward. Moving backwards is not allowed.</li>
 				<li>Pawn can jump opponents's figures. Jumped figure has to be located just next to jumping pawn and field behind victim must be empty.</li>
 				<li>These simple pawn jumps can be chained in a jumping sequence.</li>
 				<li>If pawn reaches furthest row of board, it is promoted to the queen and move is ended. It's opponent's turn now.</li>
-				<li>Queen is allowed to move to all directions.</li>
+				<li>Queen is allowed to move diagonally to all directions.</li>
 				<li>Queen can jump figure in its way, if there is at least one field empty behind jumped figure.</li>
 				<li>These simple queen jumps can be chained in a jumping sequence.</li>
 				<li>Each player must make a move containing the most available figures. Otherwise any move can be made.</li>
+				<li>If player is not able to make any move, then it's opponent's turn.</li>
 				</ol>
 				
 				<h3>Ending of a Game</h3>

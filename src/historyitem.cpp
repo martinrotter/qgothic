@@ -28,7 +28,12 @@ QString HistoryItem::getInfo(HistoryItem::Section section) const {
 	case HistoryItem::ID:
 	    return QString::number(getOrdinalNumber());
 	case HistoryItem::MOVE:
-	    return getMove()->toString();
+	    if (getMove()->isInvalid() == true) {
+		return QObject::tr("Move Skipped");
+	    }
+	    else {
+		return getMove()->toString();
+	    }
 	case HistoryItem::PLAYER:
 	    return Figure::getColorByType(getMove()->getFigureType()) == Figure::WHITE
 		    ? QObject::tr("White")

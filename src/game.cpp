@@ -147,14 +147,6 @@ bool Game::loadGame(const QString &file_name) {
 	QString array = crypto.decryptToString(QString(file.readAll()));
 	file.close();
 
-	qDebug() << array;
-
-	// If file is too small (it is corrupted or decryption failed, then
-	// return from this function.
-	if (array.size() < APP_SAVE_LIMIT) {
-	    return false;
-	}
-
 	int tmp_starting_player, max_moves_without_jump;
 	Player::State white_player, black_player;
 
@@ -256,19 +248,17 @@ void Game::newGame() {
 }
 
 void Game::fakeHumanMove() {
-    if (Referee::getMoves(getCurrentPlayer().getColor(), *m_board).size() == 0) {
-	qDebug() << "Faking move.";
-	makeMove(Move::getInvalidMove());
+    Figure::Color color_of_cur_player = getCurrentPlayer().getColor();
+    if (Referee::getMoves(color_of_cur_player, *m_board).size() == 0) {
+	qDebug() << "Faking move for human player.";
+	makeMove(Move::getInvalidMove(Figure::getTypeByColor(color_of_cur_player).at(0)));
     }
 }
 
 void Game::computerMove() {
     if (m_board->getState() == Board::ORDINARY) {
 	emit moveSearchStarted();
-
 	m_generator->searchMove(getCurrentPlayer(), *m_board);
-
-	//m_generator->searchMove(getCurrentPlayer(), m_board);
     }
 }
 

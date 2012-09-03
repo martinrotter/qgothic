@@ -127,10 +127,10 @@ void Board::setInitialPositions() {
     for (int i = 0; i < m_size; i++) {
 	for (int j = 0; j < m_size; j++) {
 	    if (!((i+j%2)%2)) {
-		if (i <=1) {
+		if (i <=2) {
 		    m_field[i][j] = Figure::WHITE_PAWN;
 		}
-		else if (i >= 6) {
+		else if (i >= 5) {
 		    m_field[i][j] = Figure::BLACK_PAWN;
 		}
 		else {
