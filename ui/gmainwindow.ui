@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>804</width>
-    <height>589</height>
+    <width>876</width>
+    <height>614</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -462,7 +462,7 @@ QTreeView::branch:closed:has-children:has-siblings {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>804</width>
+     <width>876</width>
      <height>21</height>
     </rect>
    </property>

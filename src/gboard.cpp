@@ -172,12 +172,8 @@ void GBoard::paintEvent(QPaintEvent *e) {
     int block_size = (width()-2*m_offset)/size;
     int x = m_offset + block_size*0.45, y = height() - m_offset*0.8;
 
-    // Draw border.
-    p.fillRect(0, 0, width(), height(), Qt::transparent);
-
-    p.setPen(QPen(Qt::black, 3.0));
+    p.setPen(QPen(Qt::black, 0.8));
     p.setBrush(QBrush(Qt::black));
-    p.drawRect(m_offset, m_offset, size*block_size, size*block_size);
 
     // Draw labels.
     for (int i = 0; i < size; i++) {
@@ -196,10 +192,12 @@ void GBoard::paintEvent(QPaintEvent *e) {
     for (int i = 0; i < size; i++) {
 	for (int j = 0; j < size; j++) {
 	    if (!((i+j%2)%2)) {
-		p.fillRect(x, y, block_size, block_size, QColor(180, 220, 250));
+		p.setBrush(QBrush(QColor(180, 220, 250)));
+		p.drawRect(x, y, block_size, block_size);
 	    }
 	    else {
-		p.fillRect(x, y, block_size, block_size, Qt::white);
+		p.setBrush(QBrush(Qt::white));
+		p.drawRect(x, y, block_size, block_size);
 	    }
 	    x += block_size;
 	}
@@ -212,13 +210,15 @@ void GBoard::paintEvent(QPaintEvent *e) {
 	int x = move.getTo().getX()*block_size + m_offset;
 	int y = height()-m_offset-2-(move.getTo().getY()+1)*block_size;
 
-	p.fillRect(x, y+2, block_size, block_size, QColor(0,255,0,150));
+	p.setBrush(QBrush(QColor(0,255,0,150)));
+	p.drawRect(x, y+2, block_size, block_size);
 
 	foreach (JumpedFigure fig, move.getJumpedFigures()) {
 	    int x = fig.first.getX()*block_size + m_offset;
 	    int y = height()-m_offset-2-(fig.first.getY()+1)*block_size;
 
-	    p.fillRect(x, y+2, block_size, block_size, Qt::red);
+	    p.setBrush(QBrush(Qt::red));
+	    p.drawRect(x, y+2, block_size, block_size);
 	}
 
     }
@@ -228,13 +228,16 @@ void GBoard::paintEvent(QPaintEvent *e) {
 	int x = loc.getX()*block_size + m_offset;
 	int y = height()-m_offset-2-(loc.getY()+1)*block_size;
 
-	p.fillRect(x, y+2, block_size, block_size, QColor(240, 140, 210, 150));
+	p.setBrush(QBrush(QColor(240, 140, 210, 150)));
+	p.drawRect(x, y+2, block_size, block_size);
     }
 
     if (m_is_piece_selected) {
 	int x = m_selected_piece.getX()*block_size + m_offset;
-	int y = height()-m_offset-2-(m_selected_piece.getY()+1)*block_size;
-	p.fillRect(x, y+2, block_size, block_size, QColor(0, 0, 0, 70));
+	int y = height()-m_offset-(m_selected_piece.getY()+1)*block_size;
+
+	p.setBrush(QBrush(QColor(0, 0, 0, 70)));
+	p.drawRect(x, y, block_size, block_size);
     }
 
     x = m_offset; y = height() - m_offset - block_size;
