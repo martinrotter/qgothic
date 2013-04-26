@@ -17,6 +17,7 @@
 #include <QProgressDialog>
 #include <QMouseEvent>
 #include <QFileDialog>
+#include <QMimeData>
 
 
 GMainWindow::GMainWindow(QWidget *parent) : QMainWindow(parent), m_ui(new Ui::GMainWindow) {
@@ -295,18 +296,24 @@ void GMainWindow::adviseMoveResult(Move move) {
 				 tr("Best move was found.\n\n%1").arg(move.toString()));
     }
     disconnect(m_game->getGenerator(), SIGNAL(moveForHumanFound(Move)), this, SLOT(adviseMoveResult(Move)));
+
+    controlGame(true);
 }
 
 void GMainWindow::adviseMove() {
     QProgressDialog dialog(tr("Looking for best available move..."), tr("Cancel"), 0, 100, this);
 
+    controlGame(false);
+
     connect(m_game->getGenerator(), SIGNAL(countOfCalls(int)), &dialog, SLOT(setMaximum(int)));
     connect(m_game->getGenerator(), SIGNAL(rankOfCall(int)), &dialog, SLOT(setValue(int)));
     connect(&dialog, SIGNAL(canceled()), m_game->getGenerator(), SLOT(cancel()));
+    connect(m_game->getGenerator(), SIGNAL(moveForHumanFound(Move)), &dialog, SLOT(close()));
     connect(m_game->getGenerator(), SIGNAL(moveForHumanFound(Move)), this, SLOT(adviseMoveResult(Move)));
 
-    Intelligence::cancel(false);
+    //Intelligence::cancel(false);
     m_game->getGenerator()->searchMove(m_game->getCurrentPlayer(), *m_game->getBoard());
+
     qApp->processEvents();
 
     dialog.setWindowTitle(tr("Best Move Search"));

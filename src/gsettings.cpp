@@ -41,10 +41,10 @@ QSettings::Status GSettings::setupSettings() {
 
     if (QFile(appPath).exists() == true) {
 	s_settings = new QSettings(appPath, QSettings::IniFormat);
-	qDebug("Initializing settings in %s.", appPath.toAscii().constData());
+    qDebug("Initializing settings in %s.", qPrintable(appPath));
     }
     else {
-	qDebug("Initializing settings in %s.", defaultPath.toAscii().constData());
+      qDebug("Initializing settings in %s.", qPrintable(defaultPath));
 	s_settings = new QSettings(defaultPath, QSettings::IniFormat);
     }
     return checkSettings();

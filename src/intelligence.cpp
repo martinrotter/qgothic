@@ -45,8 +45,8 @@ void Intelligence::computerMove(Player applicant, Board &board) {
 	    // sem dát 2
 	    // minimaxMove
 	    // alfabetaMove
-	    //alfabetaMove(applicant, board, 6, Strategy::advanced);
-	    minimaxMove(applicant, board, 4, Strategy::advanced);
+	    alfabetaMove(applicant, board, 6, Strategy::advanced);
+	    //minimaxMove(applicant, board, 4, Strategy::advanced);
 	    break;
 	default:
 	    randomMove(applicant, board);

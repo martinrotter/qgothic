@@ -16,7 +16,7 @@
     </message>
     <message>
         <location filename="../../ui/gaboutdialog.ui" line="125"/>
-        <source>QGothic is simple board game inspired by Damn-Spel (also called Altdeutsche Dame).</source>
+        <source>QGothic is simple board game inspired by Damn-Spel and Czech Checkers.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -147,155 +147,155 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="216"/>
+        <location filename="../../src/gmainwindow.cpp" line="218"/>
         <source>Save Your Game</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="218"/>
+        <location filename="../../src/gmainwindow.cpp" line="220"/>
         <source>This game has not been saved.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="219"/>
+        <location filename="../../src/gmainwindow.cpp" line="221"/>
         <source>Do you want to save or discard your game?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="249"/>
-        <location filename="../../src/gmainwindow.cpp" line="253"/>
-        <location filename="../../src/gmainwindow.cpp" line="257"/>
+        <location filename="../../src/gmainwindow.cpp" line="251"/>
+        <location filename="../../src/gmainwindow.cpp" line="255"/>
+        <location filename="../../src/gmainwindow.cpp" line="259"/>
         <source>Game Has Ended</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="250"/>
+        <location filename="../../src/gmainwindow.cpp" line="252"/>
         <source>Game has ended in a draw.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="254"/>
+        <location filename="../../src/gmainwindow.cpp" line="256"/>
         <source>Black player has won this game.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="258"/>
+        <location filename="../../src/gmainwindow.cpp" line="260"/>
         <source>White player has won this game.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="289"/>
+        <location filename="../../src/gmainwindow.cpp" line="291"/>
         <source>No Move Found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="290"/>
+        <location filename="../../src/gmainwindow.cpp" line="292"/>
         <source>There were found no available move for you at this phase of game.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="293"/>
+        <location filename="../../src/gmainwindow.cpp" line="295"/>
         <source>Move found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="294"/>
+        <location filename="../../src/gmainwindow.cpp" line="296"/>
         <source>Best move was found.
 
 %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="300"/>
+        <location filename="../../src/gmainwindow.cpp" line="302"/>
         <source>Looking for best available move...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="300"/>
+        <location filename="../../src/gmainwindow.cpp" line="302"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="311"/>
+        <location filename="../../src/gmainwindow.cpp" line="313"/>
         <source>Best Move Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="319"/>
+        <location filename="../../src/gmainwindow.cpp" line="321"/>
         <source>White player is seeking the move.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="323"/>
+        <location filename="../../src/gmainwindow.cpp" line="325"/>
         <source>Black player is seeking the move.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="320"/>
+        <location filename="../../src/gmainwindow.cpp" line="322"/>
         <source>White player is searching for move. If game pauses now, it may take few seconds to abort current move search.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="324"/>
+        <location filename="../../src/gmainwindow.cpp" line="326"/>
         <source>Black player is searching for move. If game pauses now, it may take few seconds to abort current move search.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="370"/>
+        <location filename="../../src/gmainwindow.cpp" line="365"/>
         <source>Running</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="371"/>
+        <location filename="../../src/gmainwindow.cpp" line="366"/>
         <source>Game is running.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="385"/>
+        <location filename="../../src/gmainwindow.cpp" line="380"/>
         <source>Paused</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="386"/>
+        <location filename="../../src/gmainwindow.cpp" line="381"/>
         <source>Game is paused.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="401"/>
+        <location filename="../../src/gmainwindow.cpp" line="396"/>
         <source>Black player has his turn.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="406"/>
+        <location filename="../../src/gmainwindow.cpp" line="401"/>
         <source>White player has his turn.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="435"/>
-        <location filename="../../src/gmainwindow.cpp" line="438"/>
+        <location filename="../../src/gmainwindow.cpp" line="430"/>
+        <location filename="../../src/gmainwindow.cpp" line="433"/>
         <source>in action</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="443"/>
-        <location filename="../../src/gmainwindow.cpp" line="446"/>
+        <location filename="../../src/gmainwindow.cpp" line="438"/>
+        <location filename="../../src/gmainwindow.cpp" line="441"/>
         <source>tiing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="451"/>
-        <location filename="../../src/gmainwindow.cpp" line="462"/>
+        <location filename="../../src/gmainwindow.cpp" line="446"/>
+        <location filename="../../src/gmainwindow.cpp" line="457"/>
         <source>winning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../src/gmainwindow.cpp" line="449"/>
         <location filename="../../src/gmainwindow.cpp" line="454"/>
-        <location filename="../../src/gmainwindow.cpp" line="459"/>
         <source>losing</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/gmainwindow.cpp" line="468"/>
+        <location filename="../../src/gmainwindow.cpp" line="463"/>
         <source> %n/%1 move(s) without jump</source>
         <translation>
             <numerusform> %n/%1 move without jump</numerusform>
@@ -303,8 +303,8 @@
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/gmainwindow.cpp" line="482"/>
-        <location filename="../../src/gmainwindow.cpp" line="485"/>
+        <location filename="../../src/gmainwindow.cpp" line="477"/>
+        <location filename="../../src/gmainwindow.cpp" line="480"/>
         <source>%n figure(s)</source>
         <translation>
             <numerusform>%n figure</numerusform>
@@ -312,67 +312,67 @@
         </translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="491"/>
+        <location filename="../../src/gmainwindow.cpp" line="486"/>
         <source>human</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="491"/>
+        <location filename="../../src/gmainwindow.cpp" line="486"/>
         <source>easy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="491"/>
+        <location filename="../../src/gmainwindow.cpp" line="486"/>
         <source>medium</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="491"/>
+        <location filename="../../src/gmainwindow.cpp" line="486"/>
         <source>hard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="509"/>
+        <location filename="../../src/gmainwindow.cpp" line="504"/>
         <source>Save Game</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="510"/>
+        <location filename="../../src/gmainwindow.cpp" line="505"/>
         <source>my-saved-game.qgo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="511"/>
-        <location filename="../../src/gmainwindow.cpp" line="550"/>
+        <location filename="../../src/gmainwindow.cpp" line="506"/>
+        <location filename="../../src/gmainwindow.cpp" line="545"/>
         <source>QGothic Game File (*.qgo);;All Files (*.*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="514"/>
+        <location filename="../../src/gmainwindow.cpp" line="509"/>
         <source>Game couldn&apos;t be saved because target file is not writable or some kind of other error occured.
 
 File: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="514"/>
+        <location filename="../../src/gmainwindow.cpp" line="509"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="527"/>
+        <location filename="../../src/gmainwindow.cpp" line="522"/>
         <source>Game couldn&apos;t be loaded because this file is not in valid format or was saved under another version of this application.
 
 File: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="548"/>
+        <location filename="../../src/gmainwindow.cpp" line="543"/>
         <source>Load Game</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/gmainwindow.cpp" line="571"/>
+        <location filename="../../src/gmainwindow.cpp" line="566"/>
         <source>User Guide</source>
         <translation type="unfinished"></translation>
     </message>
@@ -576,27 +576,17 @@ File: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/historymodel.cpp" line="68"/>
-        <source>skipped</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/historymodel.cpp" line="77"/>
-        <source>No moves were available for this player in this game phase.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/historymodel.cpp" line="92"/>
+        <location filename="../../src/historymodel.cpp" line="80"/>
         <source>No.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/historymodel.cpp" line="94"/>
+        <location filename="../../src/historymodel.cpp" line="82"/>
         <source>Player</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/historymodel.cpp" line="96"/>
+        <location filename="../../src/historymodel.cpp" line="84"/>
         <source>Last Move</source>
         <translation type="unfinished"></translation>
     </message>
@@ -629,32 +619,37 @@ File: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/historyitem.cpp" line="34"/>
+        <location filename="../../src/historyitem.cpp" line="35"/>
+        <source>Move skipped</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/historyitem.cpp" line="42"/>
         <source>White</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/historyitem.cpp" line="35"/>
+        <location filename="../../src/historyitem.cpp" line="43"/>
         <source>Black</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/main.cpp" line="90"/>
+        <location filename="../../src/main.cpp" line="93"/>
         <source>%1 %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/move.cpp" line="119"/>
+        <location filename="../../src/move.cpp" line="121"/>
         <source>no jumped figures in this move</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/move.cpp" line="122"/>
+        <location filename="../../src/move.cpp" line="124"/>
         <source>jumped figures in this move:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/move.cpp" line="125"/>
+        <location filename="../../src/move.cpp" line="127"/>
         <source>
  %1. %2 at location %3</source>
         <translation type="unfinished"></translation>

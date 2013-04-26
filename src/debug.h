@@ -11,7 +11,7 @@
 class Debug {
 
     public:
-	static void debugHandler(QtMsgType type, const char *msg);
+    static void debugHandler(QtMsgType type, const QMessageLogContext &context, const QString &message);
 
     private:
 	Debug();

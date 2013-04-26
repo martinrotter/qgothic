@@ -6,8 +6,8 @@
 
 TARGET	    = qgothic
 TEMPLATE    = app
-QT	    += core webkit xml
-CONFIG	    += console
+QT	    += widgets core webkitwidgets xml	    # Remove widgets when compiling with Qt4.
+#CONFIG	    += console			    # Uncomment to see real-time debug messages.
 CONFIG	    -= app_bundle
 DEFINES	    *= QT_USE_QSTRINGBUILDER
 

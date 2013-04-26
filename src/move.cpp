@@ -1,6 +1,7 @@
 #include "move.h"
 
 #include <QString>
+#include <QObject>
 
 
 Move::Move() :

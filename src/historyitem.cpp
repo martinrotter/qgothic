@@ -1,5 +1,8 @@
 #include "historyitem.h"
 
+#include <QString>
+#include <QObject>
+
 
 HistoryItem::HistoryItem(Move move, int id, int moves) {
     this->m_move = new Move(move);
@@ -29,7 +32,7 @@ QString HistoryItem::getInfo(HistoryItem::Section section) const {
 	    return QString::number(getOrdinalNumber());
 	case HistoryItem::MOVE:
 	    if (getMove()->isInvalid() == true) {
-		return QObject::tr("Move Skipped");
+		return QObject::tr("Move skipped");
 	    }
 	    else {
 		return getMove()->toString();

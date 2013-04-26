@@ -15,8 +15,8 @@ Location::Location(int x, int y) : m_x(x), m_y(y) {
 
 Location Location::fromString(const QString &string) {
     Location loc;
-    loc.setX(string.at(0).toAscii()-'A');
-    loc.setY(string.at(1).toAscii()-'1');
+    loc.setX(string.at(0).toLatin1() - 'A');
+    loc.setY(string.at(1).toLatin1() - '1');
     return loc;
 }
 

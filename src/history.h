@@ -3,6 +3,8 @@
 
 #include "move.h"
 
+#include <QObject>
+
 
 class HistoryItem;
 
