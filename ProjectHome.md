@@ -1,0 +1,1 @@
+QGothic is simple board game inspired by Damn-Spel and Czech Checkers.
